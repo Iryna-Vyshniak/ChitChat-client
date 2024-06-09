@@ -109,3 +109,50 @@ export const appTabs: AppPage[] = [
   ];
 
   export const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+
+  // for signup form
+export const signupFields = {
+  fullName: {
+    label: 'Full Name',
+    name: 'fullName',
+    placeholder: 'Will Smith',
+  },
+  username: {
+    label: 'Username',
+    name: 'username',
+    placeholder: 'wills',
+  },
+  email: {
+    label: 'Email',
+    name: 'email',
+    placeholder: 'will_smith@gmail.com',
+  },
+  password: {
+    label: 'Password',
+    name: 'password',
+    placeholder: '*******',
+  },
+  confirmPassword: {
+    label: 'Confirm Password',
+    name: 'confirmPassword',
+    placeholder: '*******',
+  },
+  gender: {
+    label: 'Male' || 'Female' || 'Other',
+    name: 'gender',
+  },
+};
+
+// for login form
+export const loginFields = {
+  email: {
+    label: 'Email',
+    name: 'email',
+    placeholder: 'will_smith@gmail.com',
+  },
+  password: {
+    label: 'Password',
+    name: 'password',
+    placeholder: '*******',
+  },
+};
