@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Preferences } from '@capacitor/preferences';
 
-import { UseFormProps, ValidationErrors } from '../../types';
+import { SignupI, UseFormProps, ValidationErrors } from '../../types';
 
 export const useForm = <T extends {}>({ initialValues, validate, onSubmit }: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues);
@@ -37,19 +37,25 @@ export const useForm = <T extends {}>({ initialValues, validate, onSubmit }: Use
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const validationErrors = validate(values);
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
-      onSubmit({ ...values });
+    if (Object.keys(validationErrors).length > 0) {
+      Object.keys(initialValues).forEach((field) => markTouched(field as keyof T));
+        return
     }
 
-    if (await Preferences.get({ key: 'formData' })) {
-      await Preferences.remove({ key: 'formData' });
+    onSubmit({ ...values });
+
+    const savedData = await Preferences.get({ key: 'formData' });
+    if (savedData) {
+        await Preferences.remove({ key: 'formData' });
     }
 
     reset();
-  };
+};
+
 
   const markTouched = (field: keyof T) => {
     setTouchedFields((prev) => ({ ...prev, [field]: true }));
