@@ -7,13 +7,14 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonLabel,
   setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import Menu from './components/Menu';
+import Menu from './components/menu/Menu';
 import Home from './pages/home/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -50,16 +51,19 @@ import './theme/main.css';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import { appTabs } from './shared/data';
+import { useAuthContext } from './shared/context/AuthContext';
 
 setupIonicReact({
   mode: 'ios',
 });
 
 const App: React.FC = () => {
+  const { authUser } = useAuthContext();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const login = () => {
+    if (!authUser) return;
     setIsAuthenticated(true);
   };
 
@@ -113,6 +117,7 @@ const App: React.FC = () => {
                   {appTabs.map((tab, index) => (
                     <IonTabButton key={index} tab={tab.title} href={tab.url}>
                       <IonIcon icon={tab.iosIcon} />
+                      <IonLabel>{tab.title}</IonLabel>
                     </IonTabButton>
                   ))}
                 </IonTabBar>
