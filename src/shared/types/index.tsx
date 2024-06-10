@@ -53,4 +53,6 @@ export interface SelectedGenderProps {
   selectedGender: string;
   handleChange: (e: CustomEvent<any>) => Promise<void>;
   errors: ValidationErrors<SignupI>;
+  markTouched: (field: keyof SignupI) => void;
+  touchedFields: Partial<Record<keyof SignupI, boolean>>;
 }
