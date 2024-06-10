@@ -73,13 +73,14 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
     <IonGrid fixed>
       <IonRow class='ion-justify-content-center'>
         <IonCol size='12' sizeMd='8' sizeLg='6' sizeXl='6'>
-          <IonCard>
-            <IonCardContent>
+          <IonCard className='register-card'>
+            <IonCardContent className='scrollable-content'>
               <form onSubmit={handleSubmit} className='form'>
                 <IonInput
                   mode='md'
                   fill='outline'
                   labelPlacement='floating'
+                  counter={true} maxlength={20}
                   value={values.fullName}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('fullName')}
@@ -92,6 +93,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   mode='md'
                   fill='outline'
                   labelPlacement='floating'
+                  counter={true} maxlength={20}
                   value={values.username}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('username')}
@@ -149,14 +151,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                 />
 
                 <IonButton expand='block' type='submit'>
-                  Sign Up
+                Create an account
                 </IonButton>
                 <IonButton
                   routerLink='/signin'
                   color='secondary'
                   type='button'
                   expand='block'
-                  className='ion-margin-top'
                 >
                   Sign In
                   <IonIcon icon={personCircleOutline} slot='end' />
