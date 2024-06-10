@@ -1,11 +1,8 @@
 import {
   IonCheckbox,
   IonItem,
-  IonItemDivider,
-  IonItemGroup,
-  IonLabel,
   IonList,
-  IonText,
+  IonText
 } from '@ionic/react';
 import React from 'react';
 
@@ -21,11 +18,8 @@ const GenderCheckbox: React.FC<SelectedGenderProps> = ({
 }) => {
 
   return (
-    <IonList lines="inset">
-        <IonItemGroup>
-        <IonItemDivider className='ion-padding'>
-          <IonLabel>Gender</IonLabel>
-        </IonItemDivider>
+    <IonList lines="inset" className='register-ion-list'>
+          <IonText class='ion-padding'>Gender</IonText>
       <IonItem>
         <IonCheckbox
           labelPlacement='start'
@@ -67,8 +61,8 @@ const GenderCheckbox: React.FC<SelectedGenderProps> = ({
           Other
         </IonCheckbox>
       </IonItem>
-      {touchedFields.gender && errors.gender && <IonText color='danger'>{errors.gender}</IonText>}
-      </IonItemGroup>
+      {touchedFields.gender && errors.gender && <IonText color='danger'><p className='ion-padding-start gender-error'>{errors.gender}</p></IonText>}
+     
     </IonList>
   );
 };
