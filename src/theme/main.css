@@ -1,0 +1,103 @@
+ion-grid .form {
+display: flex;
+flex-direction: column;
+gap: 20px;
+background-color: transparent;
+}
+
+ion-grid {
+    --ion-grid-padding: 8px;
+  
+    --ion-grid-padding-xs: 8px;
+    --ion-grid-padding-sm: 12px;
+    --ion-grid-padding-md: 14px;
+    --ion-grid-padding-lg: 16px;
+    --ion-grid-padding-xl: 20px;
+  
+    --ion-grid-column-padding: 8px;
+  
+    --ion-grid-column-padding-xs: 8px;
+    --ion-grid-column-padding-sm: 12px;
+    --ion-grid-column-padding-md: 14px;
+    --ion-grid-column-padding-lg: 16px;
+    --ion-grid-column-padding-xl: 20px;
+  }
+
+ion-list {
+    --ion-grid-padding: 8px;
+  
+    --ion-grid-padding-xs: 8px;
+    --ion-grid-padding-sm: 12px;
+    --ion-grid-padding-md: 14px;
+    --ion-grid-padding-lg: 16px;
+    --ion-grid-padding-xl: 20px;
+  
+    --ion-grid-column-padding: 8px;
+  
+    --ion-grid-column-padding-xs: 8px;
+    --ion-grid-column-padding-sm: 12px;
+    --ion-grid-column-padding-md: 14px;
+    --ion-grid-column-padding-lg: 16px;
+    --ion-grid-column-padding-xl: 20px;
+  }
+
+
+  @media (max-width: 768px) {
+    .form {
+      font-size: 0.9rem; 
+    }
+  
+    .form ion-input {
+      --padding-start: 8px; 
+      --padding-end: 8px;
+    }
+  
+    .form ion-button {
+      --padding-start: 8px;
+      --padding-end: 8px;
+      --margin-top: 8px; 
+      font-size: 0.9rem; 
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .form,
+    .form ion-label,
+    .form ion-checkbox {
+      font-size: 0.8rem; 
+    }
+   
+  
+    .form ion-input {
+        --inner-padding-top: 4px;
+        --inner-padding-bottom: 4px;
+
+        --detail-icon-color: white;
+  --detail-icon-opacity: 1;
+  --detail-icon-font-size: 20px;
+    }
+  
+    .form ion-button {
+      --padding-start: 4px;
+      --padding-end: 4px;
+      --margin-top: 4px;
+      font-size: 0.8rem; 
+    }
+  }
+  
+  ion-tab-bar {
+    padding: 0.5rem;
+  }
+  
+  ion-tab-button:hover {
+    --background: #174ff71f;
+    --color: var(--ion-color-dark);
+    border-radius: 20px;
+    transition: all 0.2s linear;
+  }
+  
+  ion-tab-button ion-label {
+    font-size: 0.8rem;
+  }
+
+
