@@ -1,0 +1,83 @@
+ion-header.register-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 12px;
+  min-height: 43%;
+  background: linear-gradient(45deg, #10032d, #330457, #3523d5, #448ff2);
+  background-size: 100% 100%;
+  animation: gradient 5s ease infinite;
+  border-radius: 0 0 2.5rem 2.5rem;
+  color: #fff;
+}
+
+ion-toolbar.register-toolbar {
+  --background: transparent;
+  color: #fff;
+}
+
+ion-content.register-content {
+  position: absolute;
+  top: 15%;
+  z-index: 20;
+  --background: transparent;
+}
+
+.register-card {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 80vh;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: #b1aaf511;
+  border-radius: 1.25rem;
+}
+
+.scrollable-content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.scrollable-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollable-content {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for other browsers */
+.scrollable-content {
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+/* Form styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 20px;
+}
+
+ion-list.list-ios {
+  margin-top: 16px;
+  background: transparent;
+}
+
+.form ion-list.register-ion-list ion-item,
+.form ion-item {
+  --background: transparent;
+}
+
+.form ion-checkbox {
+  --checkbox-background: transparent;
+}
+
+.form .gender-error {
+font-size: 12px;
+}

@@ -82,6 +82,12 @@ http://ionicframework.com/docs/theming/ */
   }
   
 
+  html {
+    --ion-dynamic-font: var(--ion-default-dynamic-font);
+    --ion-font-family: 'Comic Sans MS';
+    --ion-font-size: 12px;
+  }
+
   @media (prefers-color-scheme: dark) {
     /*
      * Dark Colors
@@ -191,6 +197,18 @@ http://ionicframework.com/docs/theming/ */
   
       --ion-tab-bar-background: rgba(27, 26, 26, 0.386);
       --ion-toolbar-background: rgb(22, 22, 22);
+
+      ion-button {
+        --background: linear-gradient(45deg, #10032d, #330457, #3523d5, #448ff2); 
+        background-size: 400% 400%;
+        animation: gradient 5s ease infinite;
+      }
+      
+      ion-button:hover {
+        --background: linear-gradient(-45deg, #10032d, #330457, #3523d5, #448ff2); 
+        background-size: 400% 400%;
+        animation: gradient 5s ease infinite;
+      }
     }
   
     .ios ion-modal {
