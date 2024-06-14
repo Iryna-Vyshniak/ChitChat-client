@@ -1,8 +1,7 @@
 body {
   font-style: normal;
-  font-family: "Poppins",sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
-  line-height: 20px;
 }
 
 h1 {
@@ -13,17 +12,39 @@ h2 {
   font-size: 16px;
 }
 
-ion-tab-bar {
-  padding: 0.5rem;
-}
-
-ion-tab-button:hover {
-  --background: #174ff71f;
-  --color: var(--ion-color-dark);
-  border-radius: 20px;
-  transition: all 0.2s linear;
-}
-
 ion-tab-button ion-label {
   font-size: 0.8rem;
+}
+
+ion-input.custom {
+  --highlight-color-valid: var(--ion-color-success);
+  --placeholder-opacity: 0.5;
+  --label-color: var(--ion-color-primary);
+  --placeholder-font-size: 10px;
+  --padding-inner-bottom: 10px;
+  --padding--inner-top: 10px;
+  font-size: 12px;
+  --color: var(--ion-text-color);
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+ion-input.custom.ios .input-bottom .helper-text,
+ion-input.custom.ios .input-bottom .counter,
+ion-input.custom.md .input-bottom .helper-text,
+ion-input.custom.md .input-bottom .counter {
+  color: var(--ion-color-primary);
+  font-size: 10px;
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+ion-input.custom.ios .input-bottom .error-text,
+ion-input.custom.md .input-bottom .error-text {
+  font-size: 10px;
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
 }

@@ -3,6 +3,12 @@ http://ionicframework.com/docs/theming/ */
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+font-family: 'Roboto', sans-serif;
+}
+
 /** Ionic CSS Variables **/
 :root {
     /** primary **/
@@ -70,21 +76,24 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-medium-tint: #9d9fa6;
   
     /** light **/
-    --ion-color-light: #f4f5f8;
-    --ion-color-light-rgb: 244, 245, 248;
+    --ion-color-light: #ffffff;
+    --ion-color-light-rgb: 255,255,255;
     --ion-color-light-contrast: #000000;
-    --ion-color-light-contrast-rgb: 0, 0, 0;
-    --ion-color-light-shade: #d7d8da;
-    --ion-color-light-tint: #f5f6f9;
+    --ion-color-light-contrast-rgb: 0,0,0;
+    --ion-color-light-shade: #fefdfd;
+    --ion-color-light-tint: #ffffff;
   
-    --chat-bubble-sent-color: #105347;
-    --chat-bubble-received-color: #3c3c3e;
+    --chat-bubble-sent-color: #fb500186;
+    --chat-bubble-received-color: #ff4e02;
+
+    --ion-text-color: #010101;
   }
   
 
   html {
+    --ion-safe-area-left: 25px;
     --ion-dynamic-font: var(--ion-default-dynamic-font);
-    --ion-font-family: 'Comic Sans MS';
+    --ion-font-family: 'Roboto', sans-serif;
     --ion-font-size: 12px;
   }
 
@@ -157,6 +166,8 @@ http://ionicframework.com/docs/theming/ */
       --ion-color-light-contrast-rgb: 255,255,255;
       --ion-color-light-shade: #1e2023;
       --ion-color-light-tint: #383a3e;
+
+      --ion-text-color: #ffffff;
     }
   
     /*
@@ -197,24 +208,13 @@ http://ionicframework.com/docs/theming/ */
   
       --ion-tab-bar-background: rgba(27, 26, 26, 0.386);
       --ion-toolbar-background: rgb(22, 22, 22);
-
-      ion-button {
-        --background: linear-gradient(45deg, #10032d, #330457, #3523d5, #448ff2); 
-        background-size: 400% 400%;
-        animation: gradient 5s ease infinite;
-      }
-      
-      ion-button:hover {
-        --background: linear-gradient(-45deg, #10032d, #330457, #3523d5, #448ff2); 
-        background-size: 400% 400%;
-        animation: gradient 5s ease infinite;
-      }
     }
   
     .ios ion-modal {
       --ion-background-color: var(--ion-item-background);
       --ion-toolbar-background: var(--ion-color-step-150);
       --ion-toolbar-border-color: var(--ion-color-step-250);
+      --ion-safe-area-top: 0;
     }
 
     .md body {
@@ -253,5 +253,26 @@ http://ionicframework.com/docs/theming/ */
       --ion-tab-bar-background: #1f1f1f;
   
       --ion-card-background: #1e1e1e;
+
     }
+  }
+
+  .custom-link {
+    color: var(--ion-color-primary);
+  }
+  
+  .custom-back {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .custom-button {
+    --background: linear-gradient(45deg, #10032d, #330457, #3523d5, #448ff2); 
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    --background-activated: linear-gradient(-45deg, #10032d, #330457, #3523d5, #448ff2);;
+    --background-focused: var(--ion-color-primary);
   }

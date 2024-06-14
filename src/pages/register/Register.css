@@ -4,7 +4,7 @@ ion-header.register-header {
   align-items: center;
   padding: 20px;
   margin-bottom: 12px;
-  min-height: 43%;
+  min-height: 44%;
   background: linear-gradient(45deg, #10032d, #330457, #3523d5, #448ff2);
   background-size: 100% 100%;
   animation: gradient 5s ease infinite;
@@ -28,8 +28,8 @@ ion-content.register-content {
   display: flex;
   flex-direction: column;
 
-  max-height: 80vh;
-  backdrop-filter: blur(16px) saturate(180%);
+  max-height: 60vh;
+  backdrop-filter: blur(26px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: #b1aaf511;
   border-radius: 1.25rem;
@@ -65,7 +65,6 @@ ion-content.register-content {
 }
 
 ion-list.list-ios {
-  margin-top: 16px;
   background: transparent;
 }
 
@@ -79,5 +78,40 @@ ion-list.list-ios {
 }
 
 .form .gender-error {
-font-size: 12px;
+  font-size: 10px;
+}
+
+.register-list-wrapper {
+  
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.register-gender-text {
+  font-size: 12px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.register-gender-item {
+  font-size: 12px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+
+.register-footer {
+  position: relative;
+  z-index: 30;
+
+  --background: transparent;
+
+  .footerLine {
+    width: 40%;
+    border: 3px solid black;
+    border-radius: 10px;
+  }
 }
