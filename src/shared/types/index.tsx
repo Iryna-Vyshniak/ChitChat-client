@@ -56,3 +56,9 @@ export interface SelectedGenderProps {
   markTouched: (field: keyof SignupI) => void;
   touchedFields: Partial<Record<keyof SignupI, boolean>>;
 }
+
+export interface ActionI {
+  message: string;
+  link: string;
+  text: string;
+}
