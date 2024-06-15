@@ -62,3 +62,9 @@ export interface ActionI {
   link: string;
   text: string;
 }
+
+export interface WaveProps {
+  style?: React.CSSProperties;
+  flipHorizontal?: boolean;
+  flipVertical?: boolean;
+}

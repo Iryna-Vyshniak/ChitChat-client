@@ -1,5 +1,33 @@
- const Wave = () => (
-    <svg style={{ marginBottom: "-0.5rem" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#27139c" fillOpacity="1" d="M0,288L40,277.3C80,267,160,245,240,224C320,203,400,181,480,176C560,171,640,181,720,181.3C800,181,880,171,960,144C1040,117,1120,75,1200,58.7C1280,43,1360,53,1400,58.7L1440,64L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
-);
+import React from "react";
 
-export default Wave;
+import { WaveProps } from "../../shared/types";
+
+const Wave: React.FC<WaveProps> = ({ style, flipHorizontal, flipVertical }) => {
+    const defaultStyle: React.CSSProperties = {
+        marginBottom: flipHorizontal && flipVertical ? '0' : '-0.5rem',
+        transform: `
+          ${flipHorizontal ? 'scaleX(-1)' : ''}
+          ${flipVertical ? 'scaleY(-1)' : ''}
+        `,
+      };
+    
+    return (
+    <svg
+      style={{ ...defaultStyle, ...style}}
+      width="1440.000000"
+      height="320.000000"
+      viewBox="0 0 1440 320" 
+      fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs/>
+    <path id="Vector 2" d="M400.2 45L404 230L279.31 293.77C264.38 301.41 246.63 301.05 232.02 292.83L156.35 250.25C140.23 241.17 120.41 241.74 104.83 251.74L0 319L0 45L400.2 45Z" fill="var(--ion-color-intro-violet)" />
+    <path id="Vector 2" d="M400.2 45L0 45L0 319L104.83 251.74C120.41 241.74 140.23 241.17 156.35 250.25L232.02 292.83C246.63 301.05 264.38 301.41 279.31 293.77L404 230L400.2 45Z" stroke="#ffffff"  strokeOpacity="0" strokeWidth="1.000000"/>
+    <path id="Vector 3" d="M396.24 0L400 185L276.97 248.55C261.94 256.31 244.01 255.95 229.31 247.6L155.26 205.51C139.04 196.28 119.03 196.86 103.36 207.01L0 274L0 0L396.24 0Z" fill="var(--ion-color-secondary)" fillOpacity="0.700000" fillRule="nonzero"/>
+    <path id="Vector 3" d="M396.24 0L0 0L0 274L103.36 207.01C119.03 196.86 139.04 196.28 155.26 205.51L229.31 247.6C244.01 255.95 261.94 256.31 276.97 248.55L400 185L396.24 0Z" stroke="#ffffff"  strokeOpacity="0" strokeWidth="1.000000"/>
+    </svg>
+  
+    );
+  };
+  
+  export default Wave;
