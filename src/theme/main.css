@@ -19,10 +19,10 @@ ion-tab-button ion-label {
 ion-input.custom {
   --highlight-color-valid: var(--ion-color-success);
   --placeholder-opacity: 0.5;
-  --label-color: var(--ion-color-primary);
+  --label-color: var(--ion-color-secondary);
   --placeholder-font-size: 10px;
-  --padding-inner-bottom: 10px;
-  --padding--inner-top: 10px;
+  --padding-inner-bottom: 4px;
+  --padding--inner-top: 4px;
   font-size: 12px;
   --color: var(--ion-text-color);
   @media (min-width: 768px) {
@@ -34,7 +34,7 @@ ion-input.custom.ios .input-bottom .helper-text,
 ion-input.custom.ios .input-bottom .counter,
 ion-input.custom.md .input-bottom .helper-text,
 ion-input.custom.md .input-bottom .counter {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-secondary);
   font-size: 10px;
   @media (min-width: 768px) {
     font-size: 12px;

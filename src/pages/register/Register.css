@@ -1,34 +1,31 @@
-ion-header.register-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  margin-bottom: 12px;
-  min-height: 44%;
-  background: linear-gradient(45deg, #10032d, #330457, #3523d5, #448ff2);
-  background-size: 100% 100%;
-  animation: gradient 5s ease infinite;
-  border-radius: 0 0 2.5rem 2.5rem;
-  color: #fff;
+.register-page {
+position: relative;
+height: 100dvh;
+
+background: url(../../assets/content/bg-01.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% -30%;
+    filter: blur(26);
 }
 
-ion-toolbar.register-toolbar {
+
+.register-toolbar {
+--background: transparent;
+}
+
+ ion-content.register-content {
   --background: transparent;
-  color: #fff;
-}
 
-ion-content.register-content {
   position: absolute;
-  top: 15%;
-  z-index: 20;
-  --background: transparent;
-}
+  z-index: 10;
+  top: 4vh;
+} 
 
 .register-card {
   display: flex;
   flex-direction: column;
-
-  max-height: 60vh;
+  max-height: 90vh;   
   backdrop-filter: blur(26px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: #b1aaf511;
@@ -75,6 +72,17 @@ ion-list.list-ios {
 
 .form ion-checkbox {
   --checkbox-background: transparent;
+  
+    --size: 24px;
+    --checkbox-background-checked: var(--ion-color-secondary);
+
+    
+  
+}
+
+.form ion-checkbox::part(container) {
+  border-radius: 6px;
+  border: 0.5px solid var(--ion-color-dark);
 }
 
 .form .gender-error {
@@ -99,19 +107,5 @@ ion-list.list-ios {
   font-size: 12px;
   @media (min-width: 768px) {
     font-size: 14px;
-  }
-}
-
-
-.register-footer {
-  position: relative;
-  z-index: 30;
-
-  --background: transparent;
-
-  .footerLine {
-    width: 40%;
-    border: 3px solid black;
-    border-radius: 10px;
   }
 }
