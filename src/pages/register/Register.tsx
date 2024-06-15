@@ -1,9 +1,7 @@
 import {
   IonContent,
   IonHeader,
-  IonImg,
   IonPage,
-  IonText,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
@@ -24,17 +22,15 @@ const Register: React.FC = () => {
   };
 
   return (
-    <IonPage>
+    <IonPage className='register-page'>
       <IonHeader className='register-header ion-no-border'>
         <IonToolbar className='register-toolbar'>
           <IonTitle>
             <h1>Sign Up</h1>
           </IonTitle>
         </IonToolbar>
-        <IonText class='ion-text-center'>
-          <h2>Get chatting with friends and family today by signing up for our chat app!</h2>
-        </IonText>
       </IonHeader>
+
       <IonContent scrollY={false} className='register-content ion-padding'>
         <SignUpForm onSubmit={onSubmit} />
       </IonContent>

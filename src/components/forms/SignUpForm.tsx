@@ -6,9 +6,11 @@ import {
   IonIcon,
   IonInput,
   IonRow,
-  IonButton,
+  IonButton
 } from '@ionic/react';
-import { personCircleOutline } from 'ionicons/icons';
+import {
+  personCircleOutline,
+} from 'ionicons/icons';
 
 import { useForm } from '../../shared/hooks/auth/useForm';
 
@@ -63,15 +65,16 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
     return errors;
   };
 
-  const { values, errors, handleChange, handleSubmit, isValid, markTouched, touchedFields } = useForm<SignupI>({
-    initialValues,
-    validate,
-    onSubmit,
-  });
+  const { values, errors, handleChange, handleSubmit, isValid, markTouched, touchedFields } =
+    useForm<SignupI>({
+      initialValues,
+      validate,
+      onSubmit,
+    });
 
   return (
-    <IonGrid fixed>
-      <IonRow class='ion-justify-content-center'>
+    <IonGrid fixed className='ion-no-padding'>
+      <IonRow>
         <IonCol size='12' sizeMd='8' sizeLg='6' sizeXl='6'>
           <IonCard className='register-card'>
             <IonCardContent className='scrollable-content'>
@@ -80,31 +83,37 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   mode='md'
                   fill='outline'
                   labelPlacement='floating'
-                  counter={true} maxlength={20}
+                  counter={true}
+                  maxlength={20}
                   value={values.fullName}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('fullName')}
                   errorText={touchedFields.fullName && errors.fullName ? errors.fullName : ''}
                   {...signupFields.fullName}
-                  className={`${isValid.fullName ? 'ion-valid' : 'ion-invalid'} ${touchedFields.fullName ? 'ion-touched' : ''}`}
-                /> 
+                  className={`${isValid.fullName ? 'ion-valid' : 'ion-invalid'} ${
+                    touchedFields.fullName ? 'ion-touched' : ''
+                  } custom`}
+                />
 
                 <IonInput
                   mode='md'
-                  fill='outline'
+                   fill='outline'
                   labelPlacement='floating'
-                  counter={true} maxlength={20}
+                  counter={true}
+                  maxlength={20}
                   value={values.username}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('username')}
                   errorText={touchedFields.username && errors.username ? errors.username : ''}
                   {...signupFields.username}
-                  className={`${isValid.username ? 'ion-valid' : 'ion-invalid'} ${touchedFields.username ? 'ion-touched' : ''}`}
+                  className={`${isValid.username ? 'ion-valid' : 'ion-invalid'} ${
+                    touchedFields.username ? 'ion-touched' : ''
+                  } custom`}
                 />
 
                 <IonInput
                   mode='md'
-                  fill='outline'
+                   fill='outline'
                   labelPlacement='floating'
                   type='email'
                   value={values.email}
@@ -112,9 +121,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   onIonBlur={() => markTouched('email')}
                   errorText={touchedFields.email && errors.email ? errors.email : ''}
                   {...signupFields.email}
-                  className={`${isValid.email ? 'ion-valid' : 'ion-invalid'} ${touchedFields.email ? 'ion-touched' : ''}`}
+                  className={`${isValid.email ? 'ion-valid' : 'ion-invalid'} ${
+                    touchedFields.email ? 'ion-touched' : ''
+                  } custom`}
                 />
-
 
                 <IonInput
                   mode='md'
@@ -126,8 +136,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   onIonBlur={() => markTouched('password')}
                   errorText={touchedFields.password && errors.password ? errors.password : ''}
                   {...signupFields.password}
-                  className={`${isValid.password ? 'ion-valid' : 'ion-invalid'} ${touchedFields.password ? 'ion-touched' : ''}`}
+                  className={`${isValid.password ? 'ion-valid' : 'ion-invalid'} ${
+                    touchedFields.password ? 'ion-touched' : ''
+                  } custom`}
                 />
+             
 
                 <IonInput
                   mode='md'
@@ -137,10 +150,17 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   value={values.confirmPassword}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('confirmPassword')}
-                  errorText={touchedFields.confirmPassword && errors.confirmPassword ? errors.confirmPassword : ''}
+                  errorText={
+                    touchedFields.confirmPassword && errors.confirmPassword
+                      ? errors.confirmPassword
+                      : ''
+                  }
                   {...signupFields.confirmPassword}
-                  className={`${isValid.confirmPassword ? 'ion-valid' : 'ion-invalid'} ${touchedFields.confirmPassword ? 'ion-touched' : ''}`}
-                />
+                  className={`${isValid.confirmPassword ? 'ion-valid' : 'ion-invalid'} ${
+                    touchedFields.confirmPassword ? 'ion-touched' : ''
+                  } custom margin-bottom`}
+                  />
+                
 
                 <GenderCheckbox
                   selectedGender={values.gender}
@@ -150,8 +170,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   touchedFields={touchedFields}
                 />
 
-                <IonButton expand='block' type='submit'>
-                Create an account
+                <IonButton expand='block' type='submit' className='custom-button'>
+                  Create an account
+                  <IonIcon icon={personCircleOutline} slot='end' />
                 </IonButton>
                 <IonButton
                   routerLink='/signin'
