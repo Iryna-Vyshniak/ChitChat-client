@@ -17,8 +17,10 @@ ion-tab-button ion-label {
 }
 
 ion-input.custom {
+  --background: transparent !important;
   --highlight-color-valid: var(--ion-color-success);
   --placeholder-opacity: 0.5;
+
   --label-color: var(--ion-color-secondary);
   --placeholder-font-size: 10px;
   --padding-inner-bottom: 4px;
