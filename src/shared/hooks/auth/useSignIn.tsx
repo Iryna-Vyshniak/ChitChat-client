@@ -1,4 +1,4 @@
-import { useIonLoading, useIonRouter } from '@ionic/react';
+import { useIonLoading, useIonRouter, useIonToast } from '@ionic/react';
 import { Preferences } from '@capacitor/preferences';
 
 import { useAuthContext } from '../../context/AuthContext';
@@ -8,10 +8,11 @@ import { SigninI } from '../../types';
 export const useSignIn = () => {
   const router = useIonRouter();
   const [present, dismiss] = useIonLoading();
+  const [showToast] = useIonToast();
   const { setAuthUser } = useAuthContext();
 
   const signin = async ({ email, password }: SigninI): Promise<void> => {
-    
+
     await present('Logg in...');
 
     try {
@@ -21,26 +22,33 @@ export const useSignIn = () => {
         body: JSON.stringify({ email, password }),
       });
 
+      const responseData = await res.json();
+
       if (!res.ok) {
-        throw new Error(res.statusText);
+        throw new Error(responseData.message || res.statusText);
       }
 
-      const { data } = await res.json();
-      console.log('data: ', data);
-
-      if (data.error || data.message) {
-        throw new Error(data.error || data.message);
-      }
+      const { data } = responseData;
 
       await Preferences.set({ key: 'user', value: JSON.stringify(data.user) });
       setAuthUser(data.user);
       router.push('/app', 'root');
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('Signin Error:', error.message);
-      } else {
-        console.error('Signin Error:', error);
-      }
+        if (error instanceof Error) {
+          console.error('Signup Error:', error.message);
+          showToast({
+            message: error.message,
+            duration: 2000,
+            color: 'danger',
+          });
+        } else {
+          console.error('Signup Error:', 'An unexpected error occurred');
+          showToast({
+            message: 'An unexpected error occurred',
+            duration: 2000,
+            color: 'danger',
+          });
+        }
     } finally {
       dismiss();
     }

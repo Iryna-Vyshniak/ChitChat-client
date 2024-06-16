@@ -81,6 +81,7 @@
   
   .form .gender-error {
     font-size: 10px;
+    margin-left: 16px;
   }
   
   .auth-list-wrapper {
