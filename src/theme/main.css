@@ -12,9 +12,89 @@ h2 {
   font-size: 16px;
 }
 
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+display: none;
+overflow: hidden;
+}
+
+
+/* chrome, safari */
+ion-content::part(scroll)::-webkit-scrollbar {
+  display: none;
+}
+/* firefox */
+ion-content::part(scroll) {
+  scrollbar-width: none;
+}
+
+ion-content {
+  width: calc(100% + 15px);
+}
+ion-content::part(scroll) {
+  padding-right: 15px;
+}
+
+.scrollable-content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.scrollable-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollable-content {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for other browsers */
+.scrollable-content {
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
 ion-tab-button ion-label {
   font-size: 0.8rem;
 }
+
+.custom-link {
+  color: var(--ion-color-primary);
+}
+
+.custom-back {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.custom-button {
+  --background: linear-gradient(45deg, #998bff, #2a7ff7, #04357e);
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+  --background-hover: linear-gradient(-45deg, #e6afaf, #c4bcff, #5790df);
+  --background-activated: linear-gradient(-45deg, #e6afaf, #c4bcff, #5790df);
+  --background-focused: var(--ion-color-primary);
+}
+
+ion-button[slot='fixed'] {
+  --border-radius: 9999px;
+  --background: linear-gradient(45deg, #cbc5f8, #a9caf9, #c1d6f7);
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+  --background-hover: linear-gradient(-45deg, #e6afaf, #c4bcff, #5790df);
+  --background-activated: linear-gradient(-45deg, #e6afaf, #c4bcff, #5790df);
+  --background-focused: var(--ion-color-primary);
+  opacity: 0.5;
+  top: 1%;
+  right: 30px;
+  z-index: 10;
+}
+
 
 ion-input.custom {
   --background: transparent !important;
@@ -69,5 +149,23 @@ ion-tab-button.tab-selected.custom ion-label.custom {
 }
 
 ion-tab-bar.custom {
---background: transparent !important;
+  --background: transparent !important;
 }
+
+/* skeleton */
+
+ion-skeleton-text {
+  --border-radius: 9999px;
+  --background: rgba(140, 0, 255, 0.065);
+  --background-rgb: 188, 0, 255;
+}
+
+ion-card.custom-card {
+  width: 80%;
+}
+
+
+ion-content.custom-content {
+  color: transparent;
+}
+

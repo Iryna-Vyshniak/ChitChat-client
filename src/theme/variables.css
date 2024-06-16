@@ -315,22 +315,11 @@ html {
   --ion-color-tint: var(--ion-color-intro-rosy-tint);
 }
 
-.custom-link {
-  color: var(--ion-color-primary);
+
+ion-content::part(scroll) {
+  padding-top: var(--ion-safe-area-top, 0);
 }
 
-.custom-back {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.custom-button {
-  --background: linear-gradient(45deg, #998bff, #2a7ff7, #04357e);
-  background-size: 400% 400%;
-  animation: gradient 5s ease infinite;
-  --background-activated: linear-gradient(-45deg, #e6afaf, #c4bcff, #5790df);
-  --background-focused: var(--ion-color-primary);
+ion-content::part(scroll) {
+  padding-left: var(--ion-safe-area-left, 0);
 }
