@@ -16,10 +16,10 @@ import SignUpForm from '../../components/forms/SignUpForm';
 import { useSignUp } from '../../shared/hooks/auth/useSignUp';
 import { SignupI } from '../../shared/types';
 
-const auth: React.FC = () => {
+const Register: React.FC = () => {
   const { signup } = useSignUp();
 
-  const onSubmit = async (values: SignupI): Promise<void> => {
+  const handleSubmit = async (values: SignupI): Promise<void> => {
     await signup(values);
   };
 
@@ -37,10 +37,10 @@ const auth: React.FC = () => {
       </IonHeader>
 
       <IonContent scrollY={false} className='auth-content ion-padding'>
-        <SignUpForm onSubmit={onSubmit} />
+        <SignUpForm onSubmit={handleSubmit} />
       </IonContent>
     </IonPage>
   );
 };
 
-export default auth;
+export default Register;

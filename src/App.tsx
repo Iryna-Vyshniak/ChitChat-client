@@ -59,13 +59,7 @@ setupIonicReact({
 
 const App: React.FC = () => {
   const { authUser } = useAuthContext();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  const login = () => {
-    if (!authUser) return;
-    setIsAuthenticated(true);
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -78,10 +72,10 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        {!isAuthenticated ? (
+        {!authUser ? (
           <IonPage id='main'>
             <Switch>
-              <Route exact path='/signin' render={(props) => <Login {...props} login={login} />} />
+              <Route exact path='/signin' component={Login} />
               <Route exact path='/signup' component={Register} />
               <Redirect from='*' to='/signin' />
             </Switch>
@@ -115,9 +109,9 @@ const App: React.FC = () => {
                 </IonRouterOutlet>
                 <IonTabBar slot='bottom'>
                   {appTabs.map((tab, index) => (
-                    <IonTabButton key={index} tab={tab.title} href={tab.url}>
-                      <IonIcon icon={tab.iosIcon} />
-                      <IonLabel>{tab.title}</IonLabel>
+                    <IonTabButton key={index} tab={tab.title} href={tab.url} mode="md">
+                      <IonIcon icon={tab.iosIcon} color='secondary'/>
+                      <IonLabel color='secondary'>{tab.title}</IonLabel>
                     </IonTabButton>
                   ))}
                 </IonTabBar>

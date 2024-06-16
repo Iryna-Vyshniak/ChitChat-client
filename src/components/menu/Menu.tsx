@@ -20,9 +20,11 @@ import './Menu.css';
 
 import { appMobilePages, appPages, labels } from '../../shared/data';
 import { MenuProps } from '../../shared/types';
+import { useLogout } from '../../shared/hooks/auth/useLogout';
 
 const Menu: React.FC<MenuProps> = ({ isMobile }) => {
   const location = useLocation();
+  const { logout } = useLogout();
 
   return (
     <IonMenu contentId='main' type='overlay'>
@@ -76,10 +78,10 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
         ))}
       </IonList>
     </IonContent>
-    <IonFooter>
+    <IonFooter className='ion-no-border ion-no-padding'>
         <IonToolbar>
         <IonMenuToggle autoHide={false}>
-              <IonButton expand="full" routerLink="/signin" routerDirection="root">
+              <IonButton expand="block" onClick={logout} className='custom-button'>
                 <IonIcon slot="start" icon={logOutOutline} />
                 Logout
               </IonButton>
