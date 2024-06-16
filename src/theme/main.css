@@ -50,3 +50,24 @@ ion-input.custom.md .input-bottom .error-text {
     font-size: 12px;
   }
 }
+
+ion-icon.custom {
+  color: var(--ion-color-medium);
+}
+
+ion-label.custom {
+  color: var(--ion-color-medium);
+}
+
+ion-tab-button.tab-selected.custom {
+  color: var(--ion-color-secondary);
+}
+
+ion-tab-button.tab-selected.custom ion-icon.custom,
+ion-tab-button.tab-selected.custom ion-label.custom {
+  color: var(--ion-color-secondary);
+}
+
+ion-tab-bar.custom {
+--background: transparent !important;
+}

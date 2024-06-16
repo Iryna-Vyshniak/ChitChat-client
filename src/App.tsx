@@ -107,11 +107,11 @@ const App: React.FC = () => {
                     </Route>
                   </Switch>
                 </IonRouterOutlet>
-                <IonTabBar slot='bottom'>
+                <IonTabBar slot='bottom' className='custom' translucent={true}>
                   {appTabs.map((tab, index) => (
-                    <IonTabButton key={index} tab={tab.title} href={tab.url} mode="md">
-                      <IonIcon icon={tab.iosIcon} color='secondary'/>
-                      <IonLabel color='secondary'>{tab.title}</IonLabel>
+                    <IonTabButton key={index} tab={tab.title} href={tab.url} mode="md" className='custom'>
+                      <IonIcon icon={tab.iosIcon} className='custom'/>
+                      <IonLabel className='custom'>{tab.title}</IonLabel>
                     </IonTabButton>
                   ))}
                 </IonTabBar>
