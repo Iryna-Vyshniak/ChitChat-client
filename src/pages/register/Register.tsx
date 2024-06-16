@@ -1,4 +1,6 @@
 import {
+  IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonPage,
@@ -7,14 +9,14 @@ import {
 } from '@ionic/react';
 import React from 'react';
 
-import './Register.css';
+import '../../theme/authstyles.css';
 
 import SignUpForm from '../../components/forms/SignUpForm';
 
 import { useSignUp } from '../../shared/hooks/auth/useSignUp';
 import { SignupI } from '../../shared/types';
 
-const Register: React.FC = () => {
+const auth: React.FC = () => {
   const { signup } = useSignUp();
 
   const onSubmit = async (values: SignupI): Promise<void> => {
@@ -22,20 +24,23 @@ const Register: React.FC = () => {
   };
 
   return (
-    <IonPage className='register-page'>
-      <IonHeader className='register-header ion-no-border'>
-        <IonToolbar className='register-toolbar'>
+    <IonPage className='auth-page'>
+      <IonHeader className='ion-no-border' translucent={true}>
+        <IonToolbar color='secondary'>
+        <IonButtons slot="start">
+            <IonBackButton defaultHref="/signin" />
+          </IonButtons>
           <IonTitle>
             <h1>Sign Up</h1>
           </IonTitle>
         </IonToolbar>
       </IonHeader>
 
-      <IonContent scrollY={false} className='register-content ion-padding'>
+      <IonContent scrollY={false} className='auth-content ion-padding'>
         <SignUpForm onSubmit={onSubmit} />
       </IonContent>
     </IonPage>
   );
 };
 
-export default Register;
+export default auth;

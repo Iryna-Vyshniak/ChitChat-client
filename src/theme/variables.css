@@ -18,7 +18,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-primary-shade: #083679;
   --ion-color-primary-tint: #225095;
 
-  --ion-color-secondary: #53acff;
+  --ion-color-secondary: #60b2fe;
   --ion-color-secondary-rgb: 87, 144, 223;
   --ion-color-secondary-contrast: #000000;
   --ion-color-secondary-contrast-rgb: 0, 0, 0;
@@ -81,14 +81,14 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-intro-green-shade: #abbea7;
   --ion-color-intro-green-tint: #c8dcc5;
 
-  --ion-color-intro-violet: #c4bcff;
+  --ion-color-intro-violet: #d3cdff;
   --ion-color-intro-violet-rgb: 196, 188, 255;
   --ion-color-intro-violet-contrast: #000000;
   --ion-color-intro-violet-contrast-rgb: 0, 0, 0;
   --ion-color-intro-violet-shade: #aca5e0;
   --ion-color-intro-violet-tint: #cac3ff;
 
-  --ion-color-intro-rosy: #e6afaf;
+  --ion-color-intro-rosy: #e8c9c9;
   --ion-color-intro-rosy-rgb: 230, 175, 175;
   --ion-color-intro-rosy-contrast: #000000;
   --ion-color-intro-rosy-contrast-rgb: 0, 0, 0;
@@ -122,11 +122,11 @@ html {
     --ion-color-primary-shade: #083679;
     --ion-color-primary-tint: #225095;
 
-    --ion-color-secondary: #5790df;
+    --ion-color-secondary: #1359bc;
     --ion-color-secondary-rgb: 87, 144, 223;
     --ion-color-secondary-contrast: #ffffff;
     --ion-color-secondary-contrast-rgb: 250, 250, 250;
-    --ion-color-secondary-shade: #4d7fc4;
+    --ion-color-secondary-shade: #3e69a4;
     --ion-color-secondary-tint: #689be2;
 
     --ion-color-tertiary: #e9e9eb;
@@ -185,12 +185,12 @@ html {
     --ion-color-intro-green-shade: #abbea7;
     --ion-color-intro-green-tint: #c8dcc5;
 
-    --ion-color-intro-violet: #c4bcff;
+    --ion-color-intro-violet: #6754fc;
     --ion-color-intro-violet-rgb: 196, 188, 255;
     --ion-color-intro-violet-contrast: #000000;
     --ion-color-intro-violet-contrast-rgb: 0, 0, 0;
-    --ion-color-intro-violet-shade: #aca5e0;
-    --ion-color-intro-violet-tint: #cac3ff;
+    --ion-color-intro-violet-shade: #655ab7;
+    --ion-color-intro-violet-tint: #4f42b8;
 
     --ion-color-intro-rosy: #e6afaf;
     --ion-color-intro-rosy-rgb: 230, 175, 175;

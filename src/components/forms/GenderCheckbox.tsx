@@ -12,10 +12,10 @@ const GenderCheckbox: React.FC<SelectedGenderProps> = ({
   touchedFields,
 }) => {
   return (
-    <IonList className='register-ion-list'>
-      <IonText class='register-gender-text'>Gender</IonText>
-      <div className='register-list-wrapper'>
-        <IonItem className='register-gender-item'>
+    <IonList className='auth-ion-list'>
+      <IonText class='auth-gender-text'>Gender</IonText>
+      <div className='auth-list-wrapper'>
+        <IonItem className='auth-gender-item'>
        
           <IonCheckbox
             labelPlacement='start'
@@ -31,7 +31,7 @@ const GenderCheckbox: React.FC<SelectedGenderProps> = ({
          
         </IonItem>
 
-        <IonItem className='register-gender-item'>
+        <IonItem className='auth-gender-item'>
      
           <IonCheckbox
             labelPlacement='start'
@@ -47,7 +47,7 @@ const GenderCheckbox: React.FC<SelectedGenderProps> = ({
         
         </IonItem>
 
-        <IonItem className='register-gender-item'>
+        <IonItem className='auth-gender-item'>
        
           <IonCheckbox
             labelPlacement='start'
