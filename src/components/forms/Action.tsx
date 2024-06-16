@@ -6,7 +6,7 @@ import { ActionI } from '../../shared/types';
 const Action: React.FC<ActionI> = ({ message, link, text }) => {
 
     return (
-        <IonRow className="ion-text-center ion-justify-content-center">
+        <IonRow className="register-action ion-text-center ion-justify-content-center">
             <IonCol size='12'>
             <div>
                 { message }
