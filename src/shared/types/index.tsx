@@ -48,6 +48,9 @@ export interface UseFormProps<T> {
 export interface SignUpFormProps {
   onSubmit: (values: SignupI) => Promise<void>;
 }
+export interface SignInFormProps {
+  onSubmit: (values: SigninI) => Promise<void>;
+}
 
 export interface SelectedGenderProps {
   selectedGender: string;

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Preferences } from '@capacitor/preferences';
 
-import { SignupI, UseFormProps, ValidationErrors } from '../../types';
+import { UseFormProps, ValidationErrors } from '../../types';
 
 export const useForm = <T extends {}>({ initialValues, validate, onSubmit }: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues);
