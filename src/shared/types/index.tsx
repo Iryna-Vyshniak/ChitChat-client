@@ -71,3 +71,20 @@ export interface WaveProps {
   flipHorizontal?: boolean;
   flipVertical?: boolean;
 }
+
+export interface UserItemI {
+  _id: string;
+  fullName: string;
+  username: string;
+  avatar: string;
+  email: string;
+  phone: string;
+  gender: string;
+  birthday: string;
+  createdAt: string;
+};
+
+export type UserListProps = {
+  users: UserItemI[];
+  presentingElement: HTMLElement | null;
+};
