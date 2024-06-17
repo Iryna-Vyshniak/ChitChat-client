@@ -1,0 +1,6 @@
+{
+    "appId": "chit.chat.client",
+    "appName": "ChitChat-client",
+    "webDir": "dist",
+    "server":{"hostname":"chit-chat-server-ivn.vercel.app"}
+  }
