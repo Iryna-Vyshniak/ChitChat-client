@@ -20,6 +20,7 @@ export const useSignIn = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
+        credentials: 'include'
       });
 
       const responseData = await res.json();
@@ -30,19 +31,22 @@ export const useSignIn = () => {
 
       const { data } = responseData;
 
+      console.log('Document cookies SIGN IN:', document.cookie);
+
+
       await Preferences.set({ key: 'user', value: JSON.stringify(data.user) });
       setAuthUser(data.user);
       router.push('/app', 'root');
     } catch (error) {
         if (error instanceof Error) {
-          console.error('Signup Error:', error.message);
+          console.error('Signin Error:', error.message);
           showToast({
             message: error.message,
             duration: 2000,
             color: 'danger',
           });
         } else {
-          console.error('Signup Error:', 'An unexpected error occurred');
+          console.error('Signin Error:', 'An unexpected error occurred');
           showToast({
             message: 'An unexpected error occurred',
             duration: 2000,
