@@ -4,7 +4,15 @@ const config: CapacitorConfig = {
   appId: 'chit.chat.client',
   appName: 'ChitChat-client',
   webDir: 'dist',
-  server: { hostname: "chit-chat-server-ivn.vercel.app" }
+  plugins: {
+    CapacitorCookies: {
+      enabled: true
+    },
+    CapacitorHttp: {
+      enabled: true
+    }
+  },
+  server: { hostname: "chit-chat-server-mbr2.onrender.com" }
 };
 
 export default config;
