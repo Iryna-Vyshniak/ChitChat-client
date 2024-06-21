@@ -78,8 +78,8 @@ export interface UserItemI {
   username: string;
   avatar: string;
   email: string;
-  phone: string;
   gender: string;
+  phone: string;
   birthday: string;
   createdAt: string;
 };
@@ -88,3 +88,7 @@ export type UserListProps = {
   users: UserItemI[];
   presentingElement: HTMLElement | null;
 };
+
+export interface UserCardProps {
+  user: UserItemI;
+}
