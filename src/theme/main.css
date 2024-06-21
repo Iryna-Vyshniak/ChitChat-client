@@ -31,6 +31,7 @@ ion-content::part(scroll) {
 ion-content {
   width: calc(100% + 15px);
 }
+
 ion-content::part(scroll) {
   padding-right: 15px;
 }
@@ -166,6 +167,5 @@ ion-card.custom-card {
 
 
 ion-content.custom-content {
-  color: transparent;
+  --background: transparent;
 }
-
