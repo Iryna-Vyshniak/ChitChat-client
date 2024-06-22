@@ -43,7 +43,7 @@ export const useForm = <T extends {}>({ initialValues, validate, onSubmit }: Use
 
     if (Object.keys(validationErrors).length > 0) {
       Object.keys(initialValues).forEach((field) => markTouched(field as keyof T));
-        return
+        return;
     }
 
     onSubmit({ ...values });

@@ -1,5 +1,6 @@
 import { useIonLoading, useIonRouter, useIonToast } from '@ionic/react';
 import { Preferences } from '@capacitor/preferences';
+import {  CapacitorHttp, HttpResponse } from '@capacitor/core';
 
 import { useAuthContext } from '../../context/AuthContext';
 import { API } from '../../constants';
@@ -16,24 +17,17 @@ export const useSignIn = () => {
     await present('Logg in...');
 
     try {
-      const res = await fetch(`${API}/api/auth/signin`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-        credentials: 'include'
+      const res: HttpResponse = await CapacitorHttp.post({url: `${API}/api/auth/signin`, headers: {
+        "Content-Type": "application/json",
+      },
+        data: JSON.stringify({ email, password }),
+        webFetchExtra: {
+          credentials: "include",
+        },
       });
 
-      const responseData = await res.json();
-
-      if (!res.ok) {
-        throw new Error(responseData.message || res.statusText);
-      }
-
-      const { data } = responseData;
-
-      console.log('Document cookies SIGN IN:', document.cookie);
-
-
+      const { data } = res.data;
+     
       await Preferences.set({ key: 'user', value: JSON.stringify(data.user) });
       setAuthUser(data.user);
       router.push('/app', 'root');
