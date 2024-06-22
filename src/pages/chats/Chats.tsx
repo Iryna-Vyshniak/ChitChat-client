@@ -1,32 +1,46 @@
 import {
   IonContent,
-  IonHeader,
   IonPage,
   IonRefresher,
   IonRefresherContent,
   IonSearchbar,
-  IonTitle,
-  IonToolbar,
   RefresherEventDetail,
 } from '@ionic/react';
 import React, { createRef, useEffect, useRef, useState } from 'react';
-import UsersSkeleton from '../../components/users/UsersSkeleton';
-import {  chevronDownCircleOutline } from 'ionicons/icons';
-import { useGetUsers } from '../../shared/hooks/users/useGetUsers';
+import { chevronDownCircleOutline, trashBin } from 'ionicons/icons';
 
-const Chats: React.FC<{ name: string }> = ( { name } ) => {
+import UsersList from '../../components/users/UsersList';
+import UsersSkeleton from '../../components/users/UsersSkeleton';
+
+import { useGetUsers } from '../../shared/hooks/users/useGetUsers';
+import { UserItemI } from '../../shared/types';
+
+const Chats: React.FC<{ name: string }> = ({ name }) => {
   const contentRef = createRef<HTMLIonContentElement>();
-  const [presentingElement, setPresentingElement] =
-    useState<HTMLElement | null>(null);
-    
-    const { users, setUsers, getUsers, isLoading } = useGetUsers();
-    
-    const page = useRef(null);
-    
+  const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
+  const { users, setUsers, getUsers, isLoading } = useGetUsers();
+
+  let [results, setResults] = useState<UserItemI[]>([]);
+
+  const page = useRef(null);
+
+  useEffect(() => {
+    setResults(users);
+  }, [users]);
+
+  const handleInput = (ev: Event) => {
+    let query = '';
+    const target = ev.target as HTMLIonSearchbarElement;
+    if (target) query = target.value!.toLowerCase();
+
+    setResults(users.filter((d) => d.fullName.toLowerCase().indexOf(query) > -1));
+  };
+
+ 
+
   useEffect(() => {
     setPresentingElement(page.current);
   }, []);
-
 
   const handleRefresh = async (event: CustomEvent<RefresherEventDetail>) => {
     const data = await getUsers();
@@ -34,27 +48,26 @@ const Chats: React.FC<{ name: string }> = ( { name } ) => {
     event.detail.complete();
   };
 
-
   return (
-    <IonPage ref={ page}>
-     <IonHeader collapse="condense">
-					<IonToolbar>
-						<IonTitle>{name}</IonTitle>
-					</IonToolbar>
-					<IonSearchbar />
-				</IonHeader>
-     
-      <IonContent className='ion-padding' ref={contentRef} color='light'>
-      
-      <IonRefresher slot="fixed" onIonRefresh={e => handleRefresh(e)}>
+    <IonPage ref={page} className='ion-padding'>
+      <IonSearchbar
+        showClearButton='focus'
+        clearIcon={trashBin}
+        onIonInput={handleInput}
+        type='search'
+        className='ion-margin-top'
+      />
+
+      <IonContent className='ion-padding' ref={contentRef}>
+        <IonRefresher slot='fixed' onIonRefresh={(e) => handleRefresh(e)}>
           <IonRefresherContent
             pullingIcon={chevronDownCircleOutline}
-            pullingText="Pull to refresh"
-            refreshingSpinner="circles"
-            refreshingText="Refreshing..."
+            pullingText='Pull to refresh'
+            refreshingSpinner='circles'
           />
         </IonRefresher>
         {isLoading && <UsersSkeleton />}
+        {!isLoading && <UsersList users={results} presentingElement={presentingElement} />}
       </IonContent>
     </IonPage>
   );
