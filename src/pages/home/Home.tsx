@@ -8,8 +8,10 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import './Home.css';
 import { useParams } from 'react-router';
+
+import './Home.css';
+
 import Chats from '../chats/Chats';
 
 const componentsMap: { [key: string]: React.FC<{ name: string }> } = {
@@ -25,17 +27,16 @@ const Home: React.FC = () => {
     <>
       <IonHeader>
         <IonToolbar>
-              <IonButtons slot='start'>
+              <IonButtons>
                 <IonMenuButton />
               </IonButtons>
-              <IonTitle>{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle size='large'>{name}</IonTitle>
+            <IonTitle>{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <SelectedComponent name={name} />

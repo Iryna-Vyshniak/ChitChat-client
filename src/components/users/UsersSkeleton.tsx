@@ -12,7 +12,7 @@ import React from 'react';
 
 const UsersSkeleton: React.FC = () => {
   return (
-    <IonContent className='custom-content ion-padding' color="light">
+    <IonContent className='custom-content ion-padding'>
       {[...Array(16)].map((_, idx) => (
         <IonCard key={idx} className='custom-card'>
           <IonCardContent className='ion-no-padding'>
