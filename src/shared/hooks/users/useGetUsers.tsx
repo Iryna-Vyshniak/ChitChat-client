@@ -1,40 +1,43 @@
-import {  useIonViewWillEnter } from '@ionic/react';
-import {  useState } from 'react';
+import { useIonViewWillEnter } from '@ionic/react';
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { useState } from 'react';
 
 import { API } from '../../constants';
 import { UserItemI } from '../../types';
 
 export const useGetUsers = () => {
-  const [ isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [users, setUsers] = useState<UserItemI[]>([]);
 
   const getUsers = async () => {
     setIsLoading(true);
 
-      const res = await fetch(`${API}/api/users`,{
-        method: 'GET', 
-        credentials: 'include',
-    }
-);
-      if (!res.ok) {
-        throw new Error('Network response was not ok.');
-      }
+    try {
+      const res: HttpResponse = await CapacitorHttp.get({
+        url: `${API}/api/users`,
+        webFetchExtra: {
+          credentials: 'include',
+        },
+      });
+      const { data } = res.data;
 
-      const { data } = await res.json();
-      console.log('data: ', data);
       return data.users;
+    } catch (error) {
+      console.error('Fetch error: ', error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useIonViewWillEnter(() => {
     const loadUsers = async () => {
       const users = await getUsers();
-      console.log("users VIEW: ", users);
       setUsers(users);
       setIsLoading(false);
     };
     loadUsers();
   });
-
 
   return { users, setUsers, getUsers, isLoading };
 };
