@@ -99,6 +99,7 @@ http://ionicframework.com/docs/theming/ */
   --chat-bubble-received-color: #ff4e02;
 
   --ion-text-color: #010101;
+  --custom-segment-color: #e3eafb;
 }
 
 html {
@@ -200,6 +201,7 @@ html {
     --ion-color-intro-rosy-tint: #e9b7b7;
 
     --ion-text-color: #ffffff;
+    --custom-segment-color: #334161;
   }
 
   /*
@@ -313,6 +315,14 @@ html {
   --ion-color-contrast-rgb: var(--ion-color-intro-rosy-contrast-rgb);
   --ion-color-shade: var(--ion-color-intro-rosy-shade);
   --ion-color-tint: var(--ion-color-intro-rosy-tint);
+}
+
+.ion-color-custom-segment {
+  width: 100%;
+}
+
+ion-segment-button.ion-color-custom-button-segment {
+  --ion-color-base: var(--custom-segment-color);
 }
 
 
