@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface AppPage {
   url: string;
   iosIcon: string;
@@ -91,4 +93,10 @@ export type UserListProps = {
 
 export interface UserCardProps {
   user: UserItemI;
+}
+
+export interface UserModalProps {
+selectedUser: UserItemI | null;
+setSelectedUser: Dispatch<SetStateAction<UserItemI | null>>;
+presentingElement: HTMLElement | null;
 }
