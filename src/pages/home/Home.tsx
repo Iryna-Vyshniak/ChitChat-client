@@ -1,10 +1,8 @@
 import {
   IonButtons,
-  IonCol,
   IonContent,
   IonHeader,
   IonMenuButton,
-  IonRow,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { UserItemI, UserListProps } from '../../shared/types';
 import UserCard from './UserCard';
+import UserModal from './UserModal';
 
 const UsersList: React.FC<UserListProps> = ({ users, presentingElement }) => {
   const [selectedUser, setSelectedUser] = useState<UserItemI | null>(null);
@@ -20,6 +21,7 @@ const UsersList: React.FC<UserListProps> = ({ users, presentingElement }) => {
           <UserCard user={user} />
         </IonCard>
       ))}
+      <UserModal selectedUser={selectedUser} setSelectedUser={setSelectedUser} presentingElement={presentingElement}/>
     </IonContent>
   );
 };
