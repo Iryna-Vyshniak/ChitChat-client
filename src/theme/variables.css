@@ -62,7 +62,7 @@ http://ionicframework.com/docs/theming/ */
 
   --ion-color-medium: #6c7a9c;
   --ion-color-medium-rgb: 108, 122, 156;
-  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast: #022150;
   --ion-color-medium-contrast-rgb: 0, 0, 0;
   --ion-color-medium-shade: #5f6b89;
   --ion-color-medium-tint: #7b87a6;
@@ -167,7 +167,7 @@ html {
 
     --ion-color-medium: #6c7a9c;
     --ion-color-medium-rgb: 108, 122, 156;
-    --ion-color-medium-contrast: #000000;
+    --ion-color-medium-contrast: #ffffff;
     --ion-color-medium-contrast-rgb: 0, 0, 0;
     --ion-color-medium-shade: #5f6b89;
     --ion-color-medium-tint: #7b87a6;
@@ -321,10 +321,21 @@ html {
   width: 100%;
 }
 
-ion-segment-button.ion-color-custom-button-segment {
-  --ion-color-base: var(--custom-segment-color);
+ion-segment-button::part(indicator-background) {
+  background: var(--custom-segment-color);
 }
 
+ion-segment-button.md::part(native) {
+  color: #000;
+}
+
+.segment-button-checked.md::part(native) {
+  color: var(--custom-segment-color);
+}
+
+.segment-button-checked.ios::part(native) {
+  color: var(--ion-color-medium-contrast);
+}
 
 ion-content::part(scroll) {
   padding-top: var(--ion-safe-area-top, 0);
