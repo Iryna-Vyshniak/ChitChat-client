@@ -44,7 +44,7 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
 
   return (
     <IonModal
-      breakpoints={[0, 0.5, 0.8]}
+      breakpoints={[0, 0.5, 0.8, 1]}
       initialBreakpoint={0.5}
       ref={modal}
       isOpen={selectedUser !== null}
@@ -64,7 +64,7 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
           <IonSegment
             value={activeSegment}
             onIonChange={(e) => {
-              modal.current?.setCurrentBreakpoint(0.8);
+              modal.current?.setCurrentBreakpoint(1);
               setActiveSegment(e.detail.value!);
             }}
             class='ion-color-custom-segment'
