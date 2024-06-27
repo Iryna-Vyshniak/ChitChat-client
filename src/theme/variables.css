@@ -109,6 +109,11 @@ html {
   --ion-font-size: 12px;
 }
 
+.custom-title {
+  letter-spacing: 2px;
+  text-shadow: 0px 0.5px var(--ion-color-primary-contrast);
+}
+
 @media (prefers-color-scheme: dark) {
   /*
      * Dark Colors
@@ -248,8 +253,8 @@ html {
     --ion-background-color: var(--ion-item-background);
     --ion-toolbar-background: var(--ion-color-step-150);
     --ion-toolbar-border-color: var(--ion-color-step-250);
-    --ion-safe-area-top: 0;
-  }
+    /* --ion-safe-area-top: 0; */
+  } 
 
   .md body {
     --ion-background-color: #121212;
@@ -287,6 +292,11 @@ html {
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
+  }
+
+  .custom-title {
+    letter-spacing: 2px;
+    text-shadow: 1px 1px var(--ion-color-primary);
   }
 }
 
