@@ -1,12 +1,18 @@
 import {
   IonButton,
   IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonIcon,
   IonImg,
   IonItem,
   IonLabel,
+  IonList,
   IonModal,
   IonSegment,
   IonSegmentButton,
@@ -26,6 +32,8 @@ import React, { useRef, useState } from 'react';
 import { UserModalProps } from '../../shared/types';
 import { getFormattedDate } from '../../shared/utils';
 
+import UserModalFab from './UserModalFab';
+
 const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) => {
   const [activeSegment, setActiveSegment] = useState<any>('details');
   const modal = useRef<HTMLIonModalElement>(null);
@@ -41,6 +49,7 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
       ref={modal}
       isOpen={selectedUser !== null}
       onIonModalDidDismiss={() => setSelectedUser(null)}
+      className='custom-user-modal'
     >
       <IonHeader>
         <IonToolbar color='secondary'>
@@ -49,12 +58,15 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
               <IonIcon icon={closeOutline} color='light' />
             </IonButton>
           </IonButtons>
-          <IonTitle>{selectedUser?.fullName}</IonTitle>
+          <IonTitle className='custom-title'>{selectedUser?.fullName}</IonTitle>
         </IonToolbar>
         <IonToolbar color='secondary'>
           <IonSegment
             value={activeSegment}
-            onIonChange={(e) => setActiveSegment(e.detail.value!)}
+            onIonChange={(e) => {
+              modal.current?.setCurrentBreakpoint(0.8);
+              setActiveSegment(e.detail.value!);
+            }}
             class='ion-color-custom-segment'
           >
             <IonSegmentButton value='details'>
@@ -69,82 +81,88 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
       <IonContent className='ion-padding custom-modal-card'>
         {activeSegment === 'details' && (
           <>
-            <div className='custom-modal-card'>
-              {' '}
-              <div className='avatar'>
-                <IonImg src={selectedUser?.avatar} className='custom-avatar' />
-              </div>
-              <div>
-                <h2>{selectedUser?.fullName}</h2>
-                {selectedUser?.phone && <h3>{selectedUser?.phone}</h3>}
-              </div>
-            </div>
+            {' '}
+            <IonCard className='custom-modal-card'>
+              <IonCardHeader className='custom-modal-header'>
+                {' '}
+                <div className='avatar'>
+                  <IonImg src={selectedUser?.avatar} className='custom-avatar' />
+                </div>
+                <div className='custom-modal-header'>
+                  <IonCardTitle>{selectedUser?.fullName}</IonCardTitle>
+                  {selectedUser?.phone && <IonCardSubtitle>{selectedUser?.phone}</IonCardSubtitle>}
+                </div>
+              </IonCardHeader>
 
-            <div>
-              <IonItem lines='none'>
-                <IonIcon
-                  icon={personOutline}
-                  aria-hidden='true'
-                  slot='start'
-                  className='custom-icon'
-                />
-                <IonLabel>
-                  <p className='custom-label'>Nickname: @{selectedUser?.username}</p>
-                </IonLabel>
-              </IonItem>
-              {selectedUser?.birthday && (
-                <IonItem lines='none'>
-                  <IonIcon
-                    icon={calendarClearOutline}
-                    aria-hidden='true'
-                    slot='start'
-                    className='custom-icon'
-                  />
-                  <IonLabel>
-                    <p className='custom-label'>Data of Birth: {selectedUser?.birthday}</p>
-                  </IonLabel>
-                </IonItem>
-              )}
+              <IonCardContent>
+                <IonList className='custom-modal-list'>
+                  <IonItem lines='none' className='custom-modal-item'>
+                    <IonIcon
+                      icon={personOutline}
+                      aria-hidden='true'
+                      slot='start'
+                      className='custom-icon'
+                    />
+                    <IonLabel>
+                      <p className='custom-label'>Nickname: @{selectedUser?.username}</p>
+                    </IonLabel>
+                  </IonItem>
+                  {selectedUser?.birthday && (
+                    <IonItem lines='none' className='custom-modal-item'>
+                      <IonIcon
+                        icon={calendarClearOutline}
+                        aria-hidden='true'
+                        slot='start'
+                        className='custom-icon'
+                      />
+                      <IonLabel>
+                        <p className='custom-label'>Data of Birth: {selectedUser?.birthday}</p>
+                      </IonLabel>
+                    </IonItem>
+                  )}
 
-              <IonItem lines='none'>
-                <IonIcon
-                  icon={mailOutline}
-                  aria-hidden='true'
-                  slot='start'
-                  className='custom-icon'
-                />
-                <IonLabel>
-                  <p className='custom-label'>Email: {selectedUser?.email}</p>
-                </IonLabel>
-              </IonItem>
-              <IonItem lines='none'>
-                <IonIcon
-                  icon={maleFemaleOutline}
-                  aria-hidden='true'
-                  slot='start'
-                  className='custom-icon'
-                />
-                <IonLabel>
-                  {' '}
-                  <p className='custom-label'>Gender: {selectedUser?.gender} </p>
-                </IonLabel>
-              </IonItem>
-              {selectedUser?.createdAt && (
-                <IonItem lines='none'>
-                  <IonIcon
-                    icon={createOutline}
-                    aria-hidden='true'
-                    slot='start'
-                    className='custom-icon'
-                  />
-                  <IonLabel>
-                    <p className='custom-label'>
-                      Joined: {getFormattedDate(selectedUser?.createdAt)}
-                    </p>
-                  </IonLabel>
-                </IonItem>
-              )}
-            </div>
+                  <IonItem lines='none' className='custom-modal-item'>
+                    <IonIcon
+                      icon={mailOutline}
+                      aria-hidden='true'
+                      slot='start'
+                      className='custom-icon'
+                    />
+                    <IonLabel>
+                      <p className='custom-label'>Email: {selectedUser?.email}</p>
+                    </IonLabel>
+                  </IonItem>
+                  <IonItem lines='none' className='custom-modal-item'>
+                    <IonIcon
+                      icon={maleFemaleOutline}
+                      aria-hidden='true'
+                      slot='start'
+                      className='custom-icon'
+                    />
+                    <IonLabel>
+                      {' '}
+                      <p className='custom-label'>Gender: {selectedUser?.gender} </p>
+                    </IonLabel>
+                  </IonItem>
+                  {selectedUser?.createdAt && (
+                    <IonItem lines='none' className='custom-modal-item'>
+                      <IonIcon
+                        icon={createOutline}
+                        aria-hidden='true'
+                        slot='start'
+                        className='custom-icon'
+                      />
+                      <IonLabel>
+                        <p className='custom-label'>
+                          Joined: {getFormattedDate(selectedUser?.createdAt)}
+                        </p>
+                      </IonLabel>
+                    </IonItem>
+                  )}
+                </IonList>
+              </IonCardContent>
+            </IonCard>
+            <UserModalFab user={selectedUser} />
           </>
         )}
         {activeSegment === 'settings' && <p>Settings</p>}
