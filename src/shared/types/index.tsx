@@ -100,3 +100,6 @@ selectedUser: UserItemI | null;
 setSelectedUser: Dispatch<SetStateAction<UserItemI | null>>;
 presentingElement: HTMLElement | null;
 }
+export interface UserFabProps {
+user: UserItemI | null;
+}
