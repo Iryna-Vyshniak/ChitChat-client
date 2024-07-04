@@ -11,11 +11,9 @@ import { useParams } from 'react-router';
 import './Home.css';
 
 import Chats from '../chats/ChatsPage';
-import Profile from '../profile/ProfilePage';
 
 const componentsMap: { [key: string]: React.FC<{ name: string }> } = {
   Chats: Chats,
-  Profile: Profile,
 };
 
 const HomePage: React.FC = () => {
