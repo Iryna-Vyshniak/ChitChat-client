@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 export interface AppPage {
   url: string;
@@ -18,11 +18,19 @@ export interface UserI {
   username: string;
   avatar: string;
   email: string;
+  gender: string;
+  phone: string;
+  birthday: string;
+  createdAt: string;
+  bio?: string;
+  followers?: string;
+  following?: string;
+  posts?: string;
 }
 
 export interface AuthContextType {
   authUser: UserI | null;
-  setAuthUser: (user: UserI | null) => void;
+  setAuthUser: React.Dispatch<React.SetStateAction<UserI | null>>;
 }
 
 export interface SignupI {
@@ -84,7 +92,7 @@ export interface UserItemI {
   phone: string;
   birthday: string;
   createdAt: string;
-};
+}
 
 export type UserListProps = {
   users: UserItemI[];
@@ -96,10 +104,10 @@ export interface UserCardProps {
 }
 
 export interface UserModalProps {
-selectedUser: UserItemI | null;
-setSelectedUser: Dispatch<SetStateAction<UserItemI | null>>;
-presentingElement: HTMLElement | null;
+  selectedUser: UserItemI | null;
+  setSelectedUser: Dispatch<SetStateAction<UserItemI | null>>;
+  presentingElement: HTMLElement | null;
 }
 export interface UserFabProps {
-user: UserItemI | null;
+  user: UserItemI | null;
 }
