@@ -15,7 +15,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Menu from './components/menu/Menu';
-import Home from './pages/home/Home';
+import Home from './pages/home/HomePage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -48,8 +48,8 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import './theme/main.css';
 
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
+import Login from './pages/login/LoginPage';
+import Register from './pages/register/RegisterPage';
 import { appTabs } from './shared/data';
 import { useAuthContext } from './shared/context/AuthContext';
 
@@ -109,8 +109,14 @@ const App: React.FC = () => {
                 </IonRouterOutlet>
                 <IonTabBar slot='bottom' className='custom' translucent={true}>
                   {appTabs.map((tab, index) => (
-                    <IonTabButton key={index} tab={tab.title} href={tab.url} mode="md" className='custom'>
-                      <IonIcon icon={tab.iosIcon} className='custom'/>
+                    <IonTabButton
+                      key={index}
+                      tab={tab.title}
+                      href={tab.url}
+                      mode='md'
+                      className='custom'
+                    >
+                      <IonIcon icon={tab.iosIcon} className='custom' />
                       <IonLabel className='custom'>{tab.title}</IonLabel>
                     </IonTabButton>
                   ))}
