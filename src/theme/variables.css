@@ -100,6 +100,8 @@ http://ionicframework.com/docs/theming/ */
 
   --ion-text-color: #010101;
   --custom-segment-color: #e3eafb;
+
+  --ion-profile-content: #ffffff;
 }
 
 html {
@@ -207,6 +209,8 @@ html {
 
     --ion-text-color: #ffffff;
     --custom-segment-color: #334161;
+
+      --ion-profile-content: #000000;
   }
 
   /*
@@ -254,7 +258,7 @@ html {
     --ion-toolbar-background: var(--ion-color-step-150);
     --ion-toolbar-border-color: var(--ion-color-step-250);
     /* --ion-safe-area-top: 0; */
-  } 
+  }
 
   .md body {
     --ion-background-color: #121212;
