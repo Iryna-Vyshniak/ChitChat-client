@@ -25,6 +25,7 @@ import {
   createOutline,
   mailOutline,
   maleFemaleOutline,
+  personAddOutline,
   personOutline,
 } from 'ionicons/icons';
 import React, { useRef, useState } from 'react';
@@ -82,7 +83,7 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
         {activeSegment === 'details' && (
           <>
             {' '}
-            <IonCard className='custom-modal-card'>
+            <IonCard className='custom-card'>
               <IonCardHeader className='custom-modal-header'>
                 {' '}
                 <div className='avatar'>
@@ -160,12 +161,20 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
                     </IonItem>
                   )}
                 </IonList>
+                <IonButton color='intro-violet' expand='block'>
+                  <IonIcon icon={personAddOutline} size='small' />
+                  &nbsp; Follow
+                </IonButton>
               </IonCardContent>
             </IonCard>
             <UserModalFab user={selectedUser} />
           </>
         )}
-        {activeSegment === 'settings' && <p>Settings</p>}
+        {activeSegment === 'settings' && (
+          <div>
+            <p>Settings</p>
+          </div>
+        )}
       </IonContent>
     </IonModal>
   );
