@@ -210,7 +210,7 @@ html {
     --ion-text-color: #ffffff;
     --custom-segment-color: #334161;
 
-      --ion-profile-content: #000000;
+    --ion-profile-content: #000000;
   }
 
   /*
@@ -357,4 +357,12 @@ ion-content::part(scroll) {
 
 ion-content::part(scroll) {
   padding-left: var(--ion-safe-area-left, 0);
+}
+
+.text-shadow-theme {
+  text-shadow: 0.3px 0.3px var(--ion-text-color);
+}
+
+.text-shadow-dark {
+  text-shadow: 0.3px 0.3px var(--ion-color-dark);
 }

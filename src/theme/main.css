@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   font-style: normal;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
@@ -37,6 +38,7 @@ ion-content {
 
 ion-content::part(scroll) {
   padding-right: 0.9375rem;
+  padding-left: 0;
 }
 
 .scrollable-content {
@@ -58,6 +60,20 @@ ion-content::part(scroll) {
 /* Hide scrollbar for other browsers */
 .scrollable-content {
   -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 4px;
 }
 
 ion-grid {
