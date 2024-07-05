@@ -72,17 +72,21 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
         </IonList>
 
         <IonList id='labels-list'>
-          <IonListHeader><h2>Labels</h2></IonListHeader>
+          <IonListHeader>
+            <h2>Labels</h2>
+          </IonListHeader>
           {labels.map((label, index) => (
             <IonItem lines='none' key={index}>
               <IonIcon aria-hidden='true' slot='start' icon={bookmarkOutline} />
-              <IonLabel><h3>{label}</h3></IonLabel>
+              <IonLabel>
+                <h3>{label}</h3>
+              </IonLabel>
             </IonItem>
           ))}
         </IonList>
       </IonContent>
       <IonFooter className='ion-no-border ion-no-padding'>
-        <IonToolbar>
+        <IonToolbar className='ion-no-padding'>
           <IonMenuToggle autoHide={false}>
             <IonButton expand='block' onClick={logout} className='custom-button'>
               <IonIcon slot='start' icon={logOutOutline} />

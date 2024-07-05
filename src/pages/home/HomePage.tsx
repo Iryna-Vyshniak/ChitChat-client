@@ -11,9 +11,11 @@ import { useParams } from 'react-router';
 import './Home.css';
 
 import Chats from '../chats/ChatsPage';
+import Profile from '../profile/ProfilePage';
 
 const componentsMap: { [key: string]: React.FC<{ name: string }> } = {
   Chats: Chats,
+  Profile: Profile,
 };
 
 const HomePage: React.FC = () => {
@@ -23,8 +25,8 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <IonHeader translucent={true}>
-        <IonToolbar color={name === 'Profile' ? 'secondary' : ''}>
+      <IonHeader>
+        <IonToolbar>
           <IonButtons>
             <IonMenuButton />
           </IonButtons>
@@ -34,7 +36,7 @@ const HomePage: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse='condense'>
           <IonToolbar>
-            <IonTitle>{name}</IonTitle>
+            <IonTitle className='ion-text-uppercase'>{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <SelectedComponent name={name} />
