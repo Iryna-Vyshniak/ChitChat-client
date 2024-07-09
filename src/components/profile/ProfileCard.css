@@ -141,12 +141,19 @@
   box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
+.profile-content-contacts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 16px;
+  margin-top: -120px;
+}
+
 .profile-content-contacts {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: -28px;
-  margin-top: -20px;
 }
 
 .profile-content-info {
@@ -161,7 +168,7 @@ ion-card-subtitle {
   text-shadow: 0.3px 0.3px var(--ion-text-color);
 }
 
-@media (min-width: 480px) {
+@media (min-width: 598px) {
   .overlay-header {
     z-index: 0;
     margin: -160px 0 0 -25%;
@@ -173,7 +180,6 @@ ion-card-subtitle {
 
   .profile-content {
     position: relative;
-
     display: flex;
     flex-direction: row;
     align-items: start;
@@ -197,12 +203,20 @@ ion-card-subtitle {
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2);
   }
 
+  .profile-content-contacts-container {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 0 0 0 30px;
+  }
+
   .profile-content-contacts {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin: 0 0 0 30px;
   }
 }
 
