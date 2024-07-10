@@ -69,11 +69,45 @@ ion-content::part(scroll) {
   gap: 4px;
 }
 
+.flex-center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
 .flex-start {
   display: flex;
   align-items: center;
   justify-content: start;
   gap: 4px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.cover-center {
+  object-fit: cover;
+  object-position: center;
+}
+
+.margin-y-2 {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.padding-medium-12 {
+  padding: 3rem;
+}
+
+.margin-bottom-4 {
+  margin-bottom: 1rem;
 }
 
 ion-grid {
@@ -119,7 +153,9 @@ ion-button[slot='fixed'] {
   z-index: 10;
 }
 
-ion-input.custom {
+ion-input.custom,
+ion-textarea.custom,
+ion-select.custom {
   --background: transparent !important;
   --highlight-color-valid: var(--ion-color-success);
   --placeholder-opacity: 0.5;
@@ -138,7 +174,11 @@ ion-input.custom {
 ion-input.custom.ios .input-bottom .helper-text,
 ion-input.custom.ios .input-bottom .counter,
 ion-input.custom.md .input-bottom .helper-text,
-ion-input.custom.md .input-bottom .counter {
+ion-input.custom.md .input-bottom .counter,
+ion-textarea.custom.ios .textarea-bottom .helper-text,
+ion-textarea.custom.ios .textarea-bottom .counter,
+ion-textarea.custom.md .textarea-bottom .helper-text,
+ion-textarea.custom.md .textarea-bottom .counter {
   color: var(--ion-color-secondary);
   font-size: 0.625rem;
   @media (min-width: 48rem) {
@@ -147,7 +187,10 @@ ion-input.custom.md .input-bottom .counter {
 }
 
 ion-input.custom.ios .input-bottom .error-text,
-ion-input.custom.md .input-bottom .error-text {
+ion-input.custom.md .input-bottom .error-text,
+ion-textarea.custom.ios .textarea-bottom .error-text,
+ion-textarea.custom.md .textarea-bottom .error-text,
+.select-error.error-text {
   font-size: 0.625rem;
   @media (min-width: 48rem) {
     font-size: 0.75rem;
