@@ -8,13 +8,11 @@ import {
   IonRow,
   IonButton,
   IonCardTitle,
-  IonInputPasswordToggle
+  IonInputPasswordToggle,
 } from '@ionic/react';
-import {
-  personCircleOutline,
-} from 'ionicons/icons';
+import { personCircleOutline } from 'ionicons/icons';
 
-import { useForm } from '../../shared/hooks/auth/useForm';
+import { useForm } from '../../shared/hooks/form/useForm';
 
 import { SignUpFormProps, SignupI, ValidationErrors } from '../../shared/types';
 import { signupFields } from '../../shared/data';
@@ -78,15 +76,17 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
     <IonGrid fixed className='ion-no-padding'>
       <IonRow className='ion-justify-content-center'>
         <IonCol size='12' sizeMd='8' sizeLg='6' sizeXl='6'>
-        <IonCardTitle className='ion-text-center'>
-          <h2>Get chatting with friends and family today <br/> by signing up for our chat app!</h2>
-        </IonCardTitle>
+          <IonCardTitle className='ion-text-center'>
+            <h2>
+              Get chatting with friends and family today <br /> by signing up for our chat app!
+            </h2>
+          </IonCardTitle>
           <IonCard className='auth-card'>
             <IonCardContent className='scrollable-content'>
               <form onSubmit={handleSubmit} className='form'>
                 <IonInput
                   mode='md'
-                   fill='solid'
+                  fill='solid'
                   labelPlacement='floating'
                   counter={true}
                   maxlength={20}
@@ -98,12 +98,12 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   className={`${isValid.fullName ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.fullName ? 'ion-touched' : ''
                   } custom`}
-                   color='secondary'
+                  color='secondary'
                 />
 
                 <IonInput
                   mode='md'
-                   fill='solid'
+                  fill='solid'
                   labelPlacement='floating'
                   counter={true}
                   maxlength={20}
@@ -115,12 +115,12 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   className={`${isValid.username ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.username ? 'ion-touched' : ''
                   } custom`}
-                   color='secondary'
+                  color='secondary'
                 />
 
                 <IonInput
                   mode='md'
-                   fill='solid'
+                  fill='solid'
                   labelPlacement='floating'
                   type='email'
                   value={values.email}
@@ -131,7 +131,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   className={`${isValid.email ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.email ? 'ion-touched' : ''
                   } custom`}
-                   color='secondary'
+                  color='secondary'
                 />
 
                 <IonInput
@@ -147,15 +147,14 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   className={`${isValid.password ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.password ? 'ion-touched' : ''
                   } custom`}
-                   color='secondary'
-                   >
-                   <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
-                 </IonInput>
-             
+                  color='secondary'
+                >
+                  <IonInputPasswordToggle slot='end'></IonInputPasswordToggle>
+                </IonInput>
 
                 <IonInput
                   mode='md'
-                   fill='solid'
+                  fill='solid'
                   labelPlacement='floating'
                   type='password'
                   value={values.confirmPassword}
@@ -171,10 +170,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                     touchedFields.confirmPassword ? 'ion-touched' : ''
                   } custom margin-bottom`}
                   color='secondary'
-                  >
-      <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
-    </IonInput>
-                
+                >
+                  <IonInputPasswordToggle slot='end'></IonInputPasswordToggle>
+                </IonInput>
 
                 <GenderCheckbox
                   selectedGender={values.gender}
@@ -188,12 +186,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   Create an account
                   <IonIcon icon={personCircleOutline} slot='end' />
                 </IonButton>
-                <IonButton
-                  routerLink='/signin'
-                  color='secondary'
-                  type='button'
-                  expand='block'
-                >
+                <IonButton routerLink='/signin' color='secondary' type='button' expand='block'>
                   Sign In
                   <IonIcon icon={personCircleOutline} slot='end' />
                 </IonButton>

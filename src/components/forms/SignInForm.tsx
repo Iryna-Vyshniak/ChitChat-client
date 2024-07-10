@@ -12,7 +12,7 @@ import {
 } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
 
-import { useForm } from '../../shared/hooks/auth/useForm';
+import { useForm } from '../../shared/hooks/form/useForm';
 
 import { SignInFormProps, SigninI, ValidationErrors } from '../../shared/types';
 import { signupFields } from '../../shared/data';
@@ -62,7 +62,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
               <form onSubmit={handleSubmit} className='form'>
                 <IonInput
                   mode='md'
-                   fill='solid'
+                  fill='solid'
                   labelPlacement='floating'
                   type='email'
                   value={values.email}
@@ -78,7 +78,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
 
                 <IonInput
                   mode='md'
-                   fill='solid'
+                  fill='solid'
                   labelPlacement='floating'
                   type='password'
                   value={values.password}
@@ -90,8 +90,8 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
                     touchedFields.password ? 'ion-touched' : ''
                   } custom`}
                   color='secondary'
-                  >
-                  <IonInputPasswordToggle slot="end"></IonInputPasswordToggle>
+                >
+                  <IonInputPasswordToggle slot='end'></IonInputPasswordToggle>
                 </IonInput>
 
                 <IonButton expand='block' type='submit' className='custom-button'>
