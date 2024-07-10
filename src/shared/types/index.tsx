@@ -111,3 +111,26 @@ export interface UserModalProps {
 export interface UserFabProps {
   user: UserItemI | null;
 }
+
+export interface PostI {
+  title: string;
+  text: string;
+  tags: string[];
+  imageUrl: string | null;
+  viewsCount?: number;
+  owner?: string;
+  likedBy?: string[];
+}
+
+export interface PostFormProps {
+  onSubmit: (values: PostI) => Promise<void>;
+}
+
+export interface PostImageUploaderProps {
+  imageUrl: string | null;
+  handleImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  isValid: Partial<Record<keyof PostI, boolean>>;
+  markTouched: (field: keyof PostI) => void;
+  touchedFields: Partial<Record<keyof PostI, boolean>>;
+  errors: Partial<Record<keyof PostI, string>>;
+}
