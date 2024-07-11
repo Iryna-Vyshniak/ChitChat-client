@@ -119,15 +119,22 @@ export interface OwnerI {
 }
 
 export interface PostI {
+  title: string;
+  text: string;
+  tags: string[];
+  imageUrl: string | null;
+}
+
+export interface PostCardI {
   _id: string;
   title: string;
   text: string;
   tags: string[];
   imageUrl: string | null;
   owner: OwnerI;
-  viewsCount?: number;
-  likedBy?: string[];
-  createdAt?: string;
+  viewsCount: number;
+  likedBy: string[];
+  createdAt: string;
 }
 
 export interface PostFormProps {
