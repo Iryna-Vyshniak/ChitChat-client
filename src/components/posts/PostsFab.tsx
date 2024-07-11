@@ -11,7 +11,7 @@ const PostsFab: React.FC = () => {
         </IonFabButton>
         <IonFabList side='top'>
           <IonFabButton
-            routerLink={`/posts/create`}
+            routerLink={`/app/Posts/create`}
             routerDirection='forward'
             data-desc='Upload Post'
           >
