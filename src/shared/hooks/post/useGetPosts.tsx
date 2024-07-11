@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 
 import { API } from '../../constants';
-import { PostI } from '../../types';
+import { PostCardI } from '../../types';
 
 export const useGetPosts = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [posts, setPosts] = useState<PostI[]>([]);
+  const [posts, setPosts] = useState<PostCardI[]>([]);
 
   const getPosts = async () => {
     setIsLoading(true);
