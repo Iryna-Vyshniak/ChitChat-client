@@ -112,14 +112,22 @@ export interface UserFabProps {
   user: UserItemI | null;
 }
 
+export interface OwnerI {
+  avatar: string;
+  fullName: string;
+  _id: string;
+}
+
 export interface PostI {
+  _id: string;
   title: string;
   text: string;
   tags: string[];
   imageUrl: string | null;
+  owner: OwnerI;
   viewsCount?: number;
-  owner?: string;
   likedBy?: string[];
+  createdAt?: string;
 }
 
 export interface PostFormProps {
