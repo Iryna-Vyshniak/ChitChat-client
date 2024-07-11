@@ -65,17 +65,19 @@ const authUserCard: React.FC = () => {
           <IonImg src={authUser?.avatar} alt='avatar' className='custom-avatar' />
         </div>
 
-        {authUser?.phone && (
-          <IonItem className='profile-content-contacts' lines='none' slot='start'>
-            <IonIcon icon={callOutline} className='custom-icon ion-margin-end' />{' '}
-            <IonLabel>{authUser.phone}</IonLabel>
-          </IonItem>
-        )}
+        <div className='profile-content-contacts-container'>
+          {authUser?.phone && (
+            <div className='profile-content-contacts'>
+              <IonIcon icon={callOutline} className='custom-icon ion-margin-end' />{' '}
+              <IonLabel>{authUser.phone}</IonLabel>
+            </div>
+          )}
 
-        <IonItem className='profile-content-contacts' lines='none' slot='start'>
-          <IonIcon icon={mailOutline} className='custom-icon ion-margin-end' />
-          <IonLabel>{authUser?.email}</IonLabel>
-        </IonItem>
+          <div className='profile-content-contacts'>
+            <IonIcon icon={mailOutline} className='custom-icon ion-margin-end' />
+            <IonLabel>{authUser?.email}</IonLabel>
+          </div>
+        </div>
       </div>
       <IonGrid>
         {authUser?.bio && (
@@ -120,20 +122,20 @@ const authUserCard: React.FC = () => {
                 <IonNote>nickname</IonNote>
               </IonItem>
 
-              {/* {authUser?.birthday && ( */}
-              <IonItem className='profile-content-info'>
-                <IonIcon
-                  icon={calendarClearOutline}
-                  aria-hidden='true'
-                  slot='start'
-                  className='profile-icon'
-                />
-                <IonLabel>
-                  <p className='custom-label'>{authUser?.birthday}</p>
-                </IonLabel>
-                <IonNote>date of birth</IonNote>
-              </IonItem>
-              {/* )} */}
+              {authUser?.birthday && (
+                <IonItem className='profile-content-info'>
+                  <IonIcon
+                    icon={calendarClearOutline}
+                    aria-hidden='true'
+                    slot='start'
+                    className='profile-icon'
+                  />
+                  <IonLabel>
+                    <p className='custom-label'>{authUser?.birthday}</p>
+                  </IonLabel>
+                  <IonNote>date of birth</IonNote>
+                </IonItem>
+              )}
 
               <IonItem className='profile-content-info'>
                 <IonIcon
