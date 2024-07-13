@@ -149,3 +149,7 @@ export interface PostImageUploaderProps {
   touchedFields: Partial<Record<keyof PostI, boolean>>;
   errors: Partial<Record<keyof PostI, string>>;
 }
+
+export interface PostModalProps {
+  dismiss: (data?: string | null | undefined | number, role?: string) => void;
+}
