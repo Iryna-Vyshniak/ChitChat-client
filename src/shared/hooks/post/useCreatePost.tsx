@@ -12,12 +12,11 @@ export const useCreatePost = () => {
   const [showToast] = useIonToast();
 
   const createPost = async ({ title, text, tags, imageUrl }: PostI): Promise<void> => {
-    console.log('title, text, tags, imageUrl: ', title, text, tags, imageUrl);
     await present('Upload post...');
 
     try {
       const res: HttpResponse = await CapacitorHttp.post({
-        url: `${API}/api/Posts/create`,
+        url: `${API}/api/posts/create`,
         headers: {
           'Content-Type': 'application/json',
         },
