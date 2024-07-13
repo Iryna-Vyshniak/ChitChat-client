@@ -1,9 +1,14 @@
-.posts-container {
+.post-container {
   margin: 0 auto;
   max-width: 1440px;
 }
 
-.post-container {
+.post-container:not(:last-child) {
+  margin-bottom: 2.75rem;
+  border-bottom: 0.5px solid var(--ion-color-light);
+}
+
+.post--inner-container {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
@@ -27,6 +32,7 @@
 .post-profile-info ion-avatar {
   height: 2.2rem;
   width: 2.2rem;
+  box-shadow: 2px 1px 5px var(--ion-color-medium);
 }
 
 .post-profile-info p {
@@ -91,6 +97,7 @@
 .post-actions ion-icon,
 .post-bookmark ion-icon {
   font-size: 1.5rem;
+  filter: drop-shadow(1px 1.2px var(--ion-color-medium));
 }
 
 .post-actions ion-icon:not(:first-child) {
@@ -127,25 +134,54 @@
 }
 
 .post-name {
-  color: black !important;
+  color: var(--ion-text-color) !important;
   font-weight: 600 !important;
 }
 
 .post-name ion-router-link {
-  color: black;
+  color: var(--ion-text-color);
+}
+
+.post-user-comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .post-comments {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-.post-comments p {
   margin: 0;
   padding: 0;
+}
+
+ion-label > .post-comments-header {
   color: rgb(175, 175, 175);
   font-size: 0.8rem;
+}
+
+.post-comments-list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.post-comment-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.post-comment-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  color: var(--ion-text-color);
 }
 
 .post-add-comment {
@@ -167,14 +203,20 @@
   margin-top: 0.5rem;
 }
 
-.post-add-comment-profile ion-avatar {
-  height: 1.9rem;
-  width: 1.9rem;
+.post-add-comment-profile ion-avatar,
+.post-comment-profile ion-avatar {
+  height: 1.5rem;
+  width: 1.5rem;
+  box-shadow: 2px 1px 5px var(--ion-color-medium);
+}
+
+.post-add-comment-profile p,
+.post-comment-profile p {
+  padding-left: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .post-add-comment-profile p {
-  padding-left: 0.75rem;
-  font-size: 0.8rem;
   color: rgb(175, 175, 175);
 }
 
@@ -193,4 +235,13 @@
   padding: 0;
   color: rgb(175, 175, 175);
   font-size: 0.6rem;
+}
+
+.btn-open-modal {
+  background-color: transparent;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }
