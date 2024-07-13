@@ -52,6 +52,7 @@ import Login from './pages/login/LoginPage';
 import Register from './pages/register/RegisterPage';
 import { appTabs } from './shared/data';
 import { useAuthContext } from './shared/context/AuthContext';
+import CreatePostPage from './pages/posts/CreatePostPage';
 
 setupIonicReact({
   mode: 'ios',
@@ -92,6 +93,7 @@ const App: React.FC = () => {
                   <Route path='/app/:name' exact={true}>
                     <Home />
                   </Route>
+                  <Route path='/app/Posts/create' component={CreatePostPage} />
                 </Switch>
               </IonRouterOutlet>
             </IonPage>
@@ -102,6 +104,7 @@ const App: React.FC = () => {
                     <Route path='/app' exact={true}>
                       <Redirect to='/app/Posts' />
                     </Route>
+                    <Route path='/app/Posts/create' exact={true} component={CreatePostPage} />
                     <Route path='/app/:name' exact={true}>
                       <Home />
                     </Route>
