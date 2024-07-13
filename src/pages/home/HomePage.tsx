@@ -12,10 +12,12 @@ import './Home.css';
 
 import Chats from '../chats/ChatsPage';
 import Profile from '../profile/ProfilePage';
+import Posts from '../posts/PostsPage';
 
 const componentsMap: { [key: string]: React.FC<{ name: string }> } = {
   Chats: Chats,
   Profile: Profile,
+  Posts: Posts,
 };
 
 const HomePage: React.FC = () => {
