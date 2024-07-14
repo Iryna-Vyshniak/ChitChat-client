@@ -92,16 +92,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 0.7rem;
 }
 
-.post-actions ion-icon,
-.post-bookmark ion-icon {
+.post-bookmark ion-icon,
+.post-actions .btn-action > ion-icon {
   font-size: 1.5rem;
   filter: drop-shadow(1px 1.2px var(--ion-color-medium));
-}
-
-.post-actions ion-icon:not(:first-child) {
-  padding-left: 0.7rem;
 }
 
 .post-likes-container {
@@ -237,7 +234,7 @@ ion-label > .post-comments-header {
   font-size: 0.6rem;
 }
 
-.btn-open-modal {
+.btn-action {
   background-color: transparent;
   width: 1.5rem;
   height: 1.5rem;
