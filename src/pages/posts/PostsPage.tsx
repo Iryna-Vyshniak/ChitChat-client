@@ -12,6 +12,7 @@ import PostsFab from '../../components/posts/PostsFab';
 import PostsList from '../../components/posts/PostsLists';
 
 import { useGetPosts } from '../../shared/hooks/post/useGetPosts';
+import Stories from '../../components/posts/stories/Stories';
 
 const PostsPage: React.FC = () => {
   const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
@@ -40,6 +41,7 @@ const PostsPage: React.FC = () => {
             refreshingSpinner='circles'
           />
         </IonRefresher>
+        <Stories />
         {!isLoading && posts.length > 0 && <PostsList posts={posts} />}
 
         <PostsFab />
