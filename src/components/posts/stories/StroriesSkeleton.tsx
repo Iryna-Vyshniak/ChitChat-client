@@ -1,15 +1,15 @@
-import { IonAvatar, IonCol, IonRow, IonSkeletonText } from '@ionic/react';
+import { IonCol, IonRow, IonSkeletonText, IonThumbnail } from '@ionic/react';
 import React from 'react';
 
 const StoriesSkeleton: React.FC = () => {
   return (
-    <IonRow className='stories'>
+    <IonRow className='stories stories-skeleton'>
       <div className='stories-container'>
         {[...Array(16)].map((_, idx) => (
           <IonCol key={idx} className='story'>
-            <IonAvatar>
+            <IonThumbnail>
               <IonSkeletonText animated={true} />
-            </IonAvatar>
+            </IonThumbnail>
             <IonSkeletonText animated={true} style={{ width: '60px' }} />
           </IonCol>
         ))}
