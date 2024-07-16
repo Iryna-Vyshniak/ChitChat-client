@@ -35,13 +35,25 @@
   box-shadow: 2px 1px 5px var(--ion-color-medium);
 }
 
+.post-profile-info ion-thumbnail ion-skeleton-text {
+  --border-radius: 9999px;
+  height: 2.2rem;
+  width: 2.2rem;
+}
+
 .post-profile-info p {
   margin: 0;
   padding: 0;
   margin-left: 0.5rem;
   font-weight: 500;
   font-size: 0.9rem;
-  color: black;
+  color: var(--ion-text-color);
+}
+
+.post-profile-info ion-skeleton-text,
+.post-profile-more ion-skeleton-text,
+.post-bookmark ion-skeleton-text {
+  --border-radius: 0.2rem;
 }
 
 .post-profile-info {
@@ -52,11 +64,21 @@
   align-content: center;
 }
 
-.post-image {
+.post-image,
+.post-image-skeleton {
   border-top: 1px solid rgb(216, 216, 216);
   margin-top: 0.5rem;
   height: 20rem;
   width: 100%;
+}
+
+.post-image-skeleton {
+  border-top: none;
+  border-radius: 0;
+}
+
+.post-image-skeleton ion-skeleton-text {
+  --border-radius: 0;
 }
 
 @media (min-width: 480px) {
