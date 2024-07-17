@@ -246,7 +246,6 @@ ion-content.custom-content {
 /* user modal  */
 .custom-user-modal {
   --backdrop-opacity: 1;
-  backdrop-filter: blur(3px);
 
   &::part(backdrop) {
     background: #00010d;

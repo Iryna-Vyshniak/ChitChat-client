@@ -1,85 +1,83 @@
 .auth-page {
-    position: relative;
-    height: 100dvh;
-    background: url(../assets/content/bg-01.png);
-    background-color: #f0eefc09; 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  
- 
-  ion-content.auth-content {
-    --background: transparent;
-  
+  position: relative;
+  height: 100dvh;
+  background: url(../assets/content/bg-01.png);
+  background-color: #f0eefc09;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+ion-content.auth-content {
+  --background: transparent;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  backdrop-filter: blur(26px) saturate(180%);
+  background-color: #f0eefc09;
+  border-radius: 1.25rem;
+}
+
+/* Form styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 20px;
+}
+
+ion-list.list-ios {
+  background: transparent;
+}
+
+.form ion-list.auth-ion-list ion-item,
+.form ion-item {
+  --background: transparent;
+}
+
+.form ion-checkbox {
+  --checkbox-background: transparent;
+
+  --size: 24px;
+  --checkbox-background-checked: var(--ion-color-secondary);
+}
+
+.form ion-checkbox::part(container) {
+  border-radius: 6px;
+  border: 0.5px solid var(--ion-color-dark);
+}
+
+.form .gender-error {
+  font-size: 10px;
+  margin-left: 16px;
+}
+
+.auth-list-wrapper {
+  @media (min-width: 768px) {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
   }
-  
-  .auth-card {
-    display: flex;
-    flex-direction: column;
-    max-height: 80vh;
-    backdrop-filter: blur(26px) saturate(180%);
-    -webkit-backdrop-filter: blur(26px) saturate(180%);
-    background-color: #f0eefc09; 
-    border-radius: 1.25rem;
+}
+
+.auth-gender-text {
+  font-size: 12px;
+  @media (min-width: 768px) {
+    font-size: 14px;
   }
-  
-  /* Form styles */
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-bottom: 20px;
+}
+
+.auth-gender-item {
+  font-size: 12px;
+  @media (min-width: 768px) {
+    font-size: 14px;
   }
-  
-  ion-list.list-ios {
-    background: transparent;
-  }
-  
-  .form ion-list.auth-ion-list ion-item,
-  .form ion-item {
-    --background: transparent;
-  }
-  
-  .form ion-checkbox {
-    --checkbox-background: transparent;
-  
-    --size: 24px;
-    --checkbox-background-checked: var(--ion-color-secondary);
-  }
-  
-  .form ion-checkbox::part(container) {
-    border-radius: 6px;
-    border: 0.5px solid var(--ion-color-dark);
-  }
-  
-  .form .gender-error {
-    font-size: 10px;
-    margin-left: 16px;
-  }
-  
-  .auth-list-wrapper {
-    @media (min-width: 768px) {
-      display: flex;
-    }
-  }
-  
-  .auth-gender-text {
-    font-size: 12px;
-    @media (min-width: 768px) {
-      font-size: 14px;
-    }
-  }
-  
-  .auth-gender-item {
-    font-size: 12px;
-    @media (min-width: 768px) {
-      font-size: 14px;
-    }
-  }
-  
+}

@@ -5,10 +5,10 @@
   align-items: center;
   justify-content: center;
   height: 20rem;
-  background-color: #f3f3f3;
+  background-color: var(--ion-color-step-50);
   overflow: hidden;
   cursor: pointer;
-  border: 0.5px solid #e7e7e7;
+  border: 0.5px solid var(--ion-color-step-100);
 }
 
 .post-img-input {
