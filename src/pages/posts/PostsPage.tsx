@@ -13,6 +13,7 @@ import PostsList from '../../components/posts/PostsLists';
 
 import { useGetPosts } from '../../shared/hooks/post/useGetPosts';
 import Stories from '../../components/posts/stories/Stories';
+import PostsSkeleton from '../../components/posts/PostsSkeleton';
 
 const PostsPage: React.FC = () => {
   const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
@@ -42,8 +43,8 @@ const PostsPage: React.FC = () => {
           />
         </IonRefresher>
         <Stories />
+        {isLoading && <PostsSkeleton />}
         {!isLoading && posts.length > 0 && <PostsList posts={posts} />}
-
         <PostsFab />
       </IonContent>
     </IonPage>
