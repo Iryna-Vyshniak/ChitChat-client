@@ -6,7 +6,7 @@ const PostsFab: React.FC = () => {
   return (
     <div className='user-group-fab'>
       <IonFab slot='fixed' vertical='bottom' horizontal='end' edge>
-        <IonFabButton color='secondary' size='small'>
+        <IonFabButton color='secondary' size='small' title='add'>
           <IonIcon icon={add} color='light' />
         </IonFabButton>
         <IonFabList side='top'>
@@ -14,6 +14,7 @@ const PostsFab: React.FC = () => {
             routerLink={`/app/Posts/create`}
             routerDirection='forward'
             data-desc='Upload Post'
+            title='Upload Post'
           >
             <IonIcon icon={newspaperOutline} className='custom-icon'></IonIcon>
           </IonFabButton>

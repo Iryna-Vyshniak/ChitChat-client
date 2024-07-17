@@ -14,7 +14,7 @@ const UserModalFab: React.FC<UserFabProps> = ({ user }) => {
   return (
     <div className='user-modal-fab'>
       <IonFab slot='fixed' vertical='bottom' horizontal='end' edge>
-        <IonFabButton color='secondary' size='small'>
+        <IonFabButton color='secondary' size='small' title='add'>
           <IonIcon icon={add} color='light' />
         </IonFabButton>
         <IonFabList side='top'>
@@ -34,6 +34,7 @@ const UserModalFab: React.FC<UserFabProps> = ({ user }) => {
             routerLink={`/messages/send/${user?._id}`}
             routerDirection='forward'
             data-desc='Write message'
+            title='Write message'
           >
             <IonIcon icon={chatbubbleEllipsesOutline} className='custom-icon'></IonIcon>
           </IonFabButton>

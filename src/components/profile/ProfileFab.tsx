@@ -8,7 +8,7 @@ const ProfileFab: React.FC<{ user: UserI | null }> = ({ user }) => {
   return (
     <div className='user-group-fab'>
       <IonFab slot='fixed' vertical='bottom' horizontal='end' edge>
-        <IonFabButton color='secondary' size='small'>
+        <IonFabButton color='secondary' size='small' title='add'>
           <IonIcon icon={add} color='light' />
         </IonFabButton>
         <IonFabList side='top'>
@@ -16,6 +16,7 @@ const ProfileFab: React.FC<{ user: UserI | null }> = ({ user }) => {
             routerLink={`/auth/update/${user?._id}`}
             routerDirection='forward'
             data-desc='Update Profile'
+            title='Update Profile'
           >
             <IonIcon icon={person} className='custom-icon'></IonIcon>
           </IonFabButton>
