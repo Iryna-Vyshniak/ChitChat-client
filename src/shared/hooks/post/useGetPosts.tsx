@@ -20,7 +20,12 @@ export const useGetPosts = () => {
         },
       });
 
-      const { data } = await res.data;
+      const { data } = (await res.data) || {};
+
+      if (!data || !data.posts) {
+        throw new Error('Invalid response format');
+      }
+
       return data.posts;
     } catch (error) {
       console.error('Fetch error: ', error);

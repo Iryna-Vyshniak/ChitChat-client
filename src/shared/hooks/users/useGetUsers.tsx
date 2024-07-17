@@ -19,7 +19,11 @@ export const useGetUsers = () => {
           credentials: 'include',
         },
       });
-      const { data } = res.data;
+      const { data } = (await res.data) || {};
+
+      if (!data || !data.users) {
+        throw new Error('Invalid response format');
+      }
 
       return data.users;
     } catch (error) {
