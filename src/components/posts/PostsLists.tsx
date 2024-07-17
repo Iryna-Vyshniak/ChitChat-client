@@ -4,11 +4,9 @@ import React from 'react';
 import PostCard from './PostCard';
 import { PostCardI } from '../../shared/types';
 
-import './PostList.css';
-
 const PostsList: React.FC<{ posts: PostCardI[] }> = ({ posts }) => {
   return (
-    <IonContent className='custom-content ion-padding'>
+    <IonContent className='custom-content'>
       {posts.map((post) => (
         <PostCard key={post._id} post={post} />
       ))}

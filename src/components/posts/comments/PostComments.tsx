@@ -10,7 +10,7 @@ const PostComments: React.FC = () => {
         <IonAccordion value='first' toggleIcon={''} toggleIconSlot='start'>
           <IonItem slot='header'>
             <IonLabel>
-              <p className='post-comments-header'>View all comments</p>
+              <p className='post-comments-header'>View last comments</p>
             </IonLabel>
           </IonItem>
 

@@ -16,9 +16,8 @@ const PostComment: React.FC = () => {
             height={24}
           />
         </IonAvatar>
-        <p className='ion-margin-left'>Test comment...</p>
+        <p className='ion-margin-left'>Test comment...</p>{' '}
       </div>
-
       <div className='post-time post-comment-actions'>
         <IonIcon icon={heartOutline} />
 

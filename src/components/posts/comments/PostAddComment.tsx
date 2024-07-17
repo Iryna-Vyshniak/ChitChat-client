@@ -36,7 +36,7 @@ const PostAddComment: React.FC<{ date: string }> = ({ date }) => {
         <p className='ion-margin-left'>Add a comment...</p>
 
         <button
-          className='post-add-comment-actions btn-open-modal'
+          className='post-add-comment-actions btn-action'
           id='comment-modal'
           onClick={() => openModal()}
         >

@@ -5,7 +5,7 @@ const PostsSkeleton: React.FC = () => {
   return (
     <IonContent className='custom-content ion-padding'>
       {[...Array(16)].map((_, idx) => (
-        <IonCard key={idx} className='post-container ion-padding'>
+        <IonCard key={idx} className='post-container ion-padding ion-margin'>
           <div className='post-inner-container'>
             <div className='post-profile'>
               <div className='post-profile-info'>
