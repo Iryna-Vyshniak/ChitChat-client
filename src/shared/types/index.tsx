@@ -153,3 +153,8 @@ export interface PostImageUploaderProps {
 export interface PostModalProps {
   dismiss: (data?: string | null | undefined | number, role?: string) => void;
 }
+
+export interface PostCommentsModalProps {
+  presentingElement: HTMLElement | null;
+  modalAllComments: React.RefObject<HTMLIonModalElement>;
+}
