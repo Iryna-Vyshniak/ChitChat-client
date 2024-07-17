@@ -78,7 +78,6 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path='/signin' component={Login} />
               <Route exact path='/signup' component={Register} />
-              <Redirect from='*' to='/signin' />
             </Switch>
           </IonPage>
         ) : (
@@ -87,6 +86,9 @@ const App: React.FC = () => {
             <IonPage id='main'>
               <IonRouterOutlet id='main'>
                 <Switch>
+                  <Route path='/' exact={true}>
+                    <Redirect to='/app/Posts' />
+                  </Route>
                   <Route path='/app' exact={true}>
                     <Redirect to='/app/Posts' />
                   </Route>
@@ -110,7 +112,7 @@ const App: React.FC = () => {
                     </Route>
                   </Switch>
                 </IonRouterOutlet>
-                <IonTabBar slot='bottom' className='custom' translucent={true}>
+                <IonTabBar slot='bottom' className='custom ion-margin-top' translucent={true}>
                   {appTabs.map((tab, index) => (
                     <IonTabButton
                       key={index}
