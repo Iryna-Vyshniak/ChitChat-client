@@ -8,6 +8,7 @@ import { PostCardI } from '../../types';
 export const useGetPosts = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [posts, setPosts] = useState<PostCardI[]>([]);
+  const [popularPosts, setPopularPosts] = useState<PostCardI[]>([]);
 
   const getPosts = async () => {
     setIsLoading(true);
@@ -26,7 +27,7 @@ export const useGetPosts = () => {
         throw new Error('Invalid response format');
       }
 
-      return data.posts;
+      return data;
     } catch (error) {
       console.error('Fetch error: ', error);
     } finally {
@@ -36,12 +37,13 @@ export const useGetPosts = () => {
 
   useIonViewWillEnter(() => {
     const loadPosts = async () => {
-      const posts = await getPosts();
+      const { posts, popularPosts } = await getPosts();
       setPosts(posts);
+      setPopularPosts(popularPosts);
       setIsLoading(false);
     };
     loadPosts();
   });
 
-  return { posts, setPosts, getPosts, isLoading };
+  return { posts, setPosts, popularPosts, setPopularPosts, getPosts, isLoading };
 };

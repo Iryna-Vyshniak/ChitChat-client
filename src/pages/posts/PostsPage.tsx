@@ -17,7 +17,7 @@ import PostsSkeleton from '../../components/posts/PostsSkeleton';
 
 const PostsPage: React.FC = () => {
   const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
-  const { posts, setPosts, getPosts, isLoading } = useGetPosts();
+  const { posts, setPosts, popularPosts, setPopularPosts, getPosts, isLoading } = useGetPosts();
 
   const contentRef = createRef<HTMLIonContentElement>();
   const page = useRef(null);
@@ -27,8 +27,9 @@ const PostsPage: React.FC = () => {
   }, []);
 
   const handleRefresh = async (event: CustomEvent<RefresherEventDetail>) => {
-    const posts = await getPosts();
+    const { posts, popularPosts } = await getPosts();
     setPosts(posts);
+    setPopularPosts(popularPosts);
     event.detail.complete();
   };
 
