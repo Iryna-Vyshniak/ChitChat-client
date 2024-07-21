@@ -1,5 +1,4 @@
 body {
-  box-sizing: border-box;
   font-style: normal;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
@@ -112,6 +111,10 @@ ion-content::part(scroll) {
 
 .margin-bottom-4 {
   margin-bottom: 1rem;
+}
+
+.ion-nav-link {
+  cursor: pointer;
 }
 
 ion-grid {

@@ -95,6 +95,20 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-intro-rosy-shade: #ca9a9a;
   --ion-color-intro-rosy-tint: #e9b7b7;
 
+  --ion-color-intro-yellow: #fef9c3;
+  --ion-color-intro-yellow-rgb: 254, 249, 195;
+  --ion-color-intro-yellow-contrast: #000000;
+  --ion-color-intro-yellow-contrast-rgb: 0, 0, 0;
+  --ion-color-intro-yellow-shade: #e5e1b0;
+  --ion-color-intro-yellow-tint: #fefad2;
+
+  --ion-color-intro-blue: #cffafe;
+  --ion-color-intro-blue-rgb: 207, 250, 254;
+  --ion-color-intro-blue-contrast: #000000;
+  --ion-color-intro-blue-contrast-rgb: 0, 0, 0;
+  --ion-color-intro-blue-shade: #b9e1e5;
+  --ion-color-intro-blue-tint: #d8fcfe;
+
   --chat-bubble-sent-color: #fb500186;
   --chat-bubble-received-color: #ff4e02;
 
