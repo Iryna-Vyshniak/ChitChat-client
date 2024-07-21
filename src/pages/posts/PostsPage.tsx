@@ -17,14 +17,11 @@ import Stories from '../../components/posts/stories/Stories';
 import { useGetPosts } from '../../shared/hooks/post/useGetPosts';
 import { useGetPostsByTag } from '../../shared/hooks/post/useGetPostsByTag';
 
-import PopularPostsPage from './PopularPostsPage';
-
 const PostsPage: React.FC = () => {
   const [selectedTag, setSelectedTag] = useState<string>('');
   const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
-  const { posts, setPosts, popularPosts, setPopularPosts, getPosts, isLoading } = useGetPosts();
-  const { tagsPosts, setTagsPosts, isTagsPostLoading, getPostsByTag } =
-    useGetPostsByTag(selectedTag);
+  const { posts, getPosts, isLoading } = useGetPosts();
+  const { tagsPosts, isTagsPostLoading, getPostsByTag } = useGetPostsByTag(selectedTag);
 
   const contentRef = createRef<HTMLIonContentElement>();
   const page = useRef(null);
