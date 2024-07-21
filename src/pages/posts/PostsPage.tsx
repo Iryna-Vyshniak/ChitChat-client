@@ -10,14 +10,21 @@ import React, { createRef, useEffect, useRef, useState } from 'react';
 
 import PostsFab from '../../components/posts/PostsFab';
 import PostsList from '../../components/posts/PostsLists';
+import Sort from '../../components/posts/sort/Sort';
+import PostsSkeleton from '../../components/posts/PostsSkeleton';
+import Stories from '../../components/posts/stories/Stories';
 
 import { useGetPosts } from '../../shared/hooks/post/useGetPosts';
-import Stories from '../../components/posts/stories/Stories';
-import PostsSkeleton from '../../components/posts/PostsSkeleton';
+import { useGetPostsByTag } from '../../shared/hooks/post/useGetPostsByTag';
+
+import PopularPostsPage from './PopularPostsPage';
 
 const PostsPage: React.FC = () => {
+  const [selectedTag, setSelectedTag] = useState<string>('');
   const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
   const { posts, setPosts, popularPosts, setPopularPosts, getPosts, isLoading } = useGetPosts();
+  const { tagsPosts, setTagsPosts, isTagsPostLoading, getPostsByTag } =
+    useGetPostsByTag(selectedTag);
 
   const contentRef = createRef<HTMLIonContentElement>();
   const page = useRef(null);
@@ -27,9 +34,11 @@ const PostsPage: React.FC = () => {
   }, []);
 
   const handleRefresh = async (event: CustomEvent<RefresherEventDetail>) => {
-    const { posts, popularPosts } = await getPosts();
-    setPosts(posts);
-    setPopularPosts(popularPosts);
+    if (!selectedTag) {
+      await getPosts();
+    } else {
+      await getPostsByTag(selectedTag);
+    }
     event.detail.complete();
   };
 
@@ -44,8 +53,13 @@ const PostsPage: React.FC = () => {
           />
         </IonRefresher>
         <Stories />
+
+        <Sort onTagClick={(tag) => setSelectedTag(tag)} />
+
         {isLoading && <PostsSkeleton />}
-        {!isLoading && posts.length > 0 && <PostsList posts={posts} />}
+        {isTagsPostLoading && <PostsSkeleton />}
+        {!selectedTag && !isLoading && posts.length > 0 && <PostsList posts={posts} />}
+        {selectedTag && !isTagsPostLoading && posts.length > 0 && <PostsList posts={tagsPosts} />}
         <PostsFab />
       </IonContent>
     </IonPage>
