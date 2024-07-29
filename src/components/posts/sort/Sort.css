@@ -6,11 +6,6 @@
   margin-bottom: 0.7rem;
 }
 
-.sorts-skeleton {
-  height: fit-content;
-  margin-top: -0.2rem;
-}
-
 .sorts-container {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -22,4 +17,11 @@
 
 .sorts-container::-webkit-scrollbar {
   display: none;
+}
+
+.sorts-container ion-skeleton-text.sort-skeleton {
+  max-width: 80px;
+  width: 64px;
+  height: 27px;
+  --border-radius: 8px;
 }

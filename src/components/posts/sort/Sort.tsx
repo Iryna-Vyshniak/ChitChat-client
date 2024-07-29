@@ -5,9 +5,10 @@ import './Sort.css';
 
 import { useGetAllTags } from '../../../shared/hooks/post/useGetAllTags';
 import { colors } from '../../../shared/constants';
+import SortSkeleton from './SortSkeleton';
 
-const Sort: React.FC<{ onTagClick: (tag: string) => void }> = ({ onTagClick }) => {
-  const { tags } = useGetAllTags();
+const Sort: React.FC<{ onTagClick?: (tag: string) => void }> = ({ onTagClick }) => {
+  const { tags, isTagLoading } = useGetAllTags();
 
   return (
     <IonRow className='sorts'>
@@ -16,22 +17,23 @@ const Sort: React.FC<{ onTagClick: (tag: string) => void }> = ({ onTagClick }) =
           size='small'
           expand='block'
           className='custom-button'
-          onClick={() => onTagClick('')}
+          onClick={() => onTagClick!('')}
         >
           POSTS
         </IonButton>
-
-        {tags.map((tag, idx) => (
-          <IonButton
-            key={tag}
-            size='small'
-            expand='block'
-            color={colors[idx % colors.length]}
-            onClick={() => onTagClick(tag)}
-          >
-            #{tag.replace(/([A-Z])/g, '_$1').toLowerCase()}
-          </IonButton>
-        ))}
+        {isTagLoading && <SortSkeleton />}
+        {!isTagLoading &&
+          tags.map((tag, idx) => (
+            <IonButton
+              key={tag}
+              size='small'
+              expand='block'
+              color={colors[idx % colors.length]}
+              onClick={() => onTagClick!(tag)}
+            >
+              #{tag.replace(/([A-Z])/g, '_$1').toLowerCase()}
+            </IonButton>
+          ))}
       </div>
     </IonRow>
   );
