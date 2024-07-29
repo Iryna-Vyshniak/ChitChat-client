@@ -5,11 +5,11 @@ import { useState } from 'react';
 import { API } from '../../constants';
 
 export const useGetAllTags = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isTagLoading, setIsTagLoading] = useState<boolean>(false);
   const [tags, setTags] = useState<string[]>([]);
 
   const getTags = async () => {
-    setIsLoading(true);
+    setIsTagLoading(true);
 
     try {
       const res: HttpResponse = await CapacitorHttp.get({
@@ -29,7 +29,7 @@ export const useGetAllTags = () => {
     } catch (error) {
       console.error('Fetch error: ', error);
     } finally {
-      setIsLoading(false);
+      setIsTagLoading(false);
     }
   };
 
@@ -37,10 +37,10 @@ export const useGetAllTags = () => {
     const loadTags = async () => {
       const { tags } = await getTags();
       setTags(tags);
-      setIsLoading(false);
+      setIsTagLoading(false);
     };
     loadTags();
   });
 
-  return { tags, setTags, getTags, isLoading };
+  return { tags, setTags, getTags, isTagLoading };
 };
