@@ -10,9 +10,9 @@ const UsersList: React.FC<UserListProps> = ({ users, presentingElement }) => {
 
   return (
     <IonContent className='custom-content ion-padding'>
-      {users.map((user, idx) => (
+      {users.map((user) => (
         <IonCard
-          key={idx}
+          key={user._id}
           onClick={() => {
             setSelectedUser(user);
           }}
@@ -21,7 +21,11 @@ const UsersList: React.FC<UserListProps> = ({ users, presentingElement }) => {
           <UserCard user={user} />
         </IonCard>
       ))}
-      <UserModal selectedUser={selectedUser} setSelectedUser={setSelectedUser} presentingElement={presentingElement}/>
+      <UserModal
+        selectedUser={selectedUser}
+        setSelectedUser={setSelectedUser}
+        presentingElement={presentingElement}
+      />
     </IonContent>
   );
 };
