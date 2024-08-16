@@ -1,14 +1,15 @@
+import React from 'react';
+
 import { IonIcon, IonItemOption, IonItemOptions } from '@ionic/react';
 import { downloadOutline, heart, heartOutline } from 'ionicons/icons';
-import React from 'react';
 
 import { downloadImage, downloadImagePost } from '../../shared/utils';
 
-const PostImage: React.FC<{ image: string | null; like: boolean; handleLikeClick: () => void }> = ({
-  image,
-  like,
-  handleLikeClick,
-}) => {
+const PostImage: React.FC<{
+  image: string | null;
+  like: boolean;
+  handleLikeClick: () => void;
+}> = ({ image, like, handleLikeClick }) => {
   const downloadPostImage = downloadImage(image!);
 
   return (
@@ -39,7 +40,11 @@ const PostImage: React.FC<{ image: string | null; like: boolean; handleLikeClick
           target='_blank'
           rel='noopener noreferrer'
         >
-          <IonIcon slot='icon-only' icon={downloadOutline} className='custom'></IonIcon>
+          <IonIcon
+            slot='icon-only'
+            icon={downloadOutline}
+            className='custom'
+          ></IonIcon>
         </IonItemOption>
       </IonItemOptions>
     </>

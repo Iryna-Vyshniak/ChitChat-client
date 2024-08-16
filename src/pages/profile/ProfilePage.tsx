@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { IonPage } from '@ionic/react';
 
 import ProfileContent from '../../components/profile/ProfileContent';
 
 const ProfilePage: React.FC<{ name: string }> = ({ name }) => {
+  console.log(' name: ', name);
   return (
     <IonPage className='ion-padding' style={{ marginTop: '24px' }}>
       <ProfileContent />

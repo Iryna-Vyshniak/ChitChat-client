@@ -1,9 +1,8 @@
-import { useIonRouter, useIonLoading, useIonToast } from '@ionic/react';
-import { CapacitorHttp, HttpResponse } from '@capacitor/core';
-
-import { PostI } from '../../types';
+import { CapacitorHttp } from '@capacitor/core';
+import { useIonLoading, useIonRouter, useIonToast } from '@ionic/react';
 
 import { API } from '../../constants';
+import { PostI } from '../../types';
 
 export const useCreatePost = () => {
   const router = useIonRouter();
@@ -11,11 +10,16 @@ export const useCreatePost = () => {
 
   const [showToast] = useIonToast();
 
-  const createPost = async ({ title, text, tags, imageUrl }: PostI): Promise<void> => {
+  const createPost = async ({
+    title,
+    text,
+    tags,
+    imageUrl,
+  }: PostI): Promise<void> => {
     await present('Upload post...');
 
     try {
-      const res: HttpResponse = await CapacitorHttp.post({
+      await CapacitorHttp.post({
         url: `${API}/api/posts/create`,
         headers: {
           'Content-Type': 'application/json',

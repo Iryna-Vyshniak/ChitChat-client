@@ -1,6 +1,7 @@
-import { useIonViewWillEnter } from '@ionic/react';
-import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { useState } from 'react';
+
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { useIonViewWillEnter } from '@ionic/react';
 
 import { API } from '../../constants';
 import { UserItemI } from '../../types';

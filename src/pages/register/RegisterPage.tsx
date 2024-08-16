@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   IonBackButton,
   IonButtons,
@@ -7,14 +9,11 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import React from 'react';
-
-import '../../theme/authstyles.css';
 
 import SignUpForm from '../../components/forms/SignUpForm';
-
 import { useSignUp } from '../../shared/hooks/auth/useSignUp';
 import { SignupI } from '../../shared/types';
+import '../../theme/authstyles.css';
 
 const RegisterPage: React.FC = () => {
   const { signup } = useSignUp();

@@ -1,3 +1,5 @@
+import React, { createRef, useEffect, useRef, useState } from 'react';
+
 import {
   IonContent,
   IonLabel,
@@ -9,24 +11,26 @@ import {
   IonSegmentButton,
   RefresherEventDetail,
 } from '@ionic/react';
-import React, { createRef, useEffect, useRef, useState } from 'react';
 import { chevronDownCircleOutline, trashBin } from 'ionicons/icons';
 
+import UserGroupFab from '../../components/users/UserGroupFab';
 import UsersList from '../../components/users/UsersList';
 import UsersSkeleton from '../../components/users/UsersSkeleton';
-import UserGroupFab from '../../components/users/UserGroupFab';
-
 import { useGetUsers } from '../../shared/hooks/users/useGetUsers';
 import { UserItemI } from '../../shared/types';
 
 const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
+  console.log('name: ', name);
   const contentRef = createRef<HTMLIonContentElement>();
-  const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
-  const [activeSegment, setActiveSegment] = useState<any>('contacts');
+  const [presentingElement, setPresentingElement] =
+    useState<HTMLElement | null>(null);
+  const [activeSegment, setActiveSegment] = useState<'contacts' | 'groups'>(
+    'contacts'
+  );
 
   const { users, setUsers, getUsers, isLoading } = useGetUsers();
 
-  let [results, setResults] = useState<UserItemI[]>([]);
+  const [results, setResults] = useState<UserItemI[]>([]);
 
   const page = useRef(null);
 
@@ -39,7 +43,9 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
     const target = ev.target as HTMLIonSearchbarElement;
     if (target) query = target.value!.toLowerCase();
 
-    setResults(users.filter((d) => d.fullName.toLowerCase().indexOf(query) > -1));
+    setResults(
+      users.filter((d) => d.fullName.toLowerCase().indexOf(query) > -1)
+    );
   };
 
   useEffect(() => {
@@ -57,7 +63,9 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
       <div style={{ marginTop: '24px' }}>
         <IonSegment
           value={activeSegment}
-          onIonChange={(e) => setActiveSegment(e.detail.value!)}
+          onIonChange={(e) =>
+            setActiveSegment(e.detail.value! as 'contacts' | 'groups')
+          }
           class='ion-color-custom-segment'
         >
           <IonSegmentButton value='contacts'>
@@ -87,7 +95,12 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
               />
             </IonRefresher>
             {isLoading && <UsersSkeleton />}
-            {!isLoading && <UsersList users={results} presentingElement={presentingElement} />}
+            {!isLoading && (
+              <UsersList
+                users={results}
+                presentingElement={presentingElement}
+              />
+            )}
           </IonContent>
         </>
       )}

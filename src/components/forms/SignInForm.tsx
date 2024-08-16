@@ -1,22 +1,21 @@
 import {
+  IonButton,
   IonCard,
   IonCardContent,
+  IonCardTitle,
   IonCol,
   IonGrid,
   IonIcon,
   IonInput,
-  IonRow,
-  IonButton,
-  IonCardTitle,
   IonInputPasswordToggle,
+  IonRow,
 } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
 
-import { useForm } from '../../shared/hooks/form/useForm';
-
-import { SignInFormProps, SigninI, ValidationErrors } from '../../shared/types';
-import { signupFields } from '../../shared/data';
 import { regExp } from '../../shared/constants';
+import { signupFields } from '../../shared/data';
+import { useForm } from '../../shared/hooks/form/useForm';
+import { SignInFormProps, SigninI, ValidationErrors } from '../../shared/types';
 
 const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
   const initialValues: SigninI = {
@@ -41,12 +40,19 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
     return errors;
   };
 
-  const { values, errors, handleChange, handleSubmit, isValid, markTouched, touchedFields } =
-    useForm<SigninI>({
-      initialValues,
-      validate,
-      onSubmit,
-    });
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    isValid,
+    markTouched,
+    touchedFields,
+  } = useForm<SigninI>({
+    initialValues,
+    validate,
+    onSubmit,
+  });
 
   return (
     <IonGrid fixed className='ion-no-padding'>
@@ -68,7 +74,9 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
                   value={values.email}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('email')}
-                  errorText={touchedFields.email && errors.email ? errors.email : ''}
+                  errorText={
+                    touchedFields.email && errors.email ? errors.email : ''
+                  }
                   {...signupFields.email}
                   className={`${isValid.email ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.email ? 'ion-touched' : ''
@@ -84,7 +92,11 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
                   value={values.password}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('password')}
-                  errorText={touchedFields.password && errors.password ? errors.password : ''}
+                  errorText={
+                    touchedFields.password && errors.password
+                      ? errors.password
+                      : ''
+                  }
                   {...signupFields.password}
                   className={`${isValid.password ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.password ? 'ion-touched' : ''
@@ -94,7 +106,11 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
                   <IonInputPasswordToggle slot='end'></IonInputPasswordToggle>
                 </IonInput>
 
-                <IonButton expand='block' type='submit' className='custom-button'>
+                <IonButton
+                  expand='block'
+                  type='submit'
+                  className='custom-button'
+                >
                   Log In
                   <IonIcon icon={personCircleOutline} slot='end' />
                 </IonButton>

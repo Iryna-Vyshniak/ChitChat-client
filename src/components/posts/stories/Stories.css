@@ -61,7 +61,11 @@
   width: 3.5rem;
   max-width: 3.5rem;
   border-radius: 50%;
-  background: linear-gradient(to bottom, var(--ion-color-danger), var(--ion-color-primary));
+  background: linear-gradient(
+    to bottom,
+    var(--ion-color-danger),
+    var(--ion-color-primary)
+  );
 }
 
 .story > ion-thumbnail {

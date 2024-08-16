@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   IonBackButton,
   IonButtons,
@@ -8,15 +10,12 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
-import React from 'react';
 
-import '../../theme/authstyles.css';
-
-import { useSignIn } from '../../shared/hooks/auth/useSignIn';
-
-import SignInForm from '../../components/forms/SignInForm';
-import { SigninI } from '../../shared/types';
 import Action from '../../components/forms/Action';
+import SignInForm from '../../components/forms/SignInForm';
+import { useSignIn } from '../../shared/hooks/auth/useSignIn';
+import { SigninI } from '../../shared/types';
+import '../../theme/authstyles.css';
 
 interface LoginProps {
   login: () => void;
@@ -45,7 +44,11 @@ const LoginPage: React.FC<LoginProps> = () => {
       </IonContent>
 
       <IonFooter translucent={true} className='ion-no-border'>
-        <Action message='Don’t have an account?' link='/signup' text='Sign Up' />
+        <Action
+          message='Don’t have an account?'
+          link='/signup'
+          text='Sign Up'
+        />
       </IonFooter>
     </IonPage>
   );

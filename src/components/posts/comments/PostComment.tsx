@@ -1,6 +1,7 @@
+import React from 'react';
+
 import { IonAvatar, IonIcon } from '@ionic/react';
 import { heartOutline } from 'ionicons/icons';
-import React from 'react';
 
 const PostComment: React.FC = () => {
   return (

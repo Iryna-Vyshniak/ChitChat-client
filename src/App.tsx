@@ -1,37 +1,30 @@
+import { useEffect, useState } from 'react';
+
 import {
   IonApp,
   IonIcon,
+  IonLabel,
   IonPage,
   IonRouterOutlet,
   IonSplitPane,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonLabel,
   setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
-import Menu from './components/menu/Menu';
-import Home from './pages/home/HomePage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
+import '@ionic/react/css/display.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/float-elements.css';
 
 /* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
 
 /* Optional CSS utils that can be commented out */
 import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
 
 /**
  * Ionic Dark Mode
@@ -41,18 +34,27 @@ import '@ionic/react/css/display.css';
  */
 
 /* import '@ionic/react/css/palettes/dark.always.css'; */
+
 /* import '@ionic/react/css/palettes/dark.class.css'; */
 import '@ionic/react/css/palettes/dark.system.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/typography.css';
+import { Redirect, Route, Switch } from 'react-router-dom';
+
+import Menu from './components/menu/Menu';
+import Home from './pages/home/HomePage';
+import Login from './pages/login/LoginPage';
+import CreatePostPage from './pages/posts/CreatePostPage';
+import PopularPostsPage from './pages/posts/PopularPostsPage';
+import Register from './pages/register/RegisterPage';
+import { useAuthContext } from './shared/context/AuthContext';
+import { appTabs } from './shared/data';
+import './theme/main.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import './theme/main.css';
-
-import Login from './pages/login/LoginPage';
-import Register from './pages/register/RegisterPage';
-import { appTabs } from './shared/data';
-import { useAuthContext } from './shared/context/AuthContext';
-import CreatePostPage from './pages/posts/CreatePostPage';
 
 setupIonicReact({
   mode: 'ios',
@@ -96,6 +98,10 @@ const App: React.FC = () => {
                     <Home />
                   </Route>
                   <Route path='/app/Posts/create' component={CreatePostPage} />
+                  <Route
+                    path='/app/PopularPosts'
+                    component={PopularPostsPage}
+                  />
                 </Switch>
               </IonRouterOutlet>
             </IonPage>
@@ -106,13 +112,25 @@ const App: React.FC = () => {
                     <Route path='/app' exact={true}>
                       <Redirect to='/app/Posts' />
                     </Route>
-                    <Route path='/app/Posts/create' exact={true} component={CreatePostPage} />
+                    <Route
+                      path='/app/Posts/create'
+                      exact={true}
+                      component={CreatePostPage}
+                    />
                     <Route path='/app/:name' exact={true}>
                       <Home />
                     </Route>
+                    <Route
+                      path='/app/PopularPosts'
+                      component={PopularPostsPage}
+                    />
                   </Switch>
                 </IonRouterOutlet>
-                <IonTabBar slot='bottom' className='custom ion-margin-top' translucent={true}>
+                <IonTabBar
+                  slot='bottom'
+                  className='custom ion-margin-top'
+                  translucent={true}
+                >
                   {appTabs.map((tab, index) => (
                     <IonTabButton
                       key={index}

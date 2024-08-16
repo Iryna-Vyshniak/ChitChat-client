@@ -1,23 +1,21 @@
 import {
+  IonButton,
   IonCard,
   IonCardContent,
+  IonCardTitle,
   IonCol,
   IonGrid,
   IonIcon,
   IonInput,
-  IonRow,
-  IonButton,
-  IonCardTitle,
   IonInputPasswordToggle,
+  IonRow,
 } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
 
-import { useForm } from '../../shared/hooks/form/useForm';
-
-import { SignUpFormProps, SignupI, ValidationErrors } from '../../shared/types';
-import { signupFields } from '../../shared/data';
 import { regExp } from '../../shared/constants';
-
+import { signupFields } from '../../shared/data';
+import { useForm } from '../../shared/hooks/form/useForm';
+import { SignUpFormProps, SignupI, ValidationErrors } from '../../shared/types';
 import GenderCheckbox from './GenderCheckbox';
 
 const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
@@ -65,12 +63,19 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
     return errors;
   };
 
-  const { values, errors, handleChange, handleSubmit, isValid, markTouched, touchedFields } =
-    useForm<SignupI>({
-      initialValues,
-      validate,
-      onSubmit,
-    });
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    isValid,
+    markTouched,
+    touchedFields,
+  } = useForm<SignupI>({
+    initialValues,
+    validate,
+    onSubmit,
+  });
 
   return (
     <IonGrid fixed className='ion-no-padding'>
@@ -78,7 +83,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
         <IonCol size='12' sizeMd='8' sizeLg='6' sizeXl='6'>
           <IonCardTitle className='ion-text-center'>
             <h2>
-              Get chatting with friends and family today <br /> by signing up for our chat app!
+              Get chatting with friends and family today <br /> by signing up
+              for our chat app!
             </h2>
           </IonCardTitle>
           <IonCard className='auth-card'>
@@ -93,7 +99,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   value={values.fullName}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('fullName')}
-                  errorText={touchedFields.fullName && errors.fullName ? errors.fullName : ''}
+                  errorText={
+                    touchedFields.fullName && errors.fullName
+                      ? errors.fullName
+                      : ''
+                  }
                   {...signupFields.fullName}
                   className={`${isValid.fullName ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.fullName ? 'ion-touched' : ''
@@ -110,7 +120,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   value={values.username}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('username')}
-                  errorText={touchedFields.username && errors.username ? errors.username : ''}
+                  errorText={
+                    touchedFields.username && errors.username
+                      ? errors.username
+                      : ''
+                  }
                   {...signupFields.username}
                   className={`${isValid.username ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.username ? 'ion-touched' : ''
@@ -126,7 +140,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   value={values.email}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('email')}
-                  errorText={touchedFields.email && errors.email ? errors.email : ''}
+                  errorText={
+                    touchedFields.email && errors.email ? errors.email : ''
+                  }
                   {...signupFields.email}
                   className={`${isValid.email ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.email ? 'ion-touched' : ''
@@ -142,7 +158,11 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   value={values.password}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('password')}
-                  errorText={touchedFields.password && errors.password ? errors.password : ''}
+                  errorText={
+                    touchedFields.password && errors.password
+                      ? errors.password
+                      : ''
+                  }
                   {...signupFields.password}
                   className={`${isValid.password ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.password ? 'ion-touched' : ''
@@ -182,11 +202,20 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   touchedFields={touchedFields}
                 />
 
-                <IonButton expand='block' type='submit' className='custom-button'>
+                <IonButton
+                  expand='block'
+                  type='submit'
+                  className='custom-button'
+                >
                   Create an account
                   <IonIcon icon={personCircleOutline} slot='end' />
                 </IonButton>
-                <IonButton routerLink='/signin' color='secondary' type='button' expand='block'>
+                <IonButton
+                  routerLink='/signin'
+                  color='secondary'
+                  type='button'
+                  expand='block'
+                >
                   Sign In
                   <IonIcon icon={personCircleOutline} slot='end' />
                 </IonButton>

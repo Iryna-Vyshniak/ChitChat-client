@@ -9,8 +9,8 @@ import {
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
 
-import PostComment from '../comments/PostComment';
 import { PostCommentsModalProps } from '../../../shared/types';
+import PostComment from '../comments/PostComment';
 
 const PostCommentsModal: React.FC<PostCommentsModalProps> = ({
   presentingElement,

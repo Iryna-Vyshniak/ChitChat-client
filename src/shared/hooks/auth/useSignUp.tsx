@@ -1,8 +1,8 @@
-import { useIonLoading, useIonRouter, useIonToast } from '@ionic/react';
 import { Preferences } from '@capacitor/preferences';
+import { useIonLoading, useIonRouter, useIonToast } from '@ionic/react';
 
-import { useAuthContext } from '../../context/AuthContext';
 import { API } from '../../constants';
+import { useAuthContext } from '../../context/AuthContext';
 import { SignupI } from '../../types';
 
 export const useSignUp = () => {
@@ -11,15 +11,28 @@ export const useSignUp = () => {
   const { setAuthUser } = useAuthContext();
   const [showToast] = useIonToast();
 
-  const signup = async ({ fullName, username, email, password, confirmPassword, gender }: SignupI): Promise<void> => {
-
+  const signup = async ({
+    fullName,
+    username,
+    email,
+    password,
+    confirmPassword,
+    gender,
+  }: SignupI): Promise<void> => {
     await present('Sign up...');
 
     try {
       const res = await fetch(`${API}/api/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fullName, username, email, password, confirmPassword, gender }),
+        body: JSON.stringify({
+          fullName,
+          username,
+          email,
+          password,
+          confirmPassword,
+          gender,
+        }),
       });
 
       const responseData = await res.json();
@@ -56,4 +69,3 @@ export const useSignUp = () => {
 
   return { signup };
 };
-

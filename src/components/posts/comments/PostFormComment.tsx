@@ -1,5 +1,6 @@
-import { IonCard, IonTextarea } from '@ionic/react';
 import React from 'react';
+
+import { IonCard, IonTextarea } from '@ionic/react';
 
 import './PostForm.css';
 

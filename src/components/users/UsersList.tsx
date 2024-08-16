@@ -1,5 +1,6 @@
-import { IonCard, IonContent } from '@ionic/react';
 import React, { useState } from 'react';
+
+import { IonCard, IonContent } from '@ionic/react';
 
 import { UserItemI, UserListProps } from '../../shared/types';
 import UserCard from './UserCard';

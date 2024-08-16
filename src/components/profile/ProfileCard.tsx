@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   IonCard,
   IonCardContent,
@@ -10,27 +12,24 @@ import {
   IonImg,
   IonItem,
   IonLabel,
+  IonNote,
   IonRow,
   IonText,
-  IonNote,
 } from '@ionic/react';
 import {
+  atOutline,
   calendarClearOutline,
+  callOutline,
+  chatboxEllipsesOutline,
+  createOutline,
   mailOutline,
   maleFemaleOutline,
-  createOutline,
-  chatboxEllipsesOutline,
-  callOutline,
-  atOutline,
 } from 'ionicons/icons';
-import React from 'react';
-
-import './ProfileCard.css';
-
-import { getFormattedDate } from '../../shared/utils';
-import { useAuthContext } from '../../shared/context/AuthContext';
 
 import ProfileContent from '../../assets/content/profile-content-1.jpg';
+import { useAuthContext } from '../../shared/context/AuthContext';
+import { getFormattedDate } from '../../shared/utils';
+import './ProfileCard.css';
 
 const authUserCard: React.FC = () => {
   const { authUser } = useAuthContext();
@@ -54,7 +53,9 @@ const authUserCard: React.FC = () => {
               Following <span className='stat-number'>11</span>
             </span>
           </div>
-          <h1 className='main-heading text-shadow-dark'>{authUser?.fullName}</h1>
+          <h1 className='main-heading text-shadow-dark'>
+            {authUser?.fullName}
+          </h1>
         </div>
       </div>
 
@@ -62,19 +63,29 @@ const authUserCard: React.FC = () => {
 
       <div className='profile-content'>
         <div className='avatar profile-avatar-wrapper'>
-          <IonImg src={authUser?.avatar} alt='avatar' className='custom-avatar' />
+          <IonImg
+            src={authUser?.avatar}
+            alt='avatar'
+            className='custom-avatar'
+          />
         </div>
 
         <div className='profile-content-contacts-container'>
           {authUser?.phone && (
             <div className='profile-content-contacts'>
-              <IonIcon icon={callOutline} className='custom-icon ion-margin-end' />{' '}
+              <IonIcon
+                icon={callOutline}
+                className='custom-icon ion-margin-end'
+              />{' '}
               <IonLabel>{authUser.phone}</IonLabel>
             </div>
           )}
 
           <div className='profile-content-contacts'>
-            <IonIcon icon={mailOutline} className='custom-icon ion-margin-end' />
+            <IonIcon
+              icon={mailOutline}
+              className='custom-icon ion-margin-end'
+            />
             <IonLabel>{authUser?.email}</IonLabel>
           </div>
         </div>
@@ -90,14 +101,16 @@ const authUserCard: React.FC = () => {
                       icon={chatboxEllipsesOutline}
                       className='ion-margin-end profile-icon'
                     />
-                    <IonCardSubtitle className='text-shadow-theme'>Status</IonCardSubtitle>
+                    <IonCardSubtitle className='text-shadow-theme'>
+                      Status
+                    </IonCardSubtitle>
                   </IonRow>
                 </IonCardHeader>
                 <IonCardContent>
                   <IonText>
                     <p>
-                      Believe in Yourself and Do what You Love, and Dare to challenge Yourself to
-                      achieve Success!
+                      Believe in Yourself and Do what You Love, and Dare to
+                      challenge Yourself to achieve Success!
                     </p>
                   </IonText>
                 </IonCardContent>
@@ -159,7 +172,9 @@ const authUserCard: React.FC = () => {
                     className='profile-icon'
                   />
                   <IonLabel>
-                    <p className='custom-label'>{getFormattedDate(authUser?.createdAt)}</p>
+                    <p className='custom-label'>
+                      {getFormattedDate(authUser?.createdAt)}
+                    </p>
                   </IonLabel>
                   <IonNote>joined</IonNote>
                 </IonItem>

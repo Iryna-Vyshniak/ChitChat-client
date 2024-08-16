@@ -1,3 +1,5 @@
+import React, { createRef, useEffect, useRef, useState } from 'react';
+
 import {
   IonContent,
   IonPage,
@@ -6,22 +8,21 @@ import {
   RefresherEventDetail,
 } from '@ionic/react';
 import { chevronDownCircleOutline } from 'ionicons/icons';
-import React, { createRef, useEffect, useRef, useState } from 'react';
 
 import PostsFab from '../../components/posts/PostsFab';
 import PostsList from '../../components/posts/PostsLists';
-import Sort from '../../components/posts/sort/Sort';
 import PostsSkeleton from '../../components/posts/PostsSkeleton';
+import Sort from '../../components/posts/sort/Sort';
 import Stories from '../../components/posts/stories/Stories';
-
 import { useGetPosts } from '../../shared/hooks/post/useGetPosts';
 import { useGetPostsByTag } from '../../shared/hooks/post/useGetPostsByTag';
 
 const PostsPage: React.FC = () => {
   const [selectedTag, setSelectedTag] = useState<string>('');
-  const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
+  const [, setPresentingElement] = useState<HTMLElement | null>(null);
   const { posts, getPosts, isLoading } = useGetPosts();
-  const { tagsPosts, isTagsPostLoading, getPostsByTag } = useGetPostsByTag(selectedTag);
+  const { tagsPosts, isTagsPostLoading, getPostsByTag } =
+    useGetPostsByTag(selectedTag);
 
   const contentRef = createRef<HTMLIonContentElement>();
   const page = useRef(null);
@@ -55,8 +56,12 @@ const PostsPage: React.FC = () => {
 
         {isLoading && <PostsSkeleton />}
         {isTagsPostLoading && <PostsSkeleton />}
-        {!selectedTag && !isLoading && posts.length > 0 && <PostsList posts={posts} />}
-        {selectedTag && !isTagsPostLoading && posts.length > 0 && <PostsList posts={tagsPosts} />}
+        {!selectedTag && !isLoading && posts.length > 0 && (
+          <PostsList posts={posts} />
+        )}
+        {selectedTag && !isTagsPostLoading && posts.length > 0 && (
+          <PostsList posts={tagsPosts} />
+        )}
         <PostsFab />
       </IonContent>
     </IonPage>

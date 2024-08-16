@@ -119,7 +119,14 @@ export const appTabs: AppPage[] = [
   },
 ];
 
-export const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+export const labels = [
+  'Family',
+  'Friends',
+  'Notes',
+  'Work',
+  'Travel',
+  'Reminders',
+];
 export const tags = [
   'culture',
   'animal',

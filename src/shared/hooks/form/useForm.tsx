@@ -1,12 +1,19 @@
 import { useCallback, useState } from 'react';
+
 import { Preferences } from '@capacitor/preferences';
 
 import { UseFormProps, ValidationErrors } from '../../types';
 
-export const useForm = <T extends {}>({ initialValues, validate, onSubmit }: UseFormProps<T>) => {
+export const useForm = <T extends object>({
+  initialValues,
+  validate,
+  onSubmit,
+}: UseFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<ValidationErrors<T>>({});
-  const [touchedFields, setTouchedFields] = useState<Partial<Record<keyof T, boolean>>>({});
+  const [touchedFields, setTouchedFields] = useState<
+    Partial<Record<keyof T, boolean>>
+  >({});
   const [isValid, setIsValid] = useState<Partial<Record<keyof T, boolean>>>({});
 
   // Method to update form values from external source
@@ -35,10 +42,13 @@ export const useForm = <T extends {}>({ initialValues, validate, onSubmit }: Use
       const isFieldValid = !fieldErrors[name as keyof T];
       setIsValid((prev) => ({ ...prev, [name]: isFieldValid }));
     },
-    [values, , validate]
+    [values, validate]
   );
 
-  const reset = useCallback(() => setValues({ ...initialValues }), [initialValues]);
+  const reset = useCallback(
+    () => setValues({ ...initialValues }),
+    [initialValues]
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,10 +57,12 @@ export const useForm = <T extends {}>({ initialValues, validate, onSubmit }: Use
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
-      Object.keys(initialValues).forEach((field) => markTouched(field as keyof T));
+      Object.keys(initialValues).forEach((field) =>
+        markTouched(field as keyof T)
+      );
       return;
     }
-    console.log(values);
+
     onSubmit({ ...values });
 
     const savedData = await Preferences.get({ key: 'formData' });

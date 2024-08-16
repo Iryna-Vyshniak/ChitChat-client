@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { IonFab, IonFabButton, IonFabList, IonIcon } from '@ionic/react';
 import { add, callSharp, chatbubbleEllipsesOutline } from 'ionicons/icons';
 
 import { UserFabProps } from '../../shared/types';
 
 const UserModalFab: React.FC<UserFabProps> = ({ user }) => {
-  const handleCallNumber = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleCallNumber = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
     if (!user?.phone) {
       e.preventDefault();
     }
@@ -36,7 +39,10 @@ const UserModalFab: React.FC<UserFabProps> = ({ user }) => {
             data-desc='Write message'
             title='Write message'
           >
-            <IonIcon icon={chatbubbleEllipsesOutline} className='custom-icon'></IonIcon>
+            <IonIcon
+              icon={chatbubbleEllipsesOutline}
+              className='custom-icon'
+            ></IonIcon>
           </IonFabButton>
         </IonFabList>
       </IonFab>

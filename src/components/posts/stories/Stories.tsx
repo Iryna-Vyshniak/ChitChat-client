@@ -1,12 +1,11 @@
 import React from 'react';
+
 import { IonCol, IonIcon, IonRouterLink, IonRow } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 
-import './Stories.css';
-
-import { useGetUsers } from '../../../shared/hooks/users/useGetUsers';
 import { useAuthContext } from '../../../shared/context/AuthContext';
-
+import { useGetUsers } from '../../../shared/hooks/users/useGetUsers';
+import './Stories.css';
 import StoriesSkeleton from './StroriesSkeleton';
 
 const Stories: React.FC = () => {
@@ -29,7 +28,10 @@ const Stories: React.FC = () => {
         {!isLoading &&
           users.map((story) => (
             <IonCol key={story._id} className='story'>
-              <IonRouterLink routerLink={`/app/profile/${story._id}`} className='story'>
+              <IonRouterLink
+                routerLink={`/app/profile/${story._id}`}
+                className='story'
+              >
                 <img alt='story avatar' src={story.avatar} />
                 <p>{story.username}</p>
               </IonRouterLink>

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   IonAvatar,
   IonCard,
@@ -8,7 +10,6 @@ import {
   IonLabel,
   IonSkeletonText,
 } from '@ionic/react';
-import React from 'react';
 
 const UsersSkeleton: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ const UsersSkeleton: React.FC = () => {
               </IonAvatar>
               <IonLabel className='ion-margin-start'>
                 <IonSkeletonText animated style={{ width: '150px' }} />
-                <IonSkeletonText style={{ width: '300px' }}/>
+                <IonSkeletonText style={{ width: '300px' }} />
               </IonLabel>
               <IonChip slot='end' color={'secondary'}></IonChip>
             </IonItem>

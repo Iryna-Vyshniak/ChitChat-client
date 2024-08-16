@@ -1,13 +1,15 @@
-import { IonButton, IonRow } from '@ionic/react';
 import React from 'react';
 
-import './Sort.css';
+import { IonButton, IonRow } from '@ionic/react';
 
-import { useGetAllTags } from '../../../shared/hooks/post/useGetAllTags';
 import { colors } from '../../../shared/constants';
+import { useGetAllTags } from '../../../shared/hooks/post/useGetAllTags';
+import './Sort.css';
 import SortSkeleton from './SortSkeleton';
 
-const Sort: React.FC<{ onTagClick?: (tag: string) => void }> = ({ onTagClick }) => {
+const Sort: React.FC<{ onTagClick?: (tag: string) => void }> = ({
+  onTagClick,
+}) => {
   const { tags, isTagLoading } = useGetAllTags();
 
   return (

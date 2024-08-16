@@ -1,5 +1,6 @@
-import { HttpResponse, CapacitorHttp } from '@capacitor/core';
 import { useEffect, useState } from 'react';
+
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 
 import { API } from '../../constants';
 import { PostCardI } from '../../types';
@@ -10,7 +11,11 @@ export const useGetPostsByTag = (tag: string) => {
   const [totalTagsPages, setTotalTagsPages] = useState<number>(0);
   const [currentTagsPage, setCurrentTagsPage] = useState<number>(1);
 
-  const getPostsByTag = async (tag: string, page: number = 1, limit: number = 10) => {
+  const getPostsByTag = async (
+    tag: string,
+    page: number = 1,
+    limit: number = 10
+  ) => {
     setIsTagsPostLoading(true);
 
     try {

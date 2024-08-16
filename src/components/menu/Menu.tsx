@@ -11,15 +11,13 @@ import {
   IonMenuToggle,
   IonToolbar,
 } from '@ionic/react';
-
-import { useLocation } from 'react-router-dom';
 import { bookmarkOutline, logOutOutline } from 'ionicons/icons';
-
-import './Menu.css';
+import { useLocation } from 'react-router-dom';
 
 import { appMobilePages, appPages, labels } from '../../shared/data';
-import { MenuProps } from '../../shared/types';
 import { useLogout } from '../../shared/hooks/auth/useLogout';
+import { MenuProps } from '../../shared/types';
+import './Menu.css';
 
 const Menu: React.FC<MenuProps> = ({ isMobile }) => {
   const location = useLocation();
@@ -34,7 +32,9 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
             ? appMobilePages.map((appPage, index) => (
                 <IonMenuToggle key={index} autoHide={false}>
                   <IonItem
-                    className={location.pathname === appPage.url ? 'selected' : ''}
+                    className={
+                      location.pathname === appPage.url ? 'selected' : ''
+                    }
                     routerLink={appPage.url}
                     routerDirection='none'
                     lines='none'
@@ -53,7 +53,9 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
             : appPages.map((appPage, index) => (
                 <IonMenuToggle key={index} autoHide={false}>
                   <IonItem
-                    className={location.pathname === appPage.url ? 'selected' : ''}
+                    className={
+                      location.pathname === appPage.url ? 'selected' : ''
+                    }
                     routerLink={appPage.url}
                     routerDirection='none'
                     lines='none'
@@ -88,7 +90,11 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
       <IonFooter className='ion-no-border ion-no-padding'>
         <IonToolbar className='ion-no-padding'>
           <IonMenuToggle autoHide={false}>
-            <IonButton expand='block' onClick={logout} className='custom-button'>
+            <IonButton
+              expand='block'
+              onClick={logout}
+              className='custom-button'
+            >
               <IonIcon slot='start' icon={logOutOutline} />
               Logout
             </IonButton>

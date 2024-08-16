@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+
 import { Preferences } from '@capacitor/preferences';
 
 import { AuthContextType, UserI } from '../types';
@@ -6,14 +7,18 @@ import { AuthContextType, UserI } from '../types';
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const useAuthContext = (): AuthContextType => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error('useAuthContext must be used within an AuthContextProvider');
-    }
-    return context;
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error(
+      'useAuthContext must be used within an AuthContextProvider'
+    );
+  }
+  return context;
 };
 
-export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [authUser, setAuthUser] = useState<UserI | null>(null);
 
   useEffect(() => {
@@ -34,5 +39,9 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return () => setAuthUser(null);
   }, []);
 
-  return <AuthContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

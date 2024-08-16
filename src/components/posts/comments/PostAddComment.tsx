@@ -1,12 +1,11 @@
+import React, { useRef } from 'react';
+
 import { OverlayEventDetail } from '@ionic/core/components';
 import { IonAvatar, IonIcon, useIonModal } from '@ionic/react';
 import { addCircleOutline } from 'ionicons/icons';
-import React, { useRef } from 'react';
-
-import { getFormattedDate } from '../../../shared/utils';
 
 import { useAuthContext } from '../../../shared/context/AuthContext';
-
+import { getFormattedDate } from '../../../shared/utils';
 import PostModal from '../PostModal';
 
 const PostAddComment: React.FC<{ date: string }> = ({ date }) => {
@@ -31,7 +30,12 @@ const PostAddComment: React.FC<{ date: string }> = ({ date }) => {
     <div className='post-add-comment' ref={content}>
       <div className='post-add-comment-profile'>
         <IonAvatar>
-          <img alt='add comment avatar' src={authUser!.avatar} width={24} height={24} />
+          <img
+            alt='add comment avatar'
+            src={authUser!.avatar}
+            width={24}
+            height={24}
+          />
         </IonAvatar>
         <p className='ion-margin-left'>Add a comment...</p>
 

@@ -1,6 +1,7 @@
-import { useIonViewWillEnter } from '@ionic/react';
 import { useState } from 'react';
+
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { useIonViewWillEnter } from '@ionic/react';
 
 import { API } from '../../constants';
 import { PostCardI } from '../../types';
@@ -45,5 +46,12 @@ export const useGetPosts = () => {
     loadPosts();
   });
 
-  return { posts, setPosts, popularPosts, setPopularPosts, getPosts, isLoading };
+  return {
+    posts,
+    setPosts,
+    popularPosts,
+    setPopularPosts,
+    getPosts,
+    isLoading,
+  };
 };

@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+
 import {
   IonButton,
   IonCard,
@@ -11,14 +13,11 @@ import {
   IonText,
   IonTextarea,
 } from '@ionic/react';
-import React, { useEffect } from 'react';
 
+import { postFields, tags } from '../../shared/data';
 import { usePreviewImage } from '../../shared/hooks/file/usePreviewImage';
 import { useForm } from '../../shared/hooks/form/useForm';
-
 import { PostFormProps, PostI, ValidationErrors } from '../../shared/types';
-import { postFields, tags } from '../../shared/data';
-
 import PostImageUploader from './PostImageUploader';
 
 const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
@@ -89,7 +88,9 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
                   value={values.title}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('title')}
-                  errorText={touchedFields.title && errors.title ? errors.title : ''}
+                  errorText={
+                    touchedFields.title && errors.title ? errors.title : ''
+                  }
                   {...postFields.title}
                   className={`${isValid.title ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.title ? 'ion-touched' : ''
@@ -132,7 +133,9 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
                   clearOnEdit={true}
                   onIonInput={(event) => handleChange(event)}
                   onIonBlur={() => markTouched('text')}
-                  errorText={touchedFields.text && errors.text ? errors.text : ''}
+                  errorText={
+                    touchedFields.text && errors.text ? errors.text : ''
+                  }
                   {...postFields.text}
                   className={`${isValid.text ? 'ion-valid' : 'ion-invalid'} ${
                     touchedFields.text ? 'ion-touched' : ''
@@ -147,7 +150,11 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
                   touchedFields={touchedFields}
                   errors={errors}
                 />
-                <IonButton expand='block' type='submit' className='custom-button'>
+                <IonButton
+                  expand='block'
+                  type='submit'
+                  className='custom-button'
+                >
                   Upload post
                 </IonButton>
               </form>

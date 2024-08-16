@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   IonBackButton,
   IonButtons,
@@ -6,11 +8,10 @@ import {
   IonPage,
   IonToolbar,
 } from '@ionic/react';
-import React from 'react';
 
 import PostForm from '../../components/posts/PostForm';
-import { PostI } from '../../shared/types';
 import { useCreatePost } from '../../shared/hooks/post/useCreatePost';
+import { PostI } from '../../shared/types';
 
 const CreatePostPage: React.FC = () => {
   const { createPost } = useCreatePost();

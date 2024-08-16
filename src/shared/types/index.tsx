@@ -12,6 +12,8 @@ export interface MenuProps {
 }
 
 // AUTH
+export type Gender = 'male' | 'female' | 'other' | '';
+
 export interface UserI {
   _id: string;
   fullName: string;
@@ -39,7 +41,7 @@ export interface SignupI {
   email: string;
   password: string;
   confirmPassword: string;
-  gender: string;
+  gender: Gender;
 }
 
 export interface SigninI {
@@ -63,8 +65,8 @@ export interface SignInFormProps {
 }
 
 export interface SelectedGenderProps {
-  selectedGender: string;
-  handleChange: (e: CustomEvent<any>) => Promise<void>;
+  selectedGender: Gender;
+  handleChange: (e: CustomEvent<Gender>) => Promise<void>;
   errors: ValidationErrors<SignupI>;
   markTouched: (field: keyof SignupI) => void;
   touchedFields: Partial<Record<keyof SignupI, boolean>>;
@@ -74,12 +76,6 @@ export interface ActionI {
   message: string;
   link: string;
   text: string;
-}
-
-export interface WaveProps {
-  style?: React.CSSProperties;
-  flipHorizontal?: boolean;
-  flipVertical?: boolean;
 }
 
 export interface UserItemI {

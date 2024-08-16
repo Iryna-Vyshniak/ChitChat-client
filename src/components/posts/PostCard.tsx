@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import {
   IonAvatar,
   IonCard,
@@ -9,32 +10,31 @@ import {
   IonRouterLink,
 } from '@ionic/react';
 import {
+  bookmarkOutline,
+  chatbubbleOutline,
   ellipsisVertical,
   heart,
-  chatbubbleOutline,
-  paperPlaneOutline,
-  bookmarkOutline,
   heartOutline,
+  paperPlaneOutline,
   statsChartSharp,
 } from 'ionicons/icons';
 
-import './PostCard.css';
-
 import { PostCardI } from '../../shared/types';
-
-import PostComments from './comments/PostComments';
 import PostAddComment from './comments/PostAddComment';
+import PostComments from './comments/PostComments';
 import PostCommentsModal from './modals/PostCommentsModal';
+import './PostCard.css';
 import PostImage from './PostImage';
 
 const PostCard: React.FC<{ post: PostCardI }> = ({
-  post: { _id, imageUrl, likedBy, owner, tags, text, title, viewsCount, createdAt },
+  post: { imageUrl, owner, title, viewsCount, createdAt },
 }) => {
   const [like, setLike] = useState<boolean>(false);
   const content = useRef(null);
   const modalAllComments = useRef<HTMLIonModalElement | null>(null);
 
-  const [presentingElement, setPresentingElement] = useState<HTMLElement | null>(null);
+  const [presentingElement, setPresentingElement] =
+    useState<HTMLElement | null>(null);
 
   useEffect(() => {
     setPresentingElement(content.current);
@@ -59,7 +59,12 @@ const PostCard: React.FC<{ post: PostCardI }> = ({
               <div className='post-profile-info'>
                 <IonRouterLink routerLink={`/profile/${owner._id}`}>
                   <IonAvatar>
-                    <img alt='post avatar' src={owner.avatar} width={44} height={44} />
+                    <img
+                      alt='post avatar'
+                      src={owner.avatar}
+                      width={44}
+                      height={44}
+                    />
                   </IonAvatar>
                 </IonRouterLink>
 
@@ -72,7 +77,11 @@ const PostCard: React.FC<{ post: PostCardI }> = ({
                 <IonIcon icon={ellipsisVertical} />
               </div>
             </div>
-            <PostImage image={imageUrl} like={like} handleLikeClick={handleLikeClick} />
+            <PostImage
+              image={imageUrl}
+              like={like}
+              handleLikeClick={handleLikeClick}
+            />
 
             <div className='post-actions-container'>
               <div className='post-actions'>

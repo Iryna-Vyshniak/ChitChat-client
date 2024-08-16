@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   IonButton,
   IonButtons,
@@ -8,12 +10,9 @@ import {
   IonToolbar,
 } from '@ionic/react';
 import { closeOutline } from 'ionicons/icons';
-import React from 'react';
-
-import PostFormComment from './comments/PostFormComment';
 
 import { PostModalProps } from '../../shared/types';
-
+import PostFormComment from './comments/PostFormComment';
 import './PostModal.css';
 
 const PostModal: React.FC<PostModalProps> = ({ dismiss }) => {

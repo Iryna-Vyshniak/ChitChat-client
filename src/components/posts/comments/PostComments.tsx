@@ -1,5 +1,11 @@
-import { IonAccordion, IonAccordionGroup, IonItem, IonLabel } from '@ionic/react';
 import React from 'react';
+
+import {
+  IonAccordion,
+  IonAccordionGroup,
+  IonItem,
+  IonLabel,
+} from '@ionic/react';
 
 import PostComment from './PostComment';
 

@@ -1,8 +1,8 @@
-import { useIonLoading, useIonRouter } from '@ionic/react';
 import { Preferences } from '@capacitor/preferences';
+import { useIonLoading, useIonRouter } from '@ionic/react';
 
-import { useAuthContext } from '../../context/AuthContext';
 import { API } from '../../constants';
+import { useAuthContext } from '../../context/AuthContext';
 
 export const useLogout = () => {
   const router = useIonRouter();
@@ -23,7 +23,7 @@ export const useLogout = () => {
       }
 
       const { data } = await res.json();
-      
+
       if (data.error) {
         throw new Error(data.error);
       }

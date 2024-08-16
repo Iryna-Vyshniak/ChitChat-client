@@ -1,11 +1,11 @@
-import { IonButton, IonIcon, IonText } from '@ionic/react';
-import { cloudCircleOutline } from 'ionicons/icons';
 import React, { useRef } from 'react';
 
-import './PostImageUploader.css';
+import { IonButton, IonIcon, IonText } from '@ionic/react';
+import { cloudCircleOutline } from 'ionicons/icons';
 
-import { PostImageUploaderProps } from '../../shared/types';
 import { postFields } from '../../shared/data';
+import { PostImageUploaderProps } from '../../shared/types';
+import './PostImageUploader.css';
 
 const PostImageUploader: React.FC<PostImageUploaderProps> = ({
   imageUrl,
@@ -36,7 +36,7 @@ const PostImageUploader: React.FC<PostImageUploaderProps> = ({
         <div className='post-img-thumb'>
           <img
             src={imageUrl}
-            alt='post image'
+            alt='post illustration'
             width={250}
             height={250}
             className='full-width full-height cover-center'

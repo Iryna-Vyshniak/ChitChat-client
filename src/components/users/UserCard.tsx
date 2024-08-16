@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   IonAvatar,
   IonCardContent,
@@ -11,7 +12,7 @@ import {
   IonItemSliding,
   IonLabel,
 } from '@ionic/react';
-import { heartOutline, archive, trash } from 'ionicons/icons';
+import { archive, heartOutline, trash } from 'ionicons/icons';
 
 import { UserCardProps } from '../../shared/types';
 

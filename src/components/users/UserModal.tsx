@@ -1,3 +1,5 @@
+import React, { useRef, useState } from 'react';
+
 import {
   IonButton,
   IonButtons,
@@ -28,15 +30,18 @@ import {
   personAddOutline,
   personOutline,
 } from 'ionicons/icons';
-import React, { useRef, useState } from 'react';
 
 import { UserModalProps } from '../../shared/types';
 import { getFormattedDate } from '../../shared/utils';
-
 import UserModalFab from './UserModalFab';
 
-const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) => {
-  const [activeSegment, setActiveSegment] = useState<any>('details');
+const UserModal: React.FC<UserModalProps> = ({
+  selectedUser,
+  setSelectedUser,
+}) => {
+  const [activeSegment, setActiveSegment] = useState<'details' | 'settings'>(
+    'details'
+  );
   const modal = useRef<HTMLIonModalElement>(null);
 
   function dismiss() {
@@ -66,7 +71,7 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
             value={activeSegment}
             onIonChange={(e) => {
               modal.current?.setCurrentBreakpoint(1);
-              setActiveSegment(e.detail.value!);
+              setActiveSegment(e.detail.value as 'details' | 'settings');
             }}
             class='ion-color-custom-segment'
           >
@@ -87,11 +92,16 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
               <IonCardHeader className='custom-modal-header'>
                 {' '}
                 <div className='avatar'>
-                  <IonImg src={selectedUser?.avatar} className='custom-avatar' />
+                  <IonImg
+                    src={selectedUser?.avatar}
+                    className='custom-avatar'
+                  />
                 </div>
                 <div className='custom-modal-header'>
                   <IonCardTitle>{selectedUser?.fullName}</IonCardTitle>
-                  {selectedUser?.phone && <IonCardSubtitle>{selectedUser?.phone}</IonCardSubtitle>}
+                  {selectedUser?.phone && (
+                    <IonCardSubtitle>{selectedUser?.phone}</IonCardSubtitle>
+                  )}
                 </div>
               </IonCardHeader>
 
@@ -105,7 +115,9 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
                       className='custom-icon'
                     />
                     <IonLabel>
-                      <p className='custom-label'>Nickname: @{selectedUser?.username}</p>
+                      <p className='custom-label'>
+                        Nickname: @{selectedUser?.username}
+                      </p>
                     </IonLabel>
                   </IonItem>
                   {selectedUser?.birthday && (
@@ -117,7 +129,9 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
                         className='custom-icon'
                       />
                       <IonLabel>
-                        <p className='custom-label'>Data of Birth: {selectedUser?.birthday}</p>
+                        <p className='custom-label'>
+                          Data of Birth: {selectedUser?.birthday}
+                        </p>
                       </IonLabel>
                     </IonItem>
                   )}
@@ -130,7 +144,9 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
                       className='custom-icon'
                     />
                     <IonLabel>
-                      <p className='custom-label'>Email: {selectedUser?.email}</p>
+                      <p className='custom-label'>
+                        Email: {selectedUser?.email}
+                      </p>
                     </IonLabel>
                   </IonItem>
                   <IonItem lines='none' className='custom-modal-item'>
@@ -142,7 +158,9 @@ const UserModal: React.FC<UserModalProps> = ({ selectedUser, setSelectedUser }) 
                     />
                     <IonLabel>
                       {' '}
-                      <p className='custom-label'>Gender: {selectedUser?.gender} </p>
+                      <p className='custom-label'>
+                        Gender: {selectedUser?.gender}{' '}
+                      </p>
                     </IonLabel>
                   </IonItem>
                   {selectedUser?.createdAt && (

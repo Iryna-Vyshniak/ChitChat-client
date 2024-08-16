@@ -1,5 +1,12 @@
-import { IonCard, IonContent, IonLabel, IonSkeletonText, IonThumbnail } from '@ionic/react';
 import React from 'react';
+
+import {
+  IonCard,
+  IonContent,
+  IonLabel,
+  IonSkeletonText,
+  IonThumbnail,
+} from '@ionic/react';
 
 const PostsSkeleton: React.FC = () => {
   return (
@@ -13,11 +20,17 @@ const PostsSkeleton: React.FC = () => {
                   <IonSkeletonText animated={true} />
                 </IonThumbnail>
 
-                <IonSkeletonText animated={true} style={{ marginLeft: '0.2rem', width: '120px' }} />
+                <IonSkeletonText
+                  animated={true}
+                  style={{ marginLeft: '0.2rem', width: '120px' }}
+                />
               </div>
 
               <div className='post-profile-more'>
-                <IonSkeletonText animated={true} style={{ width: '10px', height: '24px' }} />
+                <IonSkeletonText
+                  animated={true}
+                  style={{ width: '10px', height: '24px' }}
+                />
               </div>
             </div>
 
@@ -27,12 +40,24 @@ const PostsSkeleton: React.FC = () => {
 
             <div className='post-actions-container'>
               <div className='post-actions'>
-                <IonSkeletonText animated={true} style={{ width: '24px', height: '24px' }} />
-                <IonSkeletonText animated={true} style={{ width: '24px', height: '24px' }} />
-                <IonSkeletonText animated={true} style={{ width: '24px', height: '24px' }} />
+                <IonSkeletonText
+                  animated={true}
+                  style={{ width: '24px', height: '24px' }}
+                />
+                <IonSkeletonText
+                  animated={true}
+                  style={{ width: '24px', height: '24px' }}
+                />
+                <IonSkeletonText
+                  animated={true}
+                  style={{ width: '24px', height: '24px' }}
+                />
               </div>
               <IonLabel className='post-bookmark'>
-                <IonSkeletonText animated={true} style={{ width: '20px', height: '24px' }} />
+                <IonSkeletonText
+                  animated={true}
+                  style={{ width: '20px', height: '24px' }}
+                />
               </IonLabel>
             </div>
           </div>

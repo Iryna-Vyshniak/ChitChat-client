@@ -1,5 +1,6 @@
-import { IonCol, IonRow, IonSkeletonText, IonThumbnail } from '@ionic/react';
 import React from 'react';
+
+import { IonCol, IonRow, IonSkeletonText, IonThumbnail } from '@ionic/react';
 
 const StoriesSkeleton: React.FC = () => {
   return (
