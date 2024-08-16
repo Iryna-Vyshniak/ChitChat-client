@@ -6,13 +6,13 @@ const config: CapacitorConfig = {
   webDir: 'dist',
   plugins: {
     CapacitorCookies: {
-      enabled: true
+      enabled: true,
     },
     CapacitorHttp: {
-      enabled: true
-    }
+      enabled: true,
+    },
   },
-  server: { hostname: "chit-chat-server-mbr2.onrender.com" }
+  server: { hostname: 'chit-chat-server-mbr2.onrender.com' },
 };
 
 export default config;
