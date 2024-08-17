@@ -13,7 +13,7 @@ export const useSignIn = () => {
   const { setAuthUser } = useAuthContext();
 
   const signin = async ({ email, password }: SigninI): Promise<void> => {
-    await present('Logg in...');
+    await present('Logging in...');
 
     try {
       const res: HttpResponse = await CapacitorHttp.post({
@@ -31,6 +31,7 @@ export const useSignIn = () => {
 
       await Preferences.set({ key: 'user', value: JSON.stringify(data.user) });
       setAuthUser(data.user);
+
       router.push('/app', 'root');
     } catch (error) {
       if (error instanceof Error) {

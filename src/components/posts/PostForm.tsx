@@ -47,7 +47,6 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
       errors.tags = 'At least one tag is required';
     }
 
-    console.log('values.imageUrl: ', values.imageUrl);
     if (!values.imageUrl) errors.imageUrl = 'Image is required';
 
     return errors;

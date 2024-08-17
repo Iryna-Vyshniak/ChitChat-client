@@ -21,11 +21,5 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ],
-  "exclude": [
-    "capacitor.config.ts",
-    "cypress.config.ts",
-    "cypress/**/*",
-    "vite.config.ts"
   ]
 }

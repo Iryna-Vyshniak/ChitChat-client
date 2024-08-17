@@ -10,7 +10,7 @@ export const useLogout = () => {
   const { setAuthUser } = useAuthContext();
 
   const logout = async () => {
-    await present('Logg out...');
+    await present('Logging out...');
 
     try {
       const res = await fetch(`${API}/api/auth/logout`, {
@@ -30,12 +30,13 @@ export const useLogout = () => {
 
       await Preferences.remove({ key: 'user' });
       setAuthUser(null);
+
       router.push('/signin', 'root');
     } catch (error) {
       if (error instanceof Error) {
-        console.error('Signup Error:', error.message);
+        console.error('Logout Error:', error.message);
       } else {
-        console.error('Signup Error:', error);
+        console.error('Logout Error:', error);
       }
     } finally {
       dismiss();

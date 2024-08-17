@@ -45,6 +45,7 @@ export const useSignUp = () => {
 
       await Preferences.set({ key: 'user', value: JSON.stringify(data.user) });
       setAuthUser(data.user);
+
       router.push('/app', 'root');
     } catch (error) {
       if (error instanceof Error) {

@@ -33,6 +33,7 @@ export interface UserI {
 export interface AuthContextType {
   authUser: UserI | null;
   setAuthUser: React.Dispatch<React.SetStateAction<UserI | null>>;
+  isAuthLoading: boolean;
 }
 
 export interface SignupI {

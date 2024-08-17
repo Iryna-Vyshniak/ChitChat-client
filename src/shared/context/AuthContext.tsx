@@ -20,27 +20,30 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [authUser, setAuthUser] = useState<UserI | null>(null);
+  const [isAuthLoading, setIsAuthLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setAuthUser(null);
     const loadUserFromPreferences = async () => {
       try {
         const storedUser = await Preferences.get({ key: 'user' });
         if (storedUser?.value) {
           setAuthUser(JSON.parse(storedUser.value));
+        } else {
+          setAuthUser(null);
         }
       } catch (error) {
         console.error('Error loading user from preferences:', error);
+        setAuthUser(null);
+      } finally {
+        setIsAuthLoading(false);
       }
     };
-
     loadUserFromPreferences();
-
-    // Clean up
-    return () => setAuthUser(null);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, isAuthLoading }}>
       {children}
     </AuthContext.Provider>
   );

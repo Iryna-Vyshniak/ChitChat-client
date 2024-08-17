@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   IonApp,
@@ -47,7 +47,6 @@ import Menu from './components/menu/Menu';
 import Home from './pages/home/HomePage';
 import Login from './pages/login/LoginPage';
 import CreatePostPage from './pages/posts/CreatePostPage';
-import PopularPostsPage from './pages/posts/PopularPostsPage';
 import Register from './pages/register/RegisterPage';
 import { useAuthContext } from './shared/context/AuthContext';
 import { appTabs } from './shared/data';
@@ -61,7 +60,8 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { authUser } = useAuthContext();
+  const { authUser, isAuthLoading } = useAuthContext();
+
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -72,6 +72,10 @@ const App: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  if (isAuthLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -80,6 +84,7 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path='/signin' component={Login} />
               <Route exact path='/signup' component={Register} />
+              <Redirect to='/signin' />
             </Switch>
           </IonPage>
         ) : (
@@ -98,10 +103,6 @@ const App: React.FC = () => {
                     <Home />
                   </Route>
                   <Route path='/app/Posts/create' component={CreatePostPage} />
-                  <Route
-                    path='/app/PopularPosts'
-                    component={PopularPostsPage}
-                  />
                 </Switch>
               </IonRouterOutlet>
             </IonPage>
@@ -120,10 +121,6 @@ const App: React.FC = () => {
                     <Route path='/app/:name' exact={true}>
                       <Home />
                     </Route>
-                    <Route
-                      path='/app/PopularPosts'
-                      component={PopularPostsPage}
-                    />
                   </Switch>
                 </IonRouterOutlet>
                 <IonTabBar
