@@ -1,3 +1,4 @@
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
 import { useIonLoading, useIonRouter, useIonToast } from '@ionic/react';
 
@@ -22,10 +23,10 @@ export const useSignUp = () => {
     await present('Sign up...');
 
     try {
-      const res = await fetch(`${API}/api/auth/signup`, {
-        method: 'POST',
+      const res: HttpResponse = await CapacitorHttp.post({
+        url: `${API}/api/auth/signup`,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        data: JSON.stringify({
           fullName,
           username,
           email,
@@ -33,15 +34,13 @@ export const useSignUp = () => {
           confirmPassword,
           gender,
         }),
+        webFetchExtra: {
+          credentials: 'include',
+        },
       });
 
-      const responseData = await res.json();
-
-      if (!res.ok) {
-        throw new Error(responseData.message || res.statusText);
-      }
-
-      const { data } = responseData;
+      const { data } = res.data;
+      console.log('data: ', data);
 
       await Preferences.set({ key: 'user', value: JSON.stringify(data.user) });
       setAuthUser(data.user);
