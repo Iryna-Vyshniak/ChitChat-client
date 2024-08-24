@@ -1,3 +1,4 @@
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
 import { useIonLoading, useIonRouter } from '@ionic/react';
 
@@ -13,16 +14,16 @@ export const useLogout = () => {
     await present('Logging out...');
 
     try {
-      const res = await fetch(`${API}/api/auth/logout`, {
+      const res: HttpResponse = await CapacitorHttp.post({
+        url: `${API}/api/auth/logout`,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        webFetchExtra: {
+          credentials: 'include',
+        },
       });
 
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-
-      const { data } = await res.json();
+      const { data } = await res.data;
 
       if (data.error) {
         throw new Error(data.error);
