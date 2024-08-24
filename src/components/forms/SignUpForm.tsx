@@ -97,7 +97,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   counter={true}
                   maxlength={20}
                   value={values.fullName}
-                  onIonInput={(event) => handleChange(event)}
+                  onIonInput={handleChange}
                   onIonBlur={() => markTouched('fullName')}
                   errorText={
                     touchedFields.fullName && errors.fullName
@@ -118,7 +118,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   counter={true}
                   maxlength={20}
                   value={values.username}
-                  onIonInput={(event) => handleChange(event)}
+                  onIonInput={handleChange}
                   onIonBlur={() => markTouched('username')}
                   errorText={
                     touchedFields.username && errors.username
@@ -138,7 +138,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   labelPlacement='floating'
                   type='email'
                   value={values.email}
-                  onIonInput={(event) => handleChange(event)}
+                  onIonInput={handleChange}
                   onIonBlur={() => markTouched('email')}
                   errorText={
                     touchedFields.email && errors.email ? errors.email : ''
@@ -156,7 +156,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   labelPlacement='floating'
                   type='password'
                   value={values.password}
-                  onIonInput={(event) => handleChange(event)}
+                  onIonInput={handleChange}
                   onIonBlur={() => markTouched('password')}
                   errorText={
                     touchedFields.password && errors.password
@@ -178,7 +178,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
                   labelPlacement='floating'
                   type='password'
                   value={values.confirmPassword}
-                  onIonInput={(event) => handleChange(event)}
+                  onIonInput={handleChange}
                   onIonBlur={() => markTouched('confirmPassword')}
                   errorText={
                     touchedFields.confirmPassword && errors.confirmPassword

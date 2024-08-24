@@ -25,11 +25,13 @@ const GenderCheckbox: React.FC<SelectedGenderProps> = ({
     // Extract the value from the event and assert the type to 'Gender'
     const gender = event.detail.value as Gender;
 
-    // Call the handleChange function with the extracted and asserted value
+    // Call the handleChange function with a simulated event object
     handleChange({
-      ...event,
-      detail: gender,
-    } as CustomEvent<Gender>);
+      target: {
+        name: 'gender',
+        value: gender,
+      },
+    } as unknown as CustomEvent<Gender>);
   };
 
   return (

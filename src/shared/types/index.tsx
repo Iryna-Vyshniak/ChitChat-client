@@ -19,6 +19,7 @@ export interface UserI {
   fullName: string;
   username: string;
   avatar: string;
+  cover: string;
   email: string;
   gender: string;
   phone: string;

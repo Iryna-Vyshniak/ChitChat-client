@@ -72,7 +72,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
                   labelPlacement='floating'
                   type='email'
                   value={values.email}
-                  onIonInput={(event) => handleChange(event)}
+                  onIonInput={handleChange}
                   onIonBlur={() => markTouched('email')}
                   errorText={
                     touchedFields.email && errors.email ? errors.email : ''
@@ -90,7 +90,7 @@ const SignInForm: React.FC<SignInFormProps> = ({ onSubmit }) => {
                   labelPlacement='floating'
                   type='password'
                   value={values.password}
-                  onIonInput={(event) => handleChange(event)}
+                  onIonInput={handleChange}
                   onIonBlur={() => markTouched('password')}
                   errorText={
                     touchedFields.password && errors.password
