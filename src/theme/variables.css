@@ -116,6 +116,7 @@ http://ionicframework.com/docs/theming/ */
   --custom-segment-color: #e3eafb;
 
   --ion-profile-content: #ffffff;
+  --ion-custom-text: #73849a;
 }
 
 html {
@@ -263,6 +264,7 @@ html {
     --custom-segment-color: #334161;
 
     --ion-profile-content: #000000;
+    --ion-custom-text: #8ca1bc;
   }
 
   /*
