@@ -12,21 +12,21 @@
 
 /* Conditional styles */
 .avatar-border {
-  border-width: 4px;
+  border-width: 0.25rem;
   border-style: solid;
   border-color: white;
 }
 
 /* Size variants */
 .avatar-small {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .avatar-large {
   height: 6rem;
   width: 6rem;
-  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0.3125rem 0.625rem 0.9375rem rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 640px) {
