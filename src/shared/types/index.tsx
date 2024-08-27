@@ -26,9 +26,9 @@ export interface UserI {
   birthday: string;
   createdAt: string;
   bio?: string;
-  followers?: string;
-  following?: string;
-  posts?: string;
+  posts?: string[];
+  likes?: string[];
+  comments?: string[];
 }
 
 export interface AuthContextType {
@@ -85,10 +85,15 @@ export interface UserItemI {
   fullName: string;
   username: string;
   avatar: string;
+  cover: string;
   email: string;
   gender: string;
   phone: string;
   birthday: string;
+  bio: string;
+  posts?: string[];
+  likes?: string[];
+  comments?: string[];
   createdAt: string;
 }
 
