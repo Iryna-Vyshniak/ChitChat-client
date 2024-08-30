@@ -1,6 +1,7 @@
 .post-container {
   margin: 0 auto;
   max-width: 1440px;
+  width: 100%;
   margin-top: 0.5rem;
 }
 
@@ -74,6 +75,18 @@ ion-card.post-container:last-of-type {
   margin-top: 0.5rem;
   height: 20rem;
   width: 100%;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 480px) {
+  .post-image,
+  .post-image-skeleton {
+    position: relative;
+    border-top: 1px solid rgb(216, 216, 216);
+    margin-top: 0.5rem;
+    height: 40rem;
+    width: 100%;
+  }
 }
 
 ion-icon.post-image-like {
@@ -93,16 +106,6 @@ ion-card .post-image-skeleton {
 
 .post-image-skeleton ion-skeleton-text {
   --border-radius: 0;
-}
-
-@media (min-width: 480px) {
-  .post-image {
-    position: relative;
-    border-top: 1px solid rgb(216, 216, 216);
-    margin-top: 0.5rem;
-    height: 40rem;
-    width: 100%;
-  }
 }
 
 .post-actions-container {

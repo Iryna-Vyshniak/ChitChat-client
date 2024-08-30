@@ -3,29 +3,39 @@
   padding-bottom: 1rem;
 }
 
-.stat-module {
+ion-label.stat-module {
   display: inline-block;
   margin: 0;
-  padding: 0.25rem 0.625rem;
 }
 
 .stat-number {
   display: inline-block;
 }
 
-.tag {
+.list-tags {
+  flex-wrap: wrap;
+}
+
+ion-item.tag {
   border-radius: 0.8125rem;
   padding: 0.25rem 0.625rem;
+  width: fit-content;
+  --background: transparent;
+  --min-height: 0;
+  font-size: 0.8rem;
+}
+
+ion-item.tag > .link {
+  color: var(--ion-color-intro-violet-contrast);
 }
 
 .tag:nth-child(1) {
-  background-color: var(--ion-color-intro-violet);
+  background: var(--ion-color-intro-violet);
 }
 
 .tag:nth-child(1):hover,
 .tag:nth-child(1):focus {
-  background-color: var(--ion-color-intro-violet-shade);
-  color: var(--ion-color-intro-violet-contrast);
+  background: var(--ion-color-intro-violet-shade);
 }
 
 .tag:nth-child(2) {
@@ -34,7 +44,6 @@
 .tag:nth-child(2):hover,
 .tag:nth-child(2):focus {
   background-color: var(--ion-color-intro-green-shade);
-  color: var(--ion-color-intro-green-contrast);
 }
 
 .tag:nth-child(3) {
@@ -43,5 +52,4 @@
 .tag:nth-child(3):hover,
 .tag:nth-child(3):focus {
   background-color: var(--ion-color-intro-rosy-shade);
-  color: var(--ion-color-intro-rosy-contrast);
 }
