@@ -25,11 +25,11 @@ const CreatePostPage: React.FC = () => {
       <IonHeader className='ion-no-border' translucent={true}>
         <IonToolbar color={'secondary'}>
           <IonButtons slot='start'>
-            <IonBackButton defaultHref='/posts' />
+            <IonBackButton defaultHref='/app/Posts' />
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>
+      <IonContent fullscreen className='ion-padding'>
         <PostForm onSubmit={onSubmit} />
       </IonContent>
     </IonPage>

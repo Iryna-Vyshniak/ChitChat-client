@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IonImg } from '@ionic/react';
 
-import { useUserInfo } from '../../shared/hooks/users/useUserInfo';
+import { useUserStore } from '../../store/useUserStore';
 import Avatar from '../avatar/Avatar';
 import './ProfileHero.css';
 import ProfileHeroSkeleton from './ProfileHeroSkeleton';
@@ -12,7 +12,10 @@ interface ProfileHeroProps {
 }
 
 const ProfileHero: React.FC<ProfileHeroProps> = ({ userId }) => {
-  const { userInfo, isUserInfoLoading } = useUserInfo(userId);
+  const userInfo = useUserStore((store) =>
+    store.users.find((user) => user._id === userId)
+  );
+  const isUserInfoLoading = !userInfo && userInfo !== undefined;
 
   if (isUserInfoLoading && !userInfo) {
     return <ProfileHeroSkeleton />;

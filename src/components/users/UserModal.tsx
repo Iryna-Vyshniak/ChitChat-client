@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import {
   IonButton,
@@ -27,12 +27,15 @@ import {
   createOutline,
   mailOutline,
   maleFemaleOutline,
-  personAddOutline,
   personOutline,
 } from 'ionicons/icons';
 
+import { useAuthContext } from '../../shared/context/AuthContext';
+import { useFollowUnfollow } from '../../shared/hooks/users/useFollowUnfollow';
 import { UserModalProps } from '../../shared/types';
 import { getFormattedDate } from '../../shared/utils';
+import { useUserStore } from '../../store/useUserStore';
+import Button from '../ui/button/Button';
 import UserModalFab from './UserModalFab';
 
 const UserModal: React.FC<UserModalProps> = ({
@@ -42,11 +45,31 @@ const UserModal: React.FC<UserModalProps> = ({
   const [activeSegment, setActiveSegment] = useState<'details' | 'settings'>(
     'details'
   );
+  const { authUser } = useAuthContext();
+  // get info for all users
+  const userInfo = useUserStore((store) =>
+    store.users.find((user) => user._id === selectedUser?._id)
+  );
   const modal = useRef<HTMLIonModalElement>(null);
+
+  const {
+    handleFollowUnfollow,
+    isFollowing,
+    setIsFollowing,
+    isFollowingLoading,
+  } = useFollowUnfollow(selectedUser?._id ?? '');
 
   function dismiss() {
     modal.current?.dismiss();
   }
+
+  useEffect(() => {
+    if (userInfo) {
+      setIsFollowing(
+        userInfo?.followers?.includes(authUser?._id || '') ?? false
+      );
+    }
+  }, [selectedUser, useUserStore.getState().users]);
 
   return (
     <IonModal
@@ -179,10 +202,16 @@ const UserModal: React.FC<UserModalProps> = ({
                     </IonItem>
                   )}
                 </IonList>
-                <IonButton color='intro-violet' expand='block'>
-                  <IonIcon icon={personAddOutline} size='small' />
-                  &nbsp; Follow
-                </IonButton>
+                <div>
+                  {' '}
+                  <Button
+                    variant='secondary'
+                    rounded
+                    label={isFollowing ? 'Unfollow' : 'Follow'}
+                    onClick={handleFollowUnfollow}
+                    disabled={isFollowingLoading}
+                  />
+                </div>
               </IonCardContent>
             </IonCard>
             <UserModalFab user={selectedUser} />

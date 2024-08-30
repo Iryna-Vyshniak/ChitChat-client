@@ -18,6 +18,7 @@ import UsersList from '../../components/users/UsersList';
 import UsersSkeleton from '../../components/users/UsersSkeleton';
 import { useGetUsers } from '../../shared/hooks/users/useGetUsers';
 import { UserItemI } from '../../shared/types';
+import { useUserStore } from '../../store/useUserStore';
 
 const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
   console.log('name: ', name);
@@ -28,8 +29,9 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
     'contacts'
   );
 
-  const { users, setUsers, getUsers, isLoading } = useGetUsers();
+  const { getUsers, isLoading } = useGetUsers();
 
+  const users = useUserStore((store) => store.filteredUsers);
   const [results, setResults] = useState<UserItemI[]>([]);
 
   const page = useRef(null);
@@ -53,8 +55,7 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
   }, []);
 
   const handleRefresh = async (event: CustomEvent<RefresherEventDetail>) => {
-    const data = await getUsers();
-    setUsers(data);
+    await getUsers();
     event.detail.complete();
   };
 

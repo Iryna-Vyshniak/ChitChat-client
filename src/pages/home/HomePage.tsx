@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import {
   IonButtons,
   IonContent,
@@ -9,20 +11,28 @@ import {
 } from '@ionic/react';
 import { useParams } from 'react-router';
 
+import { useGetUsers } from '../../shared/hooks/users/useGetUsers';
 import Chats from '../chats/ChatsPage';
 import PopularPostsPage from '../posts/PopularPostsPage';
 import Posts from '../posts/PostsPage';
 import Profile from '../profile/ProfilePage';
 import './Home.css';
 
-const componentsMap: { [key: string]: React.FC<{ name: string }> } = {
+type ComponentProps = { name: string; id?: string };
+
+const componentsMap: { [key: string]: React.FC<ComponentProps> } = {
   Chats: Chats,
   Profile: Profile,
   Posts: Posts,
 };
 
 const HomePage: React.FC = () => {
-  const { name } = useParams<{ name: string }>();
+  const { name, id } = useParams<ComponentProps>();
+  const { getUsers } = useGetUsers();
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const SelectedComponent =
     componentsMap[name] || (() => <div>Page Not Found</div>);
@@ -52,7 +62,11 @@ const HomePage: React.FC = () => {
             )}
           </IonToolbar>
         </IonHeader>
-        <SelectedComponent name={name} key={name} />
+        {id ? (
+          <SelectedComponent name={name} id={id} key={`${name}-${id}`} />
+        ) : (
+          <SelectedComponent name={name} key={name} />
+        )}
       </IonContent>
     </>
   );

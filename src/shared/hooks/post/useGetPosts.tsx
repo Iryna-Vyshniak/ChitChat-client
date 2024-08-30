@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
-import { useIonViewWillEnter } from '@ionic/react';
 
 import { API } from '../../constants';
 import { PostCardI } from '../../types';
@@ -28,23 +27,14 @@ export const useGetPosts = () => {
         throw new Error('Invalid response format');
       }
 
-      return data;
+      setPosts(data.posts);
+      setPopularPosts(data.popularPosts);
     } catch (error) {
       console.error('Fetch error: ', error);
     } finally {
       setIsLoading(false);
     }
   };
-
-  useIonViewWillEnter(() => {
-    const loadPosts = async () => {
-      const { posts, popularPosts } = await getPosts();
-      setPosts(posts);
-      setPopularPosts(popularPosts);
-      setIsLoading(false);
-    };
-    loadPosts();
-  });
 
   return {
     posts,

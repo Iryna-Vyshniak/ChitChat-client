@@ -4,12 +4,15 @@ import { IonCol, IonIcon, IonRouterLink, IonRow } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 
 import { useAuthContext } from '../../../shared/context/AuthContext';
-import { useGetUsers } from '../../../shared/hooks/users/useGetUsers';
+import { UserItemI } from '../../../shared/types';
+import { useUserStore } from '../../../store/useUserStore';
 import './Stories.css';
 import StoriesSkeleton from './StroriesSkeleton';
 
 const Stories: React.FC = () => {
-  const { users, isLoading } = useGetUsers();
+  const filteredUsers = useUserStore((store) => store.filteredUsers);
+
+  const isLoading = !filteredUsers || !filteredUsers.length;
   const { authUser } = useAuthContext();
 
   return (
@@ -26,14 +29,14 @@ const Stories: React.FC = () => {
         )}
         {isLoading && <StoriesSkeleton />}
         {!isLoading &&
-          users.map((story) => (
-            <IonCol key={story._id} className='story'>
+          filteredUsers.map((user: UserItemI) => (
+            <IonCol key={user._id} className='story'>
               <IonRouterLink
-                routerLink={`/app/profile/${story._id}`}
+                routerLink={`/app/Profile/${user._id}`}
                 className='story'
               >
-                <img alt='story avatar' src={story.avatar} />
-                <p>{story.username}</p>
+                <img alt='story avatar' src={user.avatar} />
+                <p>{user.username}</p>
               </IonRouterLink>
             </IonCol>
           ))}

@@ -6,14 +6,20 @@ import './Avatar.css';
 interface AvatarProps {
   avatar: string;
   isLarge?: boolean;
+  isMedium?: boolean;
   hasBorder?: boolean;
 }
 
-const Avatar: React.FC<AvatarProps> = ({ avatar, isLarge, hasBorder }) => {
+const Avatar: React.FC<AvatarProps> = ({
+  avatar,
+  isMedium,
+  isLarge,
+  hasBorder,
+}) => {
   const containerClass = `
     avatar-container
     ${hasBorder ? 'avatar-border' : ''}
-    ${isLarge ? 'avatar-large' : 'avatar-small'}
+    ${isLarge ? 'avatar-large' : isMedium ? 'avatar-medium' : 'avatar-small'}
   `;
 
   return (

@@ -28,6 +28,10 @@ const PostsPage: React.FC = () => {
   const page = useRef(null);
 
   useEffect(() => {
+    getPosts();
+  }, []);
+
+  useEffect(() => {
     setPresentingElement(page.current);
   }, []);
 

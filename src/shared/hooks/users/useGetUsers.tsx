@@ -1,14 +1,16 @@
 import { useState } from 'react';
 
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
-import { useIonViewWillEnter } from '@ionic/react';
 
+import { useUserStore } from '../../../store/useUserStore';
 import { API } from '../../constants';
-import { UserItemI } from '../../types';
 
 export const useGetUsers = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [users, setUsers] = useState<UserItemI[]>([]);
+  const setUsers = useUserStore((store) => store.setUsers);
+  const setFilteredUsers = useUserStore((store) => store.setFilteredUsers);
+  const users = useUserStore((store) => store.users);
+  const filteredUsers = useUserStore((store) => store.filteredUsers);
 
   const getUsers = async () => {
     setIsLoading(true);
@@ -22,11 +24,11 @@ export const useGetUsers = () => {
       });
       const { data } = (await res.data) || {};
 
-      if (!data || !data.users) {
+      if (!data || !data.allUsers || !data.filteredUsers) {
         throw new Error('Invalid response format');
       }
-
-      return data.users;
+      setUsers(data.allUsers);
+      setFilteredUsers(data.filteredUsers);
     } catch (error) {
       console.error('Fetch error: ', error);
       throw error;
@@ -35,14 +37,12 @@ export const useGetUsers = () => {
     }
   };
 
-  useIonViewWillEnter(() => {
-    const loadUsers = async () => {
-      const users = await getUsers();
-      setUsers(users);
-      setIsLoading(false);
-    };
-    loadUsers();
-  });
-
-  return { users, setUsers, getUsers, isLoading };
+  return {
+    users,
+    setUsers,
+    filteredUsers,
+    setFilteredUsers,
+    getUsers,
+    isLoading,
+  };
 };

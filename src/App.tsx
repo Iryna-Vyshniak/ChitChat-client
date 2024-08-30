@@ -99,10 +99,9 @@ const App: React.FC = () => {
                   <Route path='/app' exact={true}>
                     <Redirect to='/app/Posts' />
                   </Route>
-                  <Route path='/app/:name' exact={true}>
-                    <Home />
-                  </Route>
                   <Route path='/app/Posts/create' component={CreatePostPage} />
+                  <Route path='/app/:name' exact={true} component={Home} />
+                  <Route path='/app/:name/:id' exact component={Home} />
                 </Switch>
               </IonRouterOutlet>
             </IonPage>
@@ -118,9 +117,8 @@ const App: React.FC = () => {
                       exact={true}
                       component={CreatePostPage}
                     />
-                    <Route path='/app/:name' exact={true}>
-                      <Home />
-                    </Route>
+                    <Route path='/app/:name' exact={true} component={Home} />
+                    <Route path='/app/:name/:id' exact component={Home} />
                   </Switch>
                 </IonRouterOutlet>
                 <IonTabBar

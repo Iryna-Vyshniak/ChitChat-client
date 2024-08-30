@@ -1,190 +1,156 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { IonContent, IonIcon, IonItem, IonLabel, IonList } from '@ionic/react';
 import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonIcon,
-  IonImg,
-  IonItem,
-  IonLabel,
-  IonNote,
-  IonRow,
-  IonText,
-} from '@ionic/react';
-import {
-  atOutline,
   calendarClearOutline,
-  callOutline,
-  chatboxEllipsesOutline,
   createOutline,
-  mailOutline,
   maleFemaleOutline,
 } from 'ionicons/icons';
+import { Link } from 'react-router-dom';
 
-import ProfileContent from '../../assets/content/profile-content-1.jpg';
 import { useAuthContext } from '../../shared/context/AuthContext';
+import { PROFILE_TAGS } from '../../shared/data/profile-tags';
+import { useFollowUnfollow } from '../../shared/hooks/users/useFollowUnfollow';
 import { getFormattedDate } from '../../shared/utils';
+import { useUserStore } from '../../store/useUserStore';
+import Button from '../ui/button/Button';
 import './ProfileCard.css';
+import ProfileCardSkeleton from './ProfileCardSkeleton';
 
-const authUserCard: React.FC = () => {
+const ProfileCard: React.FC<{ userId: string }> = ({ userId }) => {
   const { authUser } = useAuthContext();
+  // get info for all users
+  const userInfo = useUserStore((store) =>
+    store.users.find((user) => user._id === userId)
+  );
+  const {
+    handleFollowUnfollow,
+    isFollowing,
+    setIsFollowing,
+    isFollowingLoading,
+    followersCount,
+    followingsCount,
+  } = useFollowUnfollow(userId);
+
+  const isUserInfoLoading = !userInfo && userInfo !== undefined;
+
+  useEffect(() => {
+    if (userInfo) {
+      const isFollowing =
+        userInfo?.followers?.includes(authUser?._id || '') ?? false;
+      setIsFollowing(isFollowing);
+    }
+  }, [userInfo, authUser, setIsFollowing]);
+
+  if (isUserInfoLoading && !userInfo) {
+    return <ProfileCardSkeleton />;
+  }
+
+  if (!userInfo) {
+    // Handle the case where userInfo is still undefined even after loading
+    return <div>Error loading user information.</div>;
+  }
+
+  const { _id, fullName, username, bio, gender, birthday, createdAt, posts } =
+    userInfo;
+
+  const getProfileTagData = (label: string) => {
+    switch (label) {
+      case 'followings':
+        return authUser?._id === userId
+          ? authUser?.followings?.length
+          : followingsCount;
+      case 'followers':
+        return followersCount;
+      case 'posts':
+        return posts?.length || 0;
+      default:
+        return 0;
+    }
+  };
 
   return (
     <IonContent>
-      <div className='header-container'>
-        <div className='header-image-wrapper'>
-          <img src={ProfileContent} alt='letters' className='header-image' />
-        </div>
-
-        <div className='header'>
-          <div className='stats'>
-            <span className='tag stat-module'>
-              Posts <span className='stat-number'>56</span>
-            </span>
-            <span className='tag stat-module'>
-              Followers <span className='stat-number'>29</span>
-            </span>
-            <span className='tag stat-module'>
-              Following <span className='stat-number'>11</span>
-            </span>
-          </div>
-          <h1 className='main-heading text-shadow-dark'>
-            {authUser?.fullName}
-          </h1>
-        </div>
-      </div>
-
-      <div className='overlay-header'></div>
-
-      <div className='profile-content'>
-        <div className='avatar profile-avatar-wrapper'>
-          <IonImg
-            src={authUser?.avatar}
-            alt='avatar'
-            className='custom-avatar'
-          />
-        </div>
-
-        <div className='profile-content-contacts-container'>
-          {authUser?.phone && (
-            <div className='profile-content-contacts'>
-              <IonIcon
-                icon={callOutline}
-                className='custom-icon ion-margin-end'
-              />{' '}
-              <IonLabel>{authUser.phone}</IonLabel>
-            </div>
-          )}
-
-          <div className='profile-content-contacts'>
-            <IonIcon
-              icon={mailOutline}
-              className='custom-icon ion-margin-end'
+      <div className='container'>
+        <div className='flex-end'>
+          {authUser?._id === userId ? (
+            <Button variant='outline' rounded label='Edit Profile' />
+          ) : (
+            <Button
+              variant='secondary'
+              rounded
+              label={isFollowing ? 'Unfollow' : 'Follow'}
+              onClick={handleFollowUnfollow}
+              disabled={isFollowingLoading}
             />
-            <IonLabel>{authUser?.email}</IonLabel>
-          </div>
+          )}
         </div>
-      </div>
-      <IonGrid>
-        {authUser?.bio && (
-          <IonRow>
-            <IonCol size='12'>
-              <IonCard className='custom-card'>
-                <IonCardHeader>
-                  <IonRow>
-                    <IonIcon
-                      icon={chatboxEllipsesOutline}
-                      className='ion-margin-end profile-icon'
-                    />
-                    <IonCardSubtitle className='text-shadow-theme'>
-                      Status
-                    </IonCardSubtitle>
-                  </IonRow>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonText>
-                    <p>
-                      Believe in Yourself and Do what You Love, and Dare to
-                      challenge Yourself to achieve Success!
-                    </p>
-                  </IonText>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-          </IonRow>
-        )}
-
-        <IonRow>
-          <IonCol size='12'>
-            <IonCard className='custom-card'>
-              <IonItem>
-                <IonIcon
-                  icon={atOutline}
-                  aria-hidden='true'
-                  slot='start'
-                  className='profile-icon'
-                />
-                <IonLabel>
-                  <p className='custom-label'>{authUser?.username}</p>
-                </IonLabel>
-                <IonNote>nickname</IonNote>
-              </IonItem>
-
-              {authUser?.birthday && (
-                <IonItem className='profile-content-info'>
-                  <IonIcon
-                    icon={calendarClearOutline}
-                    aria-hidden='true'
-                    slot='start'
-                    className='profile-icon'
-                  />
-                  <IonLabel>
-                    <p className='custom-label'>{authUser?.birthday}</p>
-                  </IonLabel>
-                  <IonNote>date of birth</IonNote>
-                </IonItem>
-              )}
-
-              <IonItem className='profile-content-info'>
+        <div className='mt-container'>
+          <div className='flex-col'>
+            <p className='text-bold'>{fullName}</p>
+            <p className='text-xs'>@{username}</p>
+          </div>
+          <div className='mt-1-5'>
+            <p>{bio || 'Biography is currently missing'}</p>
+            <div className='flex-wrap-gap'>
+              <div className='flex-row-center'>
                 <IonIcon
                   icon={maleFemaleOutline}
-                  aria-hidden='true'
                   slot='start'
                   className='profile-icon'
                 />
-                <IonLabel>
-                  {' '}
-                  <p className='custom-label'>{authUser?.gender} </p>
-                </IonLabel>
-                <IonNote>gender</IonNote>
-              </IonItem>
-              {authUser?.createdAt && (
-                <IonItem lines='none' className='profile-content-info'>
+                <p className='text-xs-md'>{gender}</p>
+              </div>
+              {birthday && (
+                <div className='flex-row-center'>
                   <IonIcon
-                    icon={createOutline}
-                    aria-hidden='true'
+                    icon={calendarClearOutline}
                     slot='start'
                     className='profile-icon'
                   />
-                  <IonLabel>
-                    <p className='custom-label'>
-                      {getFormattedDate(authUser?.createdAt)}
-                    </p>
-                  </IonLabel>
-                  <IonNote>joined</IonNote>
-                </IonItem>
+                  <p className='text-xs-md'>{birthday}</p>
+                </div>
               )}
-            </IonCard>
-          </IonCol>
-        </IonRow>
-      </IonGrid>
+              <div className='flex-row-center'>
+                <IonIcon
+                  icon={createOutline}
+                  slot='start'
+                  className='profile-icon'
+                />
+                <p className='text-xs-md'>
+                  Joined {getFormattedDate(createdAt)}
+                </p>
+              </div>
+            </div>
+          </div>
+          <IonList className='flex-row-gap list-tags'>
+            {PROFILE_TAGS.map(({ id, label }) => (
+              <IonItem
+                key={id}
+                lines='none'
+                className='ion-no-padding tag'
+                color='ion-color-intro-violet'
+              >
+                <Link
+                  to={`/Profile/${label}/${_id}`}
+                  className='link flex-row-center'
+                >
+                  <IonLabel className='stat-module'>
+                    <span className='mr-x stat-number'>
+                      {getProfileTagData(label)}
+                    </span>
+                    {label === 'posts' && getProfileTagData(label) === 1
+                      ? 'Post'
+                      : label.charAt(0).toUpperCase() + label.slice(1)}
+                  </IonLabel>
+                </Link>
+              </IonItem>
+            ))}
+          </IonList>
+        </div>
+      </div>
     </IonContent>
   );
 };
 
-export default authUserCard;
+export default ProfileCard;

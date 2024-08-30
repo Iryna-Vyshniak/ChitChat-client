@@ -72,7 +72,7 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
   }, [imgUrl]);
 
   return (
-    <IonGrid fixed className='ion-no-padding'>
+    <IonGrid fixed className='ion-no-padding ion-margin-vertical'>
       <IonRow className='ion-justify-content-center'>
         <IonCol size='12' sizeMd='8' sizeLg='6' sizeXl='6'>
           <IonCard className='auth-card'>

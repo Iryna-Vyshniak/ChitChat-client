@@ -14,14 +14,17 @@ import {
 import { bookmarkOutline, logOutOutline } from 'ionicons/icons';
 import { useLocation } from 'react-router-dom';
 
+import { useAuthContext } from '../../shared/context/AuthContext';
 import { appMobilePages, appPages, labels } from '../../shared/data';
 import { useLogout } from '../../shared/hooks/auth/useLogout';
 import { MenuProps } from '../../shared/types';
+import Avatar from '../avatar/Avatar';
 import './Menu.css';
 
 const Menu: React.FC<MenuProps> = ({ isMobile }) => {
   const location = useLocation();
   const { logout } = useLogout();
+  const { authUser } = useAuthContext();
 
   return (
     <IonMenu contentId='main' type='overlay'>
@@ -40,13 +43,23 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
                     lines='none'
                     detail={false}
                   >
-                    <IonIcon
-                      aria-hidden='true'
-                      slot='start'
-                      ios={appPage.iosIcon}
-                      md={appPage.mdIcon}
-                    />
-                    <IonLabel>{appPage.title}</IonLabel>
+                    {appPage.title === 'Profile' ? (
+                      <>
+                        {' '}
+                        <Avatar avatar={authUser!.avatar} isMedium />
+                        <IonLabel className='ml-x'>{appPage.title}</IonLabel>
+                      </>
+                    ) : (
+                      <>
+                        {' '}
+                        <IonIcon
+                          slot='start'
+                          ios={appPage.iosIcon}
+                          md={appPage.mdIcon}
+                        />
+                        <IonLabel>{appPage.title}</IonLabel>
+                      </>
+                    )}
                   </IonItem>
                 </IonMenuToggle>
               ))
@@ -61,13 +74,23 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
                     lines='none'
                     detail={false}
                   >
-                    <IonIcon
-                      aria-hidden='true'
-                      slot='start'
-                      ios={appPage.iosIcon}
-                      md={appPage.mdIcon}
-                    />
-                    <IonLabel>{appPage.title}</IonLabel>
+                    {appPage.title === 'Profile' ? (
+                      <>
+                        {' '}
+                        <Avatar avatar={authUser!.avatar} isMedium />
+                        <IonLabel className='ml-x'>{appPage.title}</IonLabel>
+                      </>
+                    ) : (
+                      <>
+                        {' '}
+                        <IonIcon
+                          slot='start'
+                          ios={appPage.iosIcon}
+                          md={appPage.mdIcon}
+                        />
+                        <IonLabel>{appPage.title}</IonLabel>
+                      </>
+                    )}
                   </IonItem>
                 </IonMenuToggle>
               ))}
@@ -79,7 +102,7 @@ const Menu: React.FC<MenuProps> = ({ isMobile }) => {
           </IonListHeader>
           {labels.map((label, index) => (
             <IonItem lines='none' key={index}>
-              <IonIcon aria-hidden='true' slot='start' icon={bookmarkOutline} />
+              <IonIcon slot='start' icon={bookmarkOutline} />
               <IonLabel>
                 <h3>{label}</h3>
               </IonLabel>

@@ -5,13 +5,15 @@ import { IonContent } from '@ionic/react';
 import { useAuthContext } from '../../shared/context/AuthContext';
 import ProfileCard from './ProfileCard';
 import ProfileFab from './ProfileFab';
+import ProfileHero from './ProfileHero';
 
-const ProfileContent: React.FC = () => {
+const ProfileContent: React.FC<{ userId: string }> = ({ userId }) => {
   const { authUser } = useAuthContext();
   return (
     <IonContent>
-      <ProfileCard />
-      <ProfileFab user={authUser} />
+      <ProfileHero userId={userId} />
+      <ProfileCard userId={userId} />
+      {authUser?._id === userId && <ProfileFab user={authUser} />}
     </IonContent>
   );
 };

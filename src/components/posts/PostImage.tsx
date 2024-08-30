@@ -1,19 +1,22 @@
 import React from 'react';
 
 import { IonIcon, IonItemOption, IonItemOptions } from '@ionic/react';
+import { motion } from 'framer-motion';
 import { downloadOutline, heart, heartOutline } from 'ionicons/icons';
 
 import { downloadImage, downloadImagePost } from '../../shared/utils';
 
 const PostImage: React.FC<{
+  id: string;
   image: string | null;
   like: boolean;
   handleLikeClick: () => void;
-}> = ({ image, like, handleLikeClick }) => {
+  openPopup: () => void;
+}> = ({ id, image, like, handleLikeClick, openPopup }) => {
   const downloadPostImage = downloadImage(image!);
 
   return (
-    <>
+    <motion.div layoutId={'image-container' + id}>
       <IonItemOptions side='start'>
         <IonItemOption color='intro-rosy' expandable onClick={handleLikeClick}>
           <IonIcon
@@ -24,12 +27,20 @@ const PostImage: React.FC<{
         </IonItemOption>
       </IonItemOptions>
       <div
+        role='button'
+        tabIndex={0}
         className='post-image'
         style={{
           backgroundImage: `url(${image})`,
           backgroundPosition: 'center, center',
           backgroundSize: 'cover',
           backgroundColor: 'var(--ion-color-step-650)',
+        }}
+        onClick={openPopup}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            openPopup();
+          }
         }}
       ></div>
       <IonItemOptions side='end'>
@@ -47,7 +58,7 @@ const PostImage: React.FC<{
           ></IonIcon>
         </IonItemOption>
       </IonItemOptions>
-    </>
+    </motion.div>
   );
 };
 
