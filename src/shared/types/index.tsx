@@ -29,6 +29,8 @@ export interface UserI {
   posts?: string[];
   likes?: string[];
   comments?: string[];
+  followers?: string[];
+  followings?: string[];
 }
 
 export interface AuthContextType {
@@ -94,6 +96,8 @@ export interface UserItemI {
   posts?: string[];
   likes?: string[];
   comments?: string[];
+  followers?: string[];
+  followings?: string[];
   createdAt: string;
 }
 
