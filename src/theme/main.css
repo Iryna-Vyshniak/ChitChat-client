@@ -619,3 +619,10 @@ ion-list.custom-modal-list ion-item.custom-modal-item::part(native) {
     background-position: -200% 0;
   }
 }
+
+.post-image {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}

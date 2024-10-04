@@ -18,15 +18,12 @@ ion-label.stat-module {
 
 ion-item.tag {
   border-radius: 0.8125rem;
-  padding: 0.25rem 0.625rem;
-  width: fit-content;
+  padding: 0.5rem 0.625rem;
+  width: 9.375rem;
   --background: transparent;
   --min-height: 0;
   font-size: 0.8rem;
-}
-
-ion-item.tag > .link {
-  color: var(--ion-color-intro-violet-contrast);
+  cursor: pointer;
 }
 
 .tag:nth-child(1) {
