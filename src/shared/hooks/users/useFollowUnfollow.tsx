@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { Preferences } from '@capacitor/preferences';
 import { useIonToast } from '@ionic/react';
 
 import { useUserStore } from '../../../store/useUserStore';
@@ -70,6 +71,15 @@ export const useFollowUnfollow = (userId: string) => {
       setAuthUser({
         ...authUser,
         followings: updatedAuthUserFollowings,
+      });
+
+      // Save the updated authUser to local storage
+      await Preferences.set({
+        key: 'user',
+        value: JSON.stringify({
+          ...authUser,
+          followings: updatedAuthUserFollowings,
+        }),
       });
 
       // Update the data in the store for a specific user (userInfo)
