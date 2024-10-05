@@ -7,6 +7,8 @@ interface PostState {
   setPosts: (posts: PostCardI[]) => void;
   popularPosts: PostCardI[] | [];
   setPopularPosts: (posts: PostCardI[]) => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
 }
 
 export const usePostStore = create<PostState>((set) => ({
@@ -15,4 +17,7 @@ export const usePostStore = create<PostState>((set) => ({
   popularPosts: [],
   setPopularPosts: (popularPosts: PostCardI[]) =>
     set((state) => ({ ...state, popularPosts })),
+  isLoading: false,
+  setIsLoading: (loading: boolean) =>
+    set((state) => ({ ...state, isLoading: loading })),
 }));
