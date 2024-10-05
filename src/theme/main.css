@@ -1,3 +1,13 @@
+*,
+html {
+  --scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
 body {
   font-style: normal;
   font-family: 'Poppins', sans-serif;
@@ -276,11 +286,13 @@ ion-tab-button ion-label {
 }
 
 .content-container {
+  position: relative;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  z-index: 0;
 }
 
 .custom-link {
@@ -396,6 +408,7 @@ ion-card.custom-card {
 }
 
 ion-content.custom-content {
+  position: relative;
   --background: transparent;
 }
 
@@ -523,6 +536,29 @@ ion-fab-button::part(native) {
 
 ion-fab-button::part(native):active {
   --background-color: var(--ion-color-primary);
+}
+
+.fab-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 11.5rem;
+  margin-top: 5px;
+  width: 36px;
+  height: 36px;
+
+  color: var(--ion-color-light);
+
+  border-radius: 9999px;
+  box-shadow:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (min-width: 768px) {
+  .fab-scroll {
+    margin-bottom: 1.2rem;
+  }
 }
 
 .user-modal-fab {
