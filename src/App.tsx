@@ -47,6 +47,7 @@ import Menu from './components/menu/Menu';
 import Home from './pages/home/HomePage';
 import Login from './pages/login/LoginPage';
 import CreatePostPage from './pages/posts/CreatePostPage';
+import PostDetailPage from './pages/posts/PostDetailPage';
 import Register from './pages/register/RegisterPage';
 import { useAuthContext } from './shared/context/AuthContext';
 import { appTabs } from './shared/data';
@@ -79,6 +80,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
+        {' '}
         {!authUser ? (
           <IonPage id='main'>
             <Switch>
@@ -99,6 +101,12 @@ const App: React.FC = () => {
                   <Route path='/app' exact={true}>
                     <Redirect to='/app/Posts' />
                   </Route>
+                  <Route
+                    path='/app/Posts/:id'
+                    exact
+                    component={PostDetailPage}
+                  />
+
                   <Route path='/app/Posts/create' component={CreatePostPage} />
                   <Route path='/app/:name' exact={true} component={Home} />
                   <Route path='/app/:name/:id' exact component={Home} />
@@ -112,6 +120,12 @@ const App: React.FC = () => {
                     <Route path='/app' exact={true}>
                       <Redirect to='/app/Posts' />
                     </Route>
+                    <Route
+                      path='/app/Posts/:id'
+                      exact
+                      component={PostDetailPage}
+                    />
+
                     <Route
                       path='/app/Posts/create'
                       exact={true}

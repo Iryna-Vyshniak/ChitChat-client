@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import {
   IonContent,
@@ -24,12 +24,8 @@ const PostsPage: React.FC = () => {
   const { tagsPosts, isTagsPostLoading, getPostsByTag } =
     useGetPostsByTag(selectedTag);
 
-  const contentRef = createRef<HTMLIonContentElement>();
   const page = useRef(null);
-
-  useEffect(() => {
-    getPosts();
-  }, []);
+  const contentRef = useRef<HTMLIonContentElement | null>(null);
 
   useEffect(() => {
     setPresentingElement(page.current);
