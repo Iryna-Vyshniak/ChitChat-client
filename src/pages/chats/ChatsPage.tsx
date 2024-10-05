@@ -12,10 +12,12 @@ import {
   RefresherEventDetail,
 } from '@ionic/react';
 import { chevronDownCircleOutline, trashBin } from 'ionicons/icons';
+import { useParams } from 'react-router';
 
 import UserGroupFab from '../../components/users/UserGroupFab';
 import UsersList from '../../components/users/UsersList';
 import UsersSkeleton from '../../components/users/UsersSkeleton';
+import { useAuthContext } from '../../shared/context/AuthContext';
 import { useGetUsers } from '../../shared/hooks/users/useGetUsers';
 import { UserItemI } from '../../shared/types';
 import { useUserStore } from '../../store/useUserStore';
@@ -28,6 +30,8 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
   const [activeSegment, setActiveSegment] = useState<'contacts' | 'groups'>(
     'contacts'
   );
+  const { id } = useParams<{ id: string }>();
+  const { authUser } = useAuthContext();
 
   const { getUsers, isLoading } = useGetUsers();
 
@@ -35,6 +39,12 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
   const [results, setResults] = useState<UserItemI[]>([]);
 
   const page = useRef(null);
+
+  // If there is no ID in the URL, use authUser._id (own profile)
+  const currentProfileId = id || authUser?._id;
+
+  // Check if this is a custom profile
+  const isAuthProfile = currentProfileId === authUser?._id;
 
   useEffect(() => {
     setResults(users);
@@ -99,7 +109,9 @@ const ChatsPage: React.FC<{ name: string }> = ({ name }) => {
             {!isLoading && (
               <UsersList
                 users={results}
+                variant='chat'
                 presentingElement={presentingElement}
+                isAuthProfile={isAuthProfile}
               />
             )}
           </IonContent>
