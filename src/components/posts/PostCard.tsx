@@ -15,7 +15,6 @@ import {
   IonLabel,
   IonRouterLink,
 } from '@ionic/react';
-import { motion } from 'framer-motion';
 import {
   bookmarkOutline,
   chatbubbleOutline,
@@ -36,8 +35,7 @@ import PostImage from './PostImage';
 const PostCard: React.FC<{
   post: PostCardI;
   selectPost: Dispatch<SetStateAction<PostCardI | undefined>>;
-  selectedPost: PostCardI | undefined;
-}> = ({ post, selectPost, selectedPost }) => {
+}> = ({ post, selectPost }) => {
   const [like, setLike] = useState<boolean>(false);
   const content = useRef(null);
   const modalAllComments = useRef<HTMLIonModalElement | null>(null);
@@ -63,8 +61,8 @@ const PostCard: React.FC<{
 
   return (
     <>
-      <IonCard className='ion-no-padding post-container' ref={content}>
-        <motion.div className='ion-padding' layoutId={'card-' + _id}>
+      <IonCard className='ion-no-padding post-container' ref={content} id={_id}>
+        <div className='ion-padding'>
           {' '}
           <IonItemSliding>
             <IonCardContent className='post-inner-container ion-no-padding'>
@@ -97,26 +95,7 @@ const PostCard: React.FC<{
                 handleLikeClick={handleLikeClick}
                 openPopup={() => selectPost(post)}
               />
-              <motion.div
-                className='title-container'
-                variants={{
-                  show: {
-                    opacity: 1,
-                    transition: {
-                      duration: 0.5,
-                      delay: 0.3,
-                    },
-                  },
-                  hidden: {
-                    opacity: 0,
-                    transition: {
-                      duration: 0.1,
-                    },
-                  },
-                }}
-                initial='show'
-                animate={selectedPost?._id === _id ? 'hidden' : 'show'}
-              >
+              <div className='title-container'>
                 {' '}
                 <div className='post-actions-container'>
                   <div className='post-actions'>
@@ -155,23 +134,23 @@ const PostCard: React.FC<{
                   </p>
                 </div>
                 <div className='post-title'>
-                  <p>
-                    <span className='post-name'>
-                      <IonRouterLink routerLink={`/app/Profile/${owner._id}`}>
-                        {owner.fullName}
-                      </IonRouterLink>
-                    </span>{' '}
-                    {title}
-                  </p>
-
+                  <IonRouterLink
+                    routerLink={`/app/Posts/${_id}`}
+                    className='ion-padding'
+                  >
+                    <p>
+                      <span className='post-name'>{owner.fullName}</span>{' '}
+                      {title}
+                    </p>
+                  </IonRouterLink>
                   <PostComments />
 
                   <PostAddComment date={createdAt} />
                 </div>
-              </motion.div>
+              </div>
             </IonCardContent>
           </IonItemSliding>
-        </motion.div>
+        </div>
       </IonCard>
 
       <PostCommentsModal
