@@ -11,6 +11,11 @@ export interface MenuProps {
   isMobile: boolean;
 }
 
+export interface ComponentProps {
+  name: string;
+  id?: string;
+}
+
 // AUTH
 export type Gender = 'male' | 'female' | 'other' | '';
 
@@ -103,11 +108,17 @@ export interface UserItemI {
 
 export type UserListProps = {
   users: UserItemI[];
-  presentingElement: HTMLElement | null;
+  variant: 'followers' | 'followings' | 'chat';
+  presentingElement?: HTMLElement | null;
+  isAuthProfile?: boolean;
+  onAction?: (userId: string) => void;
 };
 
 export interface UserCardProps {
   user: UserItemI;
+  variant: 'followers' | 'followings' | 'chat';
+  isAuthProfile?: boolean;
+  onAction?: (userId: string) => void;
 }
 
 export interface UserModalProps {

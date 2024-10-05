@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import {
   IonButtons,
   IonContent,
@@ -8,31 +6,38 @@ import {
   IonNavLink,
   IonTitle,
   IonToolbar,
+  useIonViewWillEnter,
 } from '@ionic/react';
 import { useParams } from 'react-router';
 
+import { useGetPosts } from '../../shared/hooks/post/useGetPosts';
 import { useGetUsers } from '../../shared/hooks/users/useGetUsers';
+import { ComponentProps } from '../../shared/types';
 import Chats from '../chats/ChatsPage';
 import PopularPostsPage from '../posts/PopularPostsPage';
+import PostDetail from '../posts/PostDetailPage';
 import Posts from '../posts/PostsPage';
 import Profile from '../profile/ProfilePage';
 import './Home.css';
-
-type ComponentProps = { name: string; id?: string };
 
 const componentsMap: { [key: string]: React.FC<ComponentProps> } = {
   Chats: Chats,
   Profile: Profile,
   Posts: Posts,
+  PostDetail: PostDetail,
 };
 
 const HomePage: React.FC = () => {
-  const { name, id } = useParams<ComponentProps>();
+  const { name = 'Posts', id } = useParams<ComponentProps>();
   const { getUsers } = useGetUsers();
+  const { getPosts } = useGetPosts();
 
-  useEffect(() => {
+  useIonViewWillEnter(() => {
     getUsers();
-  }, []);
+    if (name === 'Posts') {
+      getPosts();
+    }
+  });
 
   const SelectedComponent =
     componentsMap[name] || (() => <div>Page Not Found</div>);
@@ -63,8 +68,10 @@ const HomePage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         {id ? (
+          // Якщо сторінка має ID, але це не PostDetail
           <SelectedComponent name={name} id={id} key={`${name}-${id}`} />
         ) : (
+          // Якщо сторінка не має ID
           <SelectedComponent name={name} key={name} />
         )}
       </IonContent>
