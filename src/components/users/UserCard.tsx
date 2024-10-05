@@ -11,23 +11,35 @@ import {
   IonItemOptions,
   IonItemSliding,
   IonLabel,
+  IonRouterLink,
 } from '@ionic/react';
 import { archive, heartOutline, trash } from 'ionicons/icons';
 
 import { UserCardProps } from '../../shared/types';
 
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard: React.FC<UserCardProps> = ({
+  user,
+  variant,
+  isAuthProfile,
+  onAction,
+}) => {
   return (
     <IonCardContent className='ion-no-padding'>
-      <IonItemSliding>
-        <IonItemOptions side='start'>
-          <IonItemOption color={'intro-violet'}>
-            <IonIcon slot='icon-only' icon={heartOutline} />
-          </IonItemOption>
-          <IonItemOption color={'success'}>
-            <IonIcon slot='icon-only' icon={archive} />
-          </IonItemOption>
-        </IonItemOptions>
+      <IonItemSliding disabled={!isAuthProfile}>
+        {variant === 'chat' && (
+          <IonItemOptions side='start'>
+            <IonItemOption
+              color={'intro-violet'}
+              onClick={() => onAction && onAction(user._id)}
+            >
+              <IonIcon slot='icon-only' icon={heartOutline} />
+            </IonItemOption>{' '}
+            <IonItemOption color={'success'}>
+              <IonIcon slot='icon-only' icon={archive} />
+            </IonItemOption>
+          </IonItemOptions>
+        )}
+
         <IonItem lines='none'>
           <IonAvatar slot='start'>
             <IonImg src={user.avatar} />
@@ -37,14 +49,26 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
             <p>{user.email}</p>
           </IonLabel>
           <IonChip slot='end' color={'secondary'}>
-            {user.gender.split(' ')[0].toUpperCase()[0]}
+            {user.gender[0].toUpperCase()}
           </IonChip>
         </IonItem>
-        <IonItemOptions side='end'>
-          <IonItemOption color={'danger'}>
-            <IonIcon slot='icon-only' icon={trash} />
-          </IonItemOption>
-        </IonItemOptions>
+
+        {variant === 'chat' && (
+          <IonItemOptions side='end'>
+            <IonItemOption color={'danger'}>
+              <IonIcon slot='icon-only' icon={trash} />
+            </IonItemOption>
+          </IonItemOptions>
+        )}
+        {variant === 'followings' && (
+          <IonItemOptions side='end'>
+            <IonItemOption color={'secondary'}>
+              <IonRouterLink routerLink={`/app/Profile/${user._id}`}>
+                <p>View Profile</p>
+              </IonRouterLink>
+            </IonItemOption>
+          </IonItemOptions>
+        )}
       </IonItemSliding>
     </IonCardContent>
   );
