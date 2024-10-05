@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import { IonImg, IonRouterLink, IonText } from '@ionic/react';
 import { motion } from 'framer-motion';
@@ -10,18 +10,13 @@ import './PostPopup.css';
 
 const PostPopup: React.FC<{
   post: PostCardI;
-  closePopup: Dispatch<SetStateAction<PostCardI | undefined>>;
-}> = ({
-  post: { imageUrl, owner, title, text, createdAt, _id },
-  closePopup,
-}) => {
+}> = ({ post: { imageUrl, owner, title, text, createdAt, _id } }) => {
   return (
     <motion.div
       layoutId={'card-' + _id}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className='popup-container'
-      onClick={() => closePopup(undefined)}
     >
       <motion.div layoutId={'image-container' + _id}>
         {' '}
