@@ -3,6 +3,11 @@
   padding-bottom: 1rem;
 }
 
+.container-details {
+  padding-bottom: 1rem;
+  margin-bottom: 4rem;
+}
+
 ion-label.stat-module {
   display: inline-block;
   margin: 0;

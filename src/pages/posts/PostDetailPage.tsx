@@ -37,7 +37,7 @@ const PostDetailPage: React.FC = () => {
         </IonButtons>
       </IonToolbar>
 
-      <IonContent>
+      <IonContent fullscreen>
         {isLoading && !post && <PostSkeleton />}
         {!isLoading && post && <PostPopup post={post} />}
       </IonContent>

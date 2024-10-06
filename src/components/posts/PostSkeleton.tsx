@@ -10,7 +10,7 @@ import {
 
 const PostSkeleton: React.FC = () => {
   return (
-    <IonContent className='custom-content ion-padding'>
+    <IonContent className='custom-content ion-padding post-content'>
       <IonCard className='post-container ion-padding ion-margin'>
         <div className='post-inner-container'>
           <div className='post-profile'>

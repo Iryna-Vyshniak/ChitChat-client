@@ -43,18 +43,18 @@ const PostsList: React.FC<{ posts: PostCardI[] }> = ({ posts }) => {
 
   return (
     <IonContent
-      className='ion-margin-vertical custom-content'
+      className='ion-margin-vertical ion-padding-vertical custom-content post-content'
       ref={contentRef}
       scrollEvents={true}
       fixedSlotPlacement='before'
       onIonScroll={(e) => handleContentScroll(e)}
     >
-      <IonList>
+      <IonList className='flex-center-col ion-padding-vertical'>
         {posts.map((post) => (
           <IonItem
             key={'card-' + post._id}
             lines='none'
-            className='ion-no-padding ion-no-inner-padding'
+            className='ion-no-padding ion-no-inner-padding post-card'
           >
             {' '}
             <PostCard post={post} selectPost={setSelectedPost} />

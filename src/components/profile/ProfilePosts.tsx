@@ -6,7 +6,7 @@ import { PostCardI } from '../../shared/types';
 
 const ProfilePosts: React.FC<{ posts: PostCardI[] }> = ({ posts }) => {
   return (
-    <IonGrid fixed>
+    <IonGrid fixed className='container-details'>
       <IonRow>
         {posts.map(({ _id, imageUrl }) => (
           <IonCol key={_id} size='12' sizeXs='4'>

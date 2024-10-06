@@ -87,7 +87,7 @@ ion-content::part(scroll) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .flex-row-gap {
@@ -661,4 +661,25 @@ ion-list.custom-modal-list ion-item.custom-modal-item::part(native) {
   object-fit: cover;
   width: 100%;
   height: auto;
+}
+
+@keyframes fadeOutTopRight {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(100%, -100%, 0);
+  }
+}
+
+.fadeOutTopRight {
+  animation-name: fadeOutTopRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.animated {
+  transition-duration: 0.5s;
 }

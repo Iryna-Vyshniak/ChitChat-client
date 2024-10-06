@@ -1,8 +1,15 @@
+ion-content.post-content {
+  width: 100%;
+}
 .post-container {
   margin: 0 auto;
   max-width: 1440px;
   width: 100%;
   margin-top: 0.5rem;
+}
+
+ion-item.post-card:last-child {
+  margin-bottom: 4rem;
 }
 
 ion-card.post-container:last-of-type {
@@ -129,10 +136,19 @@ ion-card .post-image-skeleton {
 
 .post-bookmark ion-icon,
 .post-actions .btn-action > ion-icon,
+.btn-action > ion-icon.post-action,
 .post-stats > ion-icon {
   color: var(--ion-text-color);
   font-size: 1.5rem;
   filter: drop-shadow(1px 1.2px var(--ion-color-medium));
+}
+
+.btn-action > ion-icon.post-action-animation {
+  position: absolute;
+  top: -0.6rem;
+  left: 0.5rem;
+  display: none;
+  font-size: 0.9rem;
 }
 
 .post-stats > ion-icon {
@@ -159,7 +175,7 @@ ion-card .post-image-skeleton {
 .post-title {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  margin-top: 0.3rem;
+  margin: 0.5rem 0;
 }
 
 .post-title p {
@@ -230,6 +246,7 @@ ion-label > .post-comments-header {
   justify-content: center;
   align-items: start;
   gap: 1rem;
+  padding: 0.75rem;
 }
 
 @media (min-width: 480px) {
@@ -240,8 +257,7 @@ ion-label > .post-comments-header {
     gap: 1rem;
     align-items: center;
     align-content: center;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    /* padding: 0.75rem; */
   }
 }
 
@@ -292,6 +308,7 @@ ion-label > .post-comments-header {
 }
 
 .btn-action {
+  position: relative;
   background-color: transparent;
   width: 1.6rem;
   height: 1.6rem;

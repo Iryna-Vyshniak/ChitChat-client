@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { IonContent, IonIcon, IonItem, IonLabel, IonList } from '@ionic/react';
+import { IonIcon, IonItem, IonLabel, IonList } from '@ionic/react';
 import {
   calendarClearOutline,
   createOutline,
@@ -113,7 +113,7 @@ const ProfileCard: React.FC<{ userId: string }> = ({ userId }) => {
   }, [allPosts]);
 
   return (
-    <IonContent>
+    <>
       {userInfo && (
         <>
           {' '}
@@ -190,7 +190,7 @@ const ProfileCard: React.FC<{ userId: string }> = ({ userId }) => {
                 ))}
               </IonList>
             </div>
-          </div>
+          </div>{' '}
           {activeDetails === 'followers' && (
             <UsersList users={userFollowers} variant={'followers'} />
           )}
@@ -211,7 +211,7 @@ const ProfileCard: React.FC<{ userId: string }> = ({ userId }) => {
           )}
         </>
       )}
-    </IonContent>
+    </>
   );
 };
 
