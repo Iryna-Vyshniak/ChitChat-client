@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { IonIcon, IonItemOption, IonItemOptions } from '@ionic/react';
 import { motion } from 'framer-motion';
@@ -14,16 +14,40 @@ const PostImage: React.FC<{
   openPopup: () => void;
 }> = ({ id, image, like, handleLikeClick, openPopup }) => {
   const downloadPostImage = downloadImage(image!);
+  const postLikeRef = useRef<HTMLIonIconElement | null>(null);
+
+  const handleLikeAnimation = () => {
+    if (postLikeRef.current) {
+      postLikeRef.current.style.display = 'block';
+      postLikeRef.current.classList.add('fadeOutTopRight');
+    }
+
+    setTimeout(() => {
+      if (postLikeRef.current) {
+        postLikeRef.current.classList.remove('fadeOutTopRight');
+        postLikeRef.current.style.display = 'none';
+      }
+    }, 500);
+  };
 
   return (
     <motion.div layoutId={'image-container' + id}>
       <IonItemOptions side='start'>
-        <IonItemOption color='intro-rosy' expandable onClick={handleLikeClick}>
-          <IonIcon
-            slot='icon-only'
-            color={!like ? '' : 'danger'}
-            icon={!like ? heartOutline : heart}
-          />
+        <IonItemOption color='intro-rosy' expandable>
+          <button className='btn-action' onClick={handleLikeAnimation}>
+            <IonIcon
+              ref={postLikeRef}
+              className='post-action-animation animated'
+              color='danger'
+              icon={heart}
+            />
+            <IonIcon
+              className='post-action'
+              color={like ? 'danger' : ''}
+              icon={like ? heart : heartOutline}
+              onClick={handleLikeClick}
+            />
+          </button>
         </IonItemOption>
       </IonItemOptions>
       <div

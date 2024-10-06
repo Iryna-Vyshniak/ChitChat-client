@@ -16,12 +16,12 @@ import {
   IonRouterLink,
 } from '@ionic/react';
 import {
+  arrowRedoOutline,
   bookmarkOutline,
   chatbubbleOutline,
   ellipsisVertical,
   heart,
   heartOutline,
-  paperPlaneOutline,
   statsChartSharp,
 } from 'ionicons/icons';
 
@@ -39,6 +39,7 @@ const PostCard: React.FC<{
   const [like, setLike] = useState<boolean>(false);
   const content = useRef(null);
   const modalAllComments = useRef<HTMLIonModalElement | null>(null);
+  const postLikeRef = useRef<HTMLIonIconElement | null>(null);
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -49,6 +50,17 @@ const PostCard: React.FC<{
 
   const handleLikeClick = () => {
     setLike(!like);
+    if (postLikeRef.current) {
+      postLikeRef.current.style.display = 'block';
+      postLikeRef.current.classList.add('fadeOutTopRight');
+    }
+
+    setTimeout(() => {
+      if (postLikeRef.current) {
+        postLikeRef.current.classList.remove('fadeOutTopRight');
+        postLikeRef.current.style.display = 'none';
+      }
+    }, 500);
   };
 
   const { imageUrl, owner, title, viewsCount, createdAt, _id } = post;
@@ -100,11 +112,16 @@ const PostCard: React.FC<{
                 <div className='post-actions-container'>
                   <div className='post-actions'>
                     <button className='btn-action'>
-                      {' '}
                       <IonIcon
-                        className='animate__animated'
-                        color={!like ? '' : 'danger'}
-                        icon={!like ? heartOutline : heart}
+                        ref={postLikeRef}
+                        className='post-action-animation animated'
+                        color='danger'
+                        icon={heart}
+                      />
+                      <IonIcon
+                        className='post-action'
+                        color={like ? 'danger' : ''}
+                        icon={like ? heart : heartOutline}
                         onClick={handleLikeClick}
                       />
                     </button>
@@ -114,10 +131,13 @@ const PostCard: React.FC<{
                     </button>
 
                     <button className='btn-action'>
-                      <IonIcon icon={paperPlaneOutline} />
+                      <IonIcon
+                        className='post-action'
+                        size='medium'
+                        icon={arrowRedoOutline}
+                      />
                     </button>
                   </div>
-
                   <div className='post-stats'>
                     <IonIcon icon={statsChartSharp} />
                     <IonLabel>{viewsCount}</IonLabel>
