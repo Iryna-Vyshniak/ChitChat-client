@@ -11,6 +11,7 @@ import {
 import { chevronUp } from 'ionicons/icons';
 
 import { useScrollToAnchor } from '../../shared/hooks/scroll/useScrollToAnchor';
+import { useSmoothScroll } from '../../shared/hooks/scroll/useSmoothScroll';
 import { PostCardI } from '../../shared/types';
 import PostCard from './PostCard';
 
@@ -18,11 +19,13 @@ const PostsList: React.FC<{ posts: PostCardI[] }> = ({ posts }) => {
   const [, setSelectedPost] = useState<PostCardI | undefined>(undefined);
   const [backToTop, setBackToTop] = useState<boolean>(false);
   const contentRef = createRef<HTMLIonContentElement>();
-  useScrollToAnchor();
+
+  const { scrollRef } = useSmoothScroll(contentRef, 0.05);
+  useScrollToAnchor(contentRef);
 
   const goToTop = () => {
     if (contentRef.current) {
-      contentRef.current.scrollToTop(1000); // Scroll to the top in 1000ms
+      contentRef.current.scrollToTop(1500); // smooth scroll to top
     }
   };
 
@@ -49,18 +52,19 @@ const PostsList: React.FC<{ posts: PostCardI[] }> = ({ posts }) => {
       fixedSlotPlacement='before'
       onIonScroll={(e) => handleContentScroll(e)}
     >
-      <IonList className='flex-center-col ion-padding-vertical'>
-        {posts.map((post) => (
-          <IonItem
-            key={'card-' + post._id}
-            lines='none'
-            className='ion-no-padding ion-no-inner-padding post-card'
-          >
-            {' '}
-            <PostCard post={post} selectPost={setSelectedPost} />
-          </IonItem>
-        ))}
-      </IonList>
+      <div ref={scrollRef}>
+        <IonList className='flex-center-col ion-padding-vertical'>
+          {posts.map((post) => (
+            <IonItem
+              key={'card-' + post._id}
+              lines='none'
+              className='ion-no-padding ion-no-inner-padding post-card'
+            >
+              <PostCard post={post} selectPost={setSelectedPost} />
+            </IonItem>
+          ))}
+        </IonList>
+      </div>
       {backToTop && (
         <IonFab
           horizontal='center'
