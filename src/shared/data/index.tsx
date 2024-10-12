@@ -180,8 +180,9 @@ export const signupFields = {
     placeholder: '*******',
   },
   gender: {
-    label: 'Male' || 'Female' || 'Other',
+    label: 'Gender',
     name: 'gender',
+    options: ['Male', 'Female', 'Other'],
   },
 };
 
